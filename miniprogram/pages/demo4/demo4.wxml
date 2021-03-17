@@ -1,0 +1,4 @@
+<view class="row" wx:for="{{dataList}}" wx:key="index" bindtap="clickRow" data-id="{{item._id}}" data-idx="{{index}}">
+<view class="title">{{index+1}}标题：{{item.title}}</view>
+<view>价格：{{item.money}}</view>
+</view>

@@ -1,0 +1,1 @@
+<button type="primary" bindtap="updateData">更新一条数据</button>

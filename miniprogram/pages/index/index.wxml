@@ -1,0 +1,11 @@
+<!-- <view>首页</view> -->
+<!-- <button type="primary" bindtap="getData">点击获取数据</button>
+<view wx:for="{{dataObj}}">{{item.title}}</view>
+<button type="primary" bindtap="addData">添加一条数据</button> -->
+<form bindsubmit="btnSubmit">
+  <label for="">标题</label><input type="text" name="title" ></input>
+  <label for="">时间</label><input type="date" name="time" ></input>
+  <label for="">钱</label><input type="text" name="money" ></input>
+  <button type="primary" form-type="submit">提交</button>
+  <button form-type="reset">提交</button>
+</form>

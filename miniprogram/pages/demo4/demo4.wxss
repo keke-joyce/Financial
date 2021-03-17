@@ -1,0 +1,8 @@
+/* pages/demo4/demo4.wxss */
+.row{
+  padding: 80rpx;
+  border-bottom: 1px solid #ccc;
+}
+.row .title{
+  font-size: 30rpx;
+}
