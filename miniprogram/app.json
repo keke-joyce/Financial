@@ -1,11 +1,12 @@
 {
   "pages": [
-    "pages/addmoney/addmoney",
-    "pages/addmoney/spending/spending",
-    "pages/addmoney/income/income",
+    
     "pages/home/home",
     "pages/myinfo/myinfo",
     "pages/index/index",
+    "pages/addmoney/addmoney",
+    "pages/addmoney/spending/spending",
+    "pages/addmoney/income/income",
     "pages/demo4/demo4",
     "pages/demo3/demo3",
     "pages/demo2/demo2",
