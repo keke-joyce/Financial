@@ -1,0 +1,20 @@
+/* components/income/income.wxss */
+.income{
+  width: 90%;
+  height: 100vh;
+  margin: 0 auto;
+  /* border: 1px solid black; */
+  
+}
+.income .income-top{
+  height: 10%;
+  /* border: 1px solid red; */
+  margin-top: 1%;
+  box-shadow: 2px 2px 2px 2px #ccc;
+  border-radius: 5px 5px;
+}
+.income .icon-content{
+  margin-top: 1%;
+  height: 30%;
+  border: 1px  solid black;
+}

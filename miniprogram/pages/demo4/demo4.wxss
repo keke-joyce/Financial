@@ -1,7 +1,11 @@
 /* pages/demo4/demo4.wxss */
 .row{
-  padding: 80rpx;
-  border-bottom: 1px solid #ccc;
+  width: 90%;
+  height: 10%;
+  /* padding: 80rpx; */
+  background-color: yellow;
+  border: 1px solid #ccc;
+  margin: 2% auto;
 }
 .row .title{
   font-size: 30rpx;

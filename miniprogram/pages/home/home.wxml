@@ -1,0 +1,15 @@
+<view class="main">
+  <view class="top"></view>
+  <view class="search">
+    <input type="text"></input>
+    <image src="../../images/serch-icon.png"></image>
+  </view>
+  <view class="head"></view>
+  <view class="content">
+    <view class="content-info"></view>
+    <view class="add-info">
+      <image src="../../images/add-info.png" bindtap="toAdd"></image>
+    </view>
+  </view>
+</view>
+

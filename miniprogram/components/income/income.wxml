@@ -1,0 +1,11 @@
+<!--components/income/income.wxml-->
+<!-- 支出页面的组件 -->
+<!-- <text>components/income/income.wxml</text> -->
+<view class="income">
+  <view class="income-top">
+income组件
+  </view>
+  <view class="icon-content" >
+    <image></image>
+  </view>
+</view>

@@ -1,12 +1,47 @@
 {
   "pages": [
+    "pages/addmoney/addmoney",
+    "pages/addmoney/spending/spending",
+    "pages/addmoney/income/income",
+    "pages/home/home",
+    "pages/myinfo/myinfo",
+    "pages/index/index",
     "pages/demo4/demo4",
     "pages/demo3/demo3",
     "pages/demo2/demo2",
-    "pages/demo/demo",
-    "pages/index/index"
+    "pages/demo/demo"
+   
+    
     
   ],
+  "tabBar": {
+    "color": "#535568", 
+    "selectedColor": "#dfdf00",  
+    "backgroundColor": "#FFFFFF", 
+    "borderStyle": "black", 
+    "list": [
+      {
+        "pagePath": "pages/home/home", 
+        "text": "首页",           
+        "iconPath": "./images/book1.png",  
+        "selectedIconPath": "./images/book2.png" 
+      },
+      {
+        "pagePath": "pages/demo4/demo4",
+        "text": "统计",
+        "iconPath": "./images/pic1.png",
+        "selectedIconPath": "./images/pic2.png"
+      },
+      {
+        "pagePath": "pages/myinfo/myinfo",
+        "text": "我的",
+        "iconPath": "./images/myinfo1.png",
+        "selectedIconPath": "./images/myinfo2.png"
+      }
+    ],
+    "position": "bottom",  
+    "custom": false  
+  },
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",

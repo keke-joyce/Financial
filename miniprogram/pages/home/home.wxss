@@ -1,0 +1,65 @@
+/* pages/home/home.wxss */
+.main{
+height: 100vh;
+}
+
+.main .top{
+height: 5%;
+/* border: 1px solid red; */
+}
+.main .search{
+  height: 5%;
+  width: 90%;
+  margin:0 auto;
+  /* border: 1px solid black; */
+  border-radius: 10px ;
+  box-shadow: 2px 2px 2px 2px #ccc;
+  overflow: hidden;
+}
+.main .search input{
+  width: 87%;
+  height: 100%;
+  margin-left: 3%;
+  /* border: 1px solid black; */
+  float: left;
+}
+.main .search image{
+  float: left;  
+  width: 36px;
+  height: 32px;
+  
+}
+.main .head{
+  width: 90%;
+  height: 15%;
+  margin:1% auto;
+  border-radius: 5px ;
+  /* border: 1px solid green; */
+  box-shadow: 2px 2px 2px 2px #ccc;
+}
+.main .content{
+  width: 90%;
+  height: 73%;
+  margin:1% auto;
+  /* border: 1px solid red; */
+  /* box-shadow: 2px 2px 2px 2px #ccc; */
+}
+.main .content .content-info{
+  /* width: 90%; */
+  margin: 0 auto;
+  height: 8%;
+  /* border: 1rpx solid red; */
+}
+.main .content .add-info{
+  width: 64px;
+  height: 64px;
+  /* background-image: url('../../images/add-info.png'); */
+  /* background-size: cover; */
+}
+.main .content .add-info image{
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
