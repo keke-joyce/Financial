@@ -17,7 +17,7 @@ height: 5%;
   overflow: hidden;
 }
 .main .search input{
-  width: 87%;
+  width: 85%;
   height: 100%;
   margin-left: 3%;
   /* border: 1px solid black; */

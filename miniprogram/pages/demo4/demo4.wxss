@@ -1,7 +1,7 @@
 /* pages/demo4/demo4.wxss */
 .row{
   width: 90%;
-  height: 10%;
+  height: 20vh;
   /* padding: 80rpx; */
   background-color: yellow;
   border: 1px solid #ccc;

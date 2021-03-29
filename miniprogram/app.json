@@ -1,9 +1,10 @@
 {
   "pages": [
+    
+    "pages/home/home",
     "pages/addmoney/addmoney",
     "pages/addmoney/spending/spending",
     "pages/addmoney/income/income",
-    "pages/home/home",
     "pages/myinfo/myinfo",
     "pages/index/index",
     "pages/demo4/demo4",
