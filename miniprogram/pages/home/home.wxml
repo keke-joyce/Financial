@@ -11,5 +11,9 @@
       <image src="../../images/add-info.png" bindtap="toAdd"></image>
     </view>
   </view>
+  <view class="digit">
+    <input type="number"> </input>
+  </view>
+  
 </view>
 

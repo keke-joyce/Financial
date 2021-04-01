@@ -63,3 +63,10 @@ height: 5%;
   bottom: 10px;
   right: 10px;
 }
+.main .digit{
+  border:1px solid black;
+  height: 100px;
+}
+.main .digit input{
+  border: 1px solid black;
+}

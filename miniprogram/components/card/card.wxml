@@ -1,0 +1,5 @@
+<!--components/card/card.wxml-->
+<view class="card-main">
+<view class="card-top"></view>
+</view>
+

@@ -1,0 +1,16 @@
+/* components/card/card.wxss */
+.card-main{
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background-color: #ccc;
+  justify-content: center;
+  align-items: center;
+}
+.card-main .card-top{
+  /* margin: 0 auto; */
+  width: 90%;
+  height: 80%;
+  background-color: white;
+  
+}

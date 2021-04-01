@@ -1,0 +1,24 @@
+<!--components/calculator/calculator.wxml-->
+<!-- <text>components/calculator/calculator.wxml</text> -->
+<view class="main">
+<view class="cal">
+<view bindtap="">7</view>
+<view bindtap="">8</view>
+<view bindtap="">9</view>
+<view bindtap="">Del</view>
+<view bindtap="">4</view>
+<view bindtap="">5</view>
+<view bindtap="">6</view>
+<view bindtap="">+</view>
+<view bindtap="">1</view>
+<view bindtap="">2</view>
+<view bindtap="">3</view>
+<view bindtap="">-</view>
+<view bindtap="">.</view>
+<view bindtap="">0</view>
+<view bindtap="">C</view>
+<view bindtap="">完成</view>
+</view>
+
+</view>
+

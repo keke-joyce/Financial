@@ -1,0 +1,26 @@
+.main{
+  width: 100%;
+  height: 50vh;
+  position: relative;
+  left: 0;
+  top: 40vh;
+  border-radius: 5px; 
+}
+/* grid网格容器 */
+.main .cal{
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 15vh 15vh 15vh 15vh;
+  border-radius: 5px;
+}
+/* 网格items */
+.main .cal view{
+  line-height: 15vh;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+}
+/* 点击items时触发 */
+.main .cal view:active{
+  background-color: #e7e4e4; 
+}

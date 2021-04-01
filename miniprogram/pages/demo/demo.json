@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "Card":"../../components/card/card",
+    "Calculator":"../../components/calculator/calculator"
+  }
 }
