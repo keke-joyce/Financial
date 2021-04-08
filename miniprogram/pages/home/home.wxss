@@ -5,61 +5,98 @@ height: 100vh;
 
 .main .top{
 height: 5%;
-/* border: 1px solid red; */
+margin-left: 5px;
+}
+.main .top .select image{
+width: 20px;
+height: 20px;
+background-size: 100% 100%;
 }
 .main .search{
   height: 5%;
   width: 90%;
   margin:0 auto;
-  /* border: 1px solid black; */
   border-radius: 10px ;
   box-shadow: 2px 2px 2px 2px #ccc;
-  overflow: hidden;
+  overflow: hidden; 
 }
 .main .search input{
   width: 85%;
   height: 100%;
   margin-left: 3%;
-  /* border: 1px solid black; */
   float: left;
 }
 .main .search image{
   float: left;  
-  width: 36px;
-  height: 32px;
-  
+  width: 32px;
+  height: 30px;
 }
 .main .head{
   width: 90%;
   height: 15%;
   margin:1% auto;
   border-radius: 5px ;
-  /* border: 1px solid green; */
   box-shadow: 2px 2px 2px 2px #ccc;
+}
+.main .head .head_store{
+  font-size: 24px;
+  font-weight: bold;
+}
+.main .head .head_store label{
+  font-size: 16px;
+  margin: 10px 30% 0 30px;
+  margin-left: 30%;
+  margin-right: 30px;
+}
+.main .head .head_income{
+  width: 45%;
+  float: left;
+  margin: 7% 2%;
+}
+.main .head .head_spand{
+  width:45%;
+  float: left;
+  margin: 7% 2%;
+}
+.main .head .head_income label{
+  font-size: 14px;
+  color: white;
+  background-color: rgb(240, 94, 78);
+  border-radius: 10px;
+
+}
+.main .head .head_spand label{
+  font-size: 14px;
+  background-color: #64b0e7;
+  border-radius: 10px;
+  color: white;
 }
 .main .content{
   width: 90%;
   height: 73%;
   margin:1% auto;
-  /* border: 1px solid red; */
-  /* box-shadow: 2px 2px 2px 2px #ccc; */
 }
 .main .content .content-info{
-  /* width: 90%; */
   margin: 0 auto;
   height: 8%;
-  /* border: 1rpx solid red; */
+}
+.main .content .content-info .row{
+  height: 10vh;
+  box-shadow: 1px 1px 1px 1px #ccc;
+  margin: 2% auto;
+  border-radius: 5px ;
+}
+.main .content .content-info .row .title{
+  font-size: 30rpx;
 }
 .main .content .add-info{
   width: 64px;
   height: 64px;
-  /* background-image: url('../../images/add-info.png'); */
-  /* background-size: cover; */
 }
 .main .content .add-info image{
   width: 64px;
   height: 64px;
-  position: absolute;
+  position: fixed;
   bottom: 10px;
   right: 10px;
 }
@@ -67,6 +104,6 @@ height: 5%;
   border:1px solid black;
   height: 100px;
 }
-.main .digit input{
+/* .main .digit input{
   border: 1px solid black;
-}
+} */

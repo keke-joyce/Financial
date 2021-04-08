@@ -1,47 +1,44 @@
 {
   "pages": [
-    "pages/demo/demo",
     "pages/home/home",
     "pages/addmoney/addmoney",
     "pages/addmoney/spending/spending",
+    "pages/demo/demo",
     "pages/addmoney/income/income",
     "pages/myinfo/myinfo",
-    "pages/index/index",    
+    "pages/index/index",
     "pages/demo4/demo4",
     "pages/demo3/demo3",
-    "pages/demo2/demo2"
-    
-   
-    
-    
+    "pages/demo2/demo2",
+    "pages/statistics/statistics"
   ],
   "tabBar": {
-    "color": "#535568", 
-    "selectedColor": "#dfdf00",  
-    "backgroundColor": "#FFFFFF", 
-    "borderStyle": "black", 
+    "color": "#535568",
+    "selectedColor": "#64b0e7",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
     "list": [
       {
-        "pagePath": "pages/home/home", 
-        "text": "首页",           
-        "iconPath": "./images/book1.png",  
-        "selectedIconPath": "./images/book2.png" 
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "./images/book1.png",
+        "selectedIconPath": "./images/book3.png"
       },
       {
-        "pagePath": "pages/demo4/demo4",
+        "pagePath": "pages/statistics/statistics",
         "text": "统计",
         "iconPath": "./images/pic1.png",
-        "selectedIconPath": "./images/pic2.png"
+        "selectedIconPath": "./images/pic3.png"
       },
       {
         "pagePath": "pages/myinfo/myinfo",
         "text": "我的",
         "iconPath": "./images/myinfo1.png",
-        "selectedIconPath": "./images/myinfo2.png"
+        "selectedIconPath": "./images/myinfo3.png"
       }
     ],
-    "position": "bottom",  
-    "custom": false  
+    "position": "bottom",
+    "custom": false
   },
   "window": {
     "backgroundColor": "#F6F6F6",

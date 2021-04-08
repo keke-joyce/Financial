@@ -1,19 +1,36 @@
 <view class="main">
-  <view class="top"></view>
+  <!-- 选择账本 -->
+  <view class="top">
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" class="select">  
+      {{array[index]}} <image src="../../images/select.png"></image> 
+    </picker>
+</view>
+  <!-- 搜索框 -->
   <view class="search">
     <input type="text"></input>
-    <image src="../../images/serch-icon.png"></image>
+    <image src="../../images/search.png"></image>
   </view>
-  <view class="head"></view>
+  <!-- 收支统计框 -->
+  <view class="head">
+    <view class="head_store"><label>结余</label>0</view>
+    <view class="head_income"><label>总收入</label>5000</view>
+    <view class="head_spand"><label>总支出</label>5000</view>
+  </view>
+  <!-- 收支条目 -->
   <view class="content">
-    <view class="content-info"></view>
+    <view class="content-info">
+      <!-- <view>2020年2月14日</view> -->
+      <view class="row" wx:for="{{dataList}}" wx:key="index" bindtap="clickRow" data-id="{{item._id}}" data-idx="{{index}}">       
+      <view class="title">{{index+1}}标题：{{item.title}}</view>
+      <view>价格：{{item.money}}</view>
+    </view>
+    </view>
     <view class="add-info">
-      <image src="../../images/add-info.png" bindtap="toAdd"></image>
+      <image src="../../images/add.png" bindtap="toAdd"></image>
     </view>
   </view>
-  <view class="digit">
-    <input type="number"> </input>
-  </view>
+  <!-- <view class="digit">
+  </view> -->
   
 </view>
 

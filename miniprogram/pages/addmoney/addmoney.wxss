@@ -11,8 +11,8 @@
     text-align: center
 }
 .tabs-item.selected {
-    color:#874b27;
-    border-bottom:2rpx solid #874b27;
+    color:#64b0e7;
+    border-bottom:2rpx solid #64b0e7;
 }
 .tabs-item {
     width: 33.3%;
