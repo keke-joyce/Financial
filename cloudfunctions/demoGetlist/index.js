@@ -9,7 +9,6 @@ exports.main = async (event, context) => {
   var page=event.page;
  return await db.collection('demolist').skip(page).limit(num).get()
   // const wxContext = cloud.getWXContext()
-
   // return {
   //   event,
   //   openid: wxContext.OPENID,

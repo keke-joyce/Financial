@@ -14,7 +14,23 @@
   border-radius: 5px 5px;
 }
 .income .icon-content{
+  display: flex; 
+ flex-wrap: wrap;
   margin-top: 1%;
+  /* width: 64px; */
   height: 30%;
-  border: 1px  solid black;
+  /* border: 1px  solid black; */
+}
+.income .icon-content .kind{
+ width: 78px;
+ height: 78px;
+ border-radius: 5px;
+ margin: 5px 2px;
+}
+.income .icon-content .kind image{
+  width: 100%;
+  height: 100%;
+  /* flex-wrap: wrap; */
+  background-size: 100% 100%;
+  
 }

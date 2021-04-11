@@ -5,7 +5,10 @@
   <view class="income-top">
 income组件
   </view>
-  <view class="icon-content" wx:for="{{dataList}}" wx:key="index" data-id="{{item._id}}" data-idx="{{index}}">
-    <image src="{{item.url}}"></image>
+  <view class="icon-content" >
+    <view class="kind" wx:for="{{dataList}}" wx:key="index" data-id="{{item._id}}" data-idx="{{index}}" style="background-color:{{item.color}}">
+      <image src="{{item.url}}" ></image>
+    </view>
+    
   </view>
 </view>
