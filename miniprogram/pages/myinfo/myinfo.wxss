@@ -1,1 +1,9 @@
 /* pages/myinfo/myinfo.wxss */
+.user-avatarUrl{
+width: 100px;
+height: 100px;
+
+}
+.user-avatarUrl open-data{
+  border-radius: 100px;
+}

@@ -1,14 +1,18 @@
 <!--pages/myinfo/myinfo.wxml-->
-<text>pages/myinfo/myinfo.wxml</text>
+<!-- <text>pages/myinfo/myinfo.wxml</text> -->
 <view class="userinfo">
-    <button 
+    <!-- <button 
       open-type="getUserInfo" 
       bindgetuserinfo="onGetUserInfo"
       class="userinfo-avatar"
-      style="background-image: url({{avatarUrl}})"
+      style="width:100px;height:100px;background-image: url({{userInfo.avatarUrl}});background-size:100% 100%"
       size="default"
-    ></button>
-    <view class="userinfo-nickname-wrapper">
-      <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button>
+    >{{userInfo.avatarUrl}}</button> -->
+    <view class="user-avatarUrl">
+      <open-data  type="userAvatarUrl"></open-data>
     </view>
+    
+    <!-- <view class="userinfo-nickname-wrapper"> -->
+      <!-- <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button> -->
+    <!-- </view> -->
   </view>

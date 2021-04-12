@@ -58,20 +58,28 @@ Page({
       })
       console.log(res)   
     })},
+    getLogin(){
+      wx.cloud.callFunction({
+        name: 'login',
+        complete: res => {
+          console.log('callFunction test result: ', res)
+        }
+      })
+    },
 
-
-  toAdd(){
-    wx.navigateTo({
-      url: '../addmoney/addmoney',
-    })
-    console.log(1111)
-  },
+    toAdd(){
+      wx.navigateTo({
+        url: '../addmoney/addmoney',
+      })
+      console.log(1111)
+    },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.getData()
+    this.getLogin()
   },
 
   /**
