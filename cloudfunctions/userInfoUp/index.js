@@ -8,7 +8,7 @@ exports.main = async (event, context) => {
 
   return await db.collection('user_list').add({
     // data 字段表示需新增的 JSON 数据
-    data:event,  
+    data:event.userInfo,  
     success: function(res) {
       console.log(res)
     }

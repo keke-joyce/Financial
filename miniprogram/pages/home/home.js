@@ -1,4 +1,5 @@
 // pages/home/home.js
+const db=wx.cloud.database()
 Page({
 
   /**
@@ -10,10 +11,14 @@ Page({
     index: 0,
   },
   bindPickerChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    console.log('picker发送选择改变，携带值为', e.detail)
     this.setData({
       index: e.detail.value
     })
+  },
+  getBookList(){
+    
+    // db.collection('book_list').doc().get()
   },
   getData(num=7,page=0){
     wx.cloud.callFunction({
@@ -28,7 +33,7 @@ Page({
       this.setData({
         dataList:newData
       })
-      console.log(res.result.data)
+      // console.log(res.result.data)
     })
   },
   //点击增加
@@ -56,22 +61,22 @@ Page({
       wx.hideLoading({
         complete:(res)=>{}
       })
-      console.log(res)   
+      // console.log(res)   
     })},
-    getLogin(){
-      wx.cloud.callFunction({
-        name: 'login',
-        complete: res => {
-          console.log('callFunction test result: ', res)
-        }
-      })
-    },
+    // getLogin(){
+    //   wx.cloud.callFunction({
+    //     name: 'login',
+    //     complete: res => {
+    //       console.log('callFunction test result: ', res)
+    //     }
+    //   })
+    // },
 
     toAdd(){
       wx.navigateTo({
         url: '../addmoney/addmoney',
       })
-      console.log(1111)
+      // console.log(1111)
     },
 
   /**
@@ -79,7 +84,8 @@ Page({
    */
   onLoad: function (options) {
     this.getData()
-    this.getLogin()
+    this.getBookList()
+    // this.getLogin()
   },
 
   /**

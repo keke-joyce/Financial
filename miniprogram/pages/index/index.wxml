@@ -10,23 +10,47 @@
   <button form-type="reset">提交</button>
 </form> -->
 
-<view wx:if="{{canIUse}}">
+<!-- <view wx:if="{{canIUse}}">
   <view class='header'>
     <view class="userinfo-avatar">
-      <open-data  type="userAvatarUrl">
-        
-      </open-data>
-     
+      <open-data  type="userAvatarUrl"></open-data>
     </view>
-    <view>    <open-data type="userNickName"></open-data></view>
-
+    <view  class="userinfo-name"> 
+      <open-data type="userNickName"></open-data>
+    </view>
   </view>
   <view class='content'>
     <view>申请获取以下权限</view>
     <text>获得您的公开信息(昵称，头像等)</text>
   </view>
-  <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
+  <button class='bottom' type='primary' open-type="getUserProfile" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
     授权登录
   </button>
 </view>
-<view wx:else>请升级微信版本</view>
+<view wx:else>请升级微信版本</view> -->
+<view class="container">
+  <view class="userinfo">
+    <block wx:if="{{!hasUserInfo}}">
+      <view class='header'>
+    <view class="userinfo-avatar">
+      <open-data  type="userAvatarUrl"></open-data>
+    </view>
+    <view  class="userinfo-name"> 
+      <open-data type="userNickName"></open-data>
+    </view>
+  </view>
+  <view class='content'>
+    <view>申请获取以下权限</view>
+    <text>获得您的公开信息(昵称，头像等)</text>
+  </view>
+      <!-- <image bindtap="bindViewTap" class="userinfo-avatar" src="../../images/myinfo1.png" mode="cover"></image> -->
+      <!-- <text class="userinfo-nickname">{{userInfo.nickName}}</text> -->
+      <button wx:if="{{canIUseGetUserProfile}}" type='primary' bindtap="getUserProfile" > 授权登录 </button>
+      <!-- <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button> -->
+    </block>
+    <block wx:else >
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+</view>
