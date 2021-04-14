@@ -5,16 +5,28 @@
     <image src="{{urltop}}"></image>
 income组件
   </view>
-  <view class="icon-content" >
-    <view class="kind" wx:for="{{dataList}}" wx:key="index"  bindtap="classifyClick"  id="{{item.cid}}" style="background-color:item.cid=={{classify_id}}?'':{{colortop}}" >
-      {{item.cid}}{{classify_id}}
-      <!-- <view class="kind" wx:for="{{dataList}}" wx:key="index" data-id="{{item._id}}" data-idx="{{index}}" style="background-color:{{item.color}}" bindtap="classifyClick"> -->
-        <!-- <view class="kind-content" wx:if="{{colortop}}" style="background-color:{{colortop}}"> -->
-          <image src="{{item.url}}"></image>
-        <!-- </view> -->
-          
-      
-    </view>
+  <!-- <block wx:for="{{dataList}}" wx:key="index" class="icon-content"  id="{{item.cid}}">
+    <block>
+      <view wx:if="{{item.cid == classify_id}}" class="kind" bindtap="classifyClick" style="background-color:{{colortop}}" >
+          <image src="{{item.url}}"></image>                       
+      </view>
+      <view wx:if="{{item.cid !== classify_id}}" class="kind" bindtap="classifyClick" >
+          <image src="{{item.url}}"></image>                       
+      </view>
+    </block>
     
+    <block>
+      <view class="kind" >
+          <image src="{{item.url}}"></image>                       
+    </view>
+    </block>
+  </block> 
+       -->
+    
+  <view class="icon-content" >
+    <view class="kind" wx:for="{{dataList}}" wx:key="index"  bindtap="classifyClick"  id="{{item.cid}}" style="background-color:{{ item.cid === classify_id ? colortop : ''}}">
+      <!-- {{item.cid}}{{classify_id}}     -->
+          <image src="{{item.cid === classify_id ?item.url1:item.url}}"></image>                       
+    </view>   
   </view>
 </view>
