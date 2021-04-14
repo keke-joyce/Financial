@@ -1,4 +1,5 @@
 // pages/home/home.js
+// 方法**代表有问题总结，++表示已完成
 const db=wx.cloud.database()
 Page({
 
@@ -6,35 +7,100 @@ Page({
    * 页面的初始数据
    */
   data: {
-    dataList:[],
-    array: ['账本1', '账本2'],
+    dataList:[],//数据列表
+    array1: [],//账本名字列表
+    array: [],//账本名字列表
     index: 0,
   },
   bindPickerChange: function(e) {
+    const {array,index}=this.data;
     console.log('picker发送选择改变，携带值为', e.detail)
     this.setData({
       index: e.detail.value
     })
-  },
-  getBookList(){
-    
-    // db.collection('book_list').doc().get()
-  },
-  getData(num=7,page=0){
+    // 切换账本
+    // 获取切换的账本的id
+    var book_id=array[index]._id;
+    // 将账本的id存到storage中
+    wx.setStorage({
+      data: array[index]._id,
+      key: 'book_id',
+    })
+    // 调用云函数根据账本id去获取收支数据
+    // this.getData(e.detail.value)
     wx.cloud.callFunction({
-      name:'demoGetlist',
+      name:'getBookInfo',
       data:{
-        num,
-        page
+        book_id
       }
     }).then(res=>{
+      console.log(res)
       var oldData=this.data.dataList;
       var newData=oldData.concat(res.result.data);
       this.setData({
         dataList:newData
       })
-      // console.log(res.result.data)
+    }
+    )
+
+    // console.log(bookId)
+  },
+  //获取当前用户的账本列表**++
+  getBookList(){
+    // ******问题：在成功回调函数中使用this，this指向的是箭头函数的this指向包裹它的外层函数的this，而不是全局page的this
+    // 要想指向全局page的this来更改data，就需要提前声明一个中间变量来指向全局this
+    const that=this;
+    wx.getStorage({
+      key: 'user_id',
+      success(res){
+        db.collection('booklist').where({user_id:res.data}).get().then(res=>{
+          console.log(res.data)
+          const arr=[]
+          res.data.forEach(el=>{
+            arr.push(el.name)
+          })
+          that.setData({array:res.data,array1:arr})
+        })
+      }
     })
+  this.getData()
+  },
+  // 获取当前账本的数据
+  getData(){
+    
+    // this.setData({index:a})
+    const {array,index}=this.data;
+    console.log(array[index])
+    // var book_id=array[index]._id;
+    // wx.cloud.callFunction({
+    //   name:'getBookInfo',
+    //   data:{
+    //     book_id
+    //   }
+    // }).then(res=>{
+    //   console.log(res)
+    //   var oldData=this.data.dataList;
+    //   var newData=oldData.concat(res.result.data);
+    //   this.setData({
+    //     dataList:newData
+    //   })
+    // }
+    // )
+
+    // wx.cloud.callFunction({
+    //   name:'demoGetlist',
+    //   data:{
+    //     num,
+    //     page
+    //   }
+    // }).then(res=>{
+    //   var oldData=this.data.dataList;
+    //   var newData=oldData.concat(res.result.data);
+    //   this.setData({
+    //     dataList:newData
+    //   })
+    //   // console.log(res.result.data)
+    // })
   },
   //点击增加
   clickRow(res){
@@ -63,16 +129,8 @@ Page({
       })
       // console.log(res)   
     })},
-    // getLogin(){
-    //   wx.cloud.callFunction({
-    //     name: 'login',
-    //     complete: res => {
-    //       console.log('callFunction test result: ', res)
-    //     }
-    //   })
-    // },
 
-    toAdd(){
+  toAdd(){
       wx.navigateTo({
         url: '../addmoney/addmoney',
       })
@@ -83,23 +141,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getData()
     this.getBookList()
-    // this.getLogin()
+    // this.bindPickerChange()
+   
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getData()
   },
 
   /**
@@ -128,8 +186,8 @@ Page({
    */
   onReachBottom: function () {
     console.log(123)
-    var page=this.data.dataList.length;
-    this.getData(7,page)
+    // var page=this.data.dataList.length;
+    // this.getData(7,page)
   },
 
   /**

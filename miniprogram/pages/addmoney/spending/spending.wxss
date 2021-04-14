@@ -1,1 +1,40 @@
 /* pages/addmoney/spending/spending.wxss */
+/* pages/addmoney/income/income.wxss */
+/* components/income/income.wxss */
+.income{
+  width: 90%;
+  height: 100vh;
+  margin: 0 auto;
+  /* border: 1px solid black; */
+  
+}
+.income .income-top{
+  height: 10%;
+  /* border: 1px solid red; */
+  margin-top: 1%;
+  box-shadow: 2px 2px 2px 2px #ccc;
+  border-radius: 5px 5px;
+}
+.income .icon-content{
+  /* display: grid;  */
+  /* grid-template-columns:18% 18% 18% 18% 18%; */
+  /* grid-row-gap: 10px; */
+  /* grid-column-gap: 7px; */
+  margin-top: 2%;
+  /* width: 64px; */
+  height: 12%;
+  /* border: 1px  solid black; */
+}
+.income .icon-content .kind{
+  /* width: 100%;
+  height: 100%; */
+  border-radius: 5px;
+  margin: 5px 2px;
+  background-color: #E7E7E7;
+}
+.income .icon-content .kind image{
+  width: 100%;
+  height: 100%;
+  /* flex-wrap: wrap; */
+  background-size: 100% 100%;
+}

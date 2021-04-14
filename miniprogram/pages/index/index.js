@@ -175,32 +175,58 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+    const that=this;
     // 判断是否授权
     wx.getSetting({
       withSubscriptions: true,
       success(res){
         //如果成功了有authSetting就说明已经授权了
-        if(res.authSetting){
+        if(res.authSetting['scope.userInfo']){
 
           // 跳转到home页，然后调用login云函数，将用户信息存储到Storage
-          
+          wx.switchTab({
+            url: '/pages/home/home'
+          })
+          // if (wx.getUserProfile) {
+            // wx.switchTab({
+            //   url: '/pages/home/home'
+            // })
+            that.setData({
+              canIUseGetUserProfile: false
+            })
+          // }
+          wx.cloud.callFunction({
+            name: 'login',
+            success: res => {
+              console.log('callFunction test result: ', res)
+              wx.setStorage({
+                data: res.result.openid,
+                key: 'user_id',
+              })
+            }
+        })
         }else{
-
+          // if (wx.getUserProfile) {
+            // wx.switchTab({
+            //   url: '/pages/home/home'
+            // })
+            that.setData({
+              canIUseGetUserProfile: true
+            })
+          // }
           // 没有授权要执行的操作
           // 没有授权就要把用户信息存到数据库
-
+          wx.cloud.callFunction({
+              name:'userInfoUp',
+              data:res.result
+            }).then(res=>{
+              console.log(res)   
+            })
         }
         console.log(res)
       }
     })
-    if (wx.getUserProfile) {
-      // wx.switchTab({
-      //   url: '/pages/home/home'
-      // })
-      this.setData({
-        canIUseGetUserProfile: true
-      })
-    }
+    
   },
 
   // onLoad: function () {

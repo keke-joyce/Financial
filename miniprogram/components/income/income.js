@@ -11,7 +11,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    dataList:[{'url':'../../images/icon/eat1.png','color':'#f3a21b'},{'url':'../../images/icon/fruits.png','color':'#f994c2'},{'url':'../../images/icon/drink.png','color':'#c77e48'},{'url':'../../images/icon/house.png','color':'#8976ea'},{'url':'../../images/icon/veg.png','color':'#0ecd48'},{'url':'../../images/icon/shop.png','color':'#76baea'},{'url':'../../images/icon/tel.png','color':'#edf127'},{'url':'../../images/icon/book1.png','color':'#f17327'}],
+    dataList:[{'url':'../../images/icon/eat1.png','color':'#FEA82D'},{'url':'../../images/icon/fruits.png','color':'#6AC7D5'},{'url':'../../images/icon/drink.png','color':'#FD9491'},{'url':'../../images/icon/house.png','color':'#383C51'},{'url':'../../images/icon/veg.png','color':'#747FFD'},{'url':'../../images/icon/shop.png','color':'#FFC928'},{'url':'../../images/icon/tel.png','color':'#FEA3B4'},{'url':'../../images/icon/book1.png','color':'#F9A870'}],
   },
 
   /**

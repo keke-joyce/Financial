@@ -1,1 +1,60 @@
 /* pages/addmoney/income/income.wxss */
+/* components/income/income.wxss */
+.income{
+  width: 90%;
+  height: 100vh;
+  margin: 0 auto;
+  /* border: 1px solid black; */
+  
+}
+.income .income-top{
+  height: 10%;
+  /* border: 1px solid red; */
+  margin-top: 1%;
+  box-shadow: 2px 2px 2px 2px #ccc;
+  border-radius: 5px 5px;
+  display: flex;
+  align-items: center;
+}
+.income .income-top image{
+  width: 40px;
+  height: 40px;
+  /* width: 50%; */
+  /* height: 50%; */
+  margin-left: 10px;
+  background-size: 100% 100%;
+}
+.income .icon-content{
+  display: grid; 
+  grid-template-columns:18% 18% 18% 18% 18%;
+  grid-row-gap: 10px;
+  grid-column-gap: 7px;
+ /* flex-wrap: wrap; */
+  margin-top: 2%;
+  /* width: 64px; */
+  height: 25%;
+  /* border: 1px  solid black; */
+}
+.income .icon-content .kind{
+ width: 100%;
+ height: 100%;
+ border-radius: 5px;
+ margin: 5px 2px;
+ background-color: #E7E7E7;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+.income .icon-content .kind .kind-content{
+  width: 100%;
+  height: 100%;
+
+}
+.income .icon-content .kind .kind-content image{
+  width: 50%;
+  height: 50%;
+  
+  /* flex-wrap: wrap; */
+  background-size: 100% 100%;
+  
+}

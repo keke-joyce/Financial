@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    dataList:[{'url':'../../../images/icon/bonus.png','color':'#706A5A'},{'url':'../../../images/icon/redpaper.png','color':'#63A0F5'},{'url':'../../../images/icon/wages.png','color':'#FD7275'},{'url':'../../../images/icon/parttime.png','color':'#94BD3D'},{'url':'../../../images/icon/kpi.png','color':'#FE7549'}],
   },
 
   /**

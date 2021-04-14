@@ -1,8 +1,8 @@
-<view class="main">
+<view class="main" wx:if="{{true}}">
   <!-- 选择账本 -->
   <view class="top">
-    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" class="select">  
-      {{array[index]}} <image src="../../images/select.png"></image> 
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array1}}" class="select">  
+      {{array[index].name}} <image src="../../images/select.png"></image> 
     </picker>
 </view>
   <!-- 搜索框 -->
@@ -21,7 +21,7 @@
     <view class="content-info">
       <!-- <view>2020年2月14日</view> -->
       <view class="row" wx:for="{{dataList}}" wx:key="index" bindtap="clickRow" data-id="{{item._id}}" data-idx="{{index}}">       
-      <view class="title">{{index+1}}标题：{{item.title}}</view>
+      <view class="title">{{index+1}}标题：{{item.detail}}{{item.time}}</view>
       <view>价格：{{item.money}}</view>
     </view>
     </view>

@@ -1,7 +1,7 @@
 <!-- 添加记账记录页面 -->
 <view id='tabs'>
   <view class='tabs-box'>
-    <block wx:for="{{['支出','收入','转账']}}" wx:key="index">
+    <block wx:for="{{['支出','收入']}}" wx:key="index">
       <view class="tabs-item {{currentTabIndex == index ? 'selected' : '' }}" bindtap='onTabsItemTap' data-index='{{index}}'>
         {{item}}      
       </view>
@@ -9,8 +9,8 @@
   </view>
   <view class='ordert-detail'>
     <view hidden='{{currentTabIndex != 0}}'><Income></Income></view>
-    <view hidden='{{currentTabIndex != 1}}'>页面2</view>
-    <view hidden='{{currentTabIndex != 2}}'>页面3</view>
+    <view hidden='{{currentTabIndex != 1}}'><Spend></Spend></view>
+    <!-- <view hidden='{{currentTabIndex != 2}}'>页面3</view> -->
 
   </view>
 </view>
