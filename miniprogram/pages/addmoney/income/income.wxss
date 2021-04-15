@@ -52,8 +52,33 @@
 .income .icon-content .kind image{
   width: 50%;
   height: 50%;
-  
   /* flex-wrap: wrap; */
   background-size: 100% 100%;
   
+}
+.income .income-input{
+  height: 5vh;
+  overflow: hidden;
+  margin-top: 15px;
+  border: 1px solid #E7E7E7;
+
+}
+
+.income .income-input .book-input,.time-input,.detail-input{
+  width: 30%;
+  height: 100%;
+  /* border: 1px solid #E7E7E7 ; */
+  float: left;
+  display: flex;
+  align-items: center;
+}
+.income .income-input .detail-input .details-input{
+  width: 100%;
+}
+.content-icon{
+  width: 20px;
+  height: 20px;
+  background-size: 100% 100%;
+  float: left;
+  margin: 2px;
 }

@@ -15,7 +15,9 @@ Page({
 
 
   },
-
+  timePicker:function(e){
+    console.log(e.detail.value)
+  },
   classifyClick:function(e){
     console.log(e)
     var id=e.currentTarget.id;
@@ -33,18 +35,20 @@ Page({
 
 
   },
+  getTodayDate(){
+    var date=new Date()
+    console.log(date.getDay)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**

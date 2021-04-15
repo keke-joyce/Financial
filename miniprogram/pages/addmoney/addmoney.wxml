@@ -8,7 +8,7 @@
     </block>
   </view>
   <view class='ordert-detail'>
-    <view hidden='{{currentTabIndex != 0}}'><Income></Income></view>
+    <view hidden='{{currentTabIndex != 0}}'><Income today="{{today}}"></Income></view>
     <view hidden='{{currentTabIndex != 1}}'><Spend></Spend></view>
     <!-- <view hidden='{{currentTabIndex != 2}}'>页面3</view> -->
 

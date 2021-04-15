@@ -1,3 +1,4 @@
+/* pages/addmoney/income/income.wxss */
 /* components/income/income.wxss */
 .income{
   width: 90%;
@@ -12,26 +13,72 @@
   margin-top: 1%;
   box-shadow: 2px 2px 2px 2px #ccc;
   border-radius: 5px 5px;
+  display: flex;
+  align-items: center;
+}
+.income .income-top image{
+  width: 40px;
+  height: 40px;
+  /* width: 50%; */
+  /* height: 50%; */
+  margin-left: 10px;
+  background-size: 100% 100%;
 }
 .income .icon-content{
-  display: flex; 
- flex-wrap: wrap;
-  margin-top: 1%;
+  display: grid; 
+  grid-template-columns:18% 18% 18% 18% 18%;
+  grid-row-gap: 10px;
+  grid-column-gap: 7px;
+ /* flex-wrap: wrap; */
+  margin-top: 2%;
   /* width: 64px; */
-  height: 30%;
+  height: 25%;
   /* border: 1px  solid black; */
 }
 .income .icon-content .kind{
- width: 78px;
- height: 78px;
+ width: 100%;
+ height: 100%;
  border-radius: 5px;
  margin: 5px 2px;
  background-color: #E7E7E7;
+ display: flex;
+ justify-content: center;
+ align-items: center;
 }
-.income .icon-content .kind image{
+/* .income .icon-content .kind .kind-content{
   width: 100%;
   height: 100%;
+} */
+.income .icon-content .kind image{
+  width: 50%;
+  height: 50%;
   /* flex-wrap: wrap; */
   background-size: 100% 100%;
   
+}
+.income .income-input{
+  height: 5vh;
+  overflow: hidden;
+  margin-top: 15px;
+  border: 1px solid #E7E7E7;
+
+}
+
+.income .income-input .book-input,.time-input,.detail-input{
+  width: 30%;
+  height: 100%;
+  /* border: 1px solid #E7E7E7 ; */
+  float: left;
+  display: flex;
+  align-items: center;
+}
+.income .income-input .detail-input .details-input{
+  width: 100%;
+}
+.content-icon{
+  width: 20px;
+  height: 20px;
+  background-size: 100% 100%;
+  float: left;
+  margin: 2px;
 }

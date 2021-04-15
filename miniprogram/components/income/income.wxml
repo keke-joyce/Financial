@@ -2,13 +2,29 @@
 <!-- 支出页面的组件 -->
 <!-- <text>components/income/income.wxml</text> -->
 <view class="income">
-  <view class="income-top">
-income组件
-  </view>
+  <view class="income-top" style="background-color:{{colortop}}">
+    <image src="{{urltop}}"></image>
+<!-- income组件 -->
+  </view> 
   <view class="icon-content" >
-    <view class="kind" wx:for="{{dataList}}" wx:key="index" data-id="{{item._id}}" data-idx="{{index}}" style="background-color:{{item.color}}">
-      <image src="{{item.url}}" ></image>
-    </view>
-    
+    <view class="kind" wx:for="{{dataList}}" wx:key="index"  bindtap="classifyClick"  id="{{item.cid}}" style="background-color:{{ item.cid === classify_id ? colortop : ''}}">
+          <image src="{{item.cid === classify_id ?item.url1:item.url}}"></image>                       
+    </view>   
   </view>
+  <view class="income-input">
+    <view class="book-input">
+      <image class="content-icon" src="../../images/book-icon.png"></image>
+      <picker class="book-picker" mode="selector">选择账本</picker>
+    </view>
+    <view class="time-input">
+      <image class="content-icon" src="../../images/date-icon.png"></image>
+      <picker mode="date" class="time-picker" bindchange="timePicker">选择日期</picker>
+      <!-- <picker mode="date" class="time-picker" bindchange="timePicker" >{{today}}</picker> -->
+    </view>
+    <view class="detail-input">
+      <image class="content-icon" src="../../images/detail-icon.png"></image>
+      <input type="text" placeholder="添加备注..." class="details-input"></input>
+    </view>     
+  </view>
+  <Calculator></Calculator>
 </view>

@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "Income":"./income/income",
+    "Income":"../../components/income/income",
     "Spend":"./spending/spending"
   }
 }

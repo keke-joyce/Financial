@@ -3,19 +3,19 @@
   height: 50vh;
   position: relative;
   left: 0;
-  top: 40vh;
+  top:1vh;
   border-radius: 5px; 
 }
 /* grid网格容器 */
 .main .cal{
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
-  grid-template-rows: 15vh 15vh 15vh 15vh;
+  grid-template-rows: 12vh 12vh 12vh 12vh;
   border-radius: 5px;
 }
 /* 网格items */
 .main .cal view{
-  line-height: 15vh;
+  line-height: 12vh;
   text-align: center;
   font-size: 30px;
   font-weight: 600;
