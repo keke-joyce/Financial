@@ -35,10 +35,10 @@ Page({
       }
     }).then(res=>{
       console.log(res)
-      var oldData=this.data.dataList;
-      var newData=oldData.concat(res.result.data);
+      // var oldData=this.data.dataList;
+      // var newData=oldData.concat(res.result.data);
       this.setData({
-        dataList:newData
+        dataList:res.result.data
       })
     }
     )

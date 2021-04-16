@@ -12,9 +12,9 @@
   </view>
   <!-- 收支统计框 -->
   <view class="head">
-    <view class="head_store"><label>结余</label>0</view>
-    <view class="head_income"><label>总收入</label>5000</view>
-    <view class="head_spand"><label>总支出</label>5000</view>
+    <view class="head_store"><text>结余</text>0</view>
+    <view class="head_income"><text>总收入</text>5000</view>
+    <view class="head_spand"><text>总支出</text>5000</view>
   </view>
   <!-- 收支条目 -->
   <view class="content">

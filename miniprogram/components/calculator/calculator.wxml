@@ -1,23 +1,31 @@
 <!--components/calculator/calculator.wxml-->
 <!-- <text>components/calculator/calculator.wxml</text> -->
-<view class="main">
-<view class="cal">
-<view bindtap="toSeven">7</view>
-<view bindtap="toEight">8</view>
-<view bindtap="toNine">9</view>
-<view bindtap="toDel">Del</view>
-<view bindtap="toFour">4</view>
-<view bindtap="toFive">5</view>
-<view bindtap="toSix">6</view>
-<view bindtap="toAdd">+</view>
-<view bindtap="toOne">1</view>
-<view bindtap="toTwo">2</view>
-<view bindtap="toThree">3</view>
-<view bindtap="toSub">-</view>
-<view bindtap="toPoint">.</view>
-<view bindtap="toZero">0</view>
-<view bindtap="toClear">C</view>
-<view bindtap="toSubmit">完成</view>
+<view class="main" >
+<view class="cal" data-result="{{num}}" bindtap="onChange">
+<view bindtap="tapKey" data-key="7">7</view>
+<view bindtap="tapKey" data-key="8">8</view>
+<view bindtap="tapKey" data-key="9">9</view>
+<view bindtap="toDel" data-key="Del">Del</view>
+<view bindtap="tapKey" data-key="4">4</view>
+<view bindtap="tapKey" data-key="5">5</view>
+<view bindtap="tapKey" data-key="6">6</view>
+<view bindtap="tapKey" data-key="+">+</view>
+<view bindtap="tapKey" data-key="1">1</view>
+<view bindtap="tapKey" data-key="2">2</view>
+<view bindtap="tapKey" data-key="3">3</view>
+<view bindtap="tapKey" data-key="-">-</view>
+<view bindtap="tapKey" data-key=".">.</view>
+<view bindtap="tapKey"  data-key="0">0</view>
+<view bindtap="toClear" data-key="C">C</view>
+<view bindtap="toSubmit">
+  <block wx:if="{{temp}}">
+    <text>=</text>
+    
+  </block>
+  <block wx:else >
+    <text>完成</text>
+    </block>
+  </view>
 </view>
 
 </view>

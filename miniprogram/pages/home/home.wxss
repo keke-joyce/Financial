@@ -42,7 +42,7 @@ background-size: 100% 100%;
   font-size: 24px;
   font-weight: bold;
 }
-.main .head .head_store label{
+.main .head .head_store text{
   font-size: 16px;
   margin: 10px 30% 0 30px;
   margin-left: 30%;
@@ -58,14 +58,14 @@ background-size: 100% 100%;
   float: left;
   margin: 7% 2%;
 }
-.main .head .head_income label{
+.main .head .head_income text{
   font-size: 14px;
   color: white;
-  background-color: rgb(240, 94, 78);
+  background-color: #FD9491;
   border-radius: 10px;
 
 }
-.main .head .head_spand label{
+.main .head .head_spand text{
   font-size: 14px;
   background-color: #64b0e7;
   border-radius: 10px;
