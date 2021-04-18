@@ -9,10 +9,45 @@
       size="default"
     >{{userInfo.avatarUrl}}</button> -->
     <view class="user-avatarUrl">
-      <open-data  type="userAvatarUrl"></open-data>
+      <open-data  type="userAvatarUrl" class="user-image"></open-data>
+    </view>
+    <view class="user-name">
+      <open-data  type="userNickName"></open-data>
     </view>
     
     <!-- <view class="userinfo-nickname-wrapper"> -->
       <!-- <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button> -->
     <!-- </view> -->
+    <view class="add-book">
+      <image src="../../images/addbook.png" class="book-icon" bindtap="getBookList"></image>
+      账本管理
+      <image src="../../images/addbook-icon.png" class="book-add"  bindtap="addBook"></image>
+      <!-- 添加账本 -->
+    </view>
+
+    <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showAddModal}}"></view>
+      <view class="modal-dialog" wx:if="{{showAddModal}}">
+        <view class="modal-title">添加账本</view>
+        <view class="modal-content">
+          <view class="modal-input">
+            <input placeholder-class="input-holder" type="number" maxlength="10" bindinput="inputChange" class="input" placeholder="请输入账本名"></input>
+          </view>
+        </view>
+        <view class="modal-footer">
+          <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+          <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+        </view>
+      </view>
+      <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showBookModal}}"></view>
+      <view class="modal-dialog" wx:if="{{showBookModal}}">
+        <view class="modal-title"><image src="../../images/cancel.png" style="width:20px;height:20px;background-size:100% 100%"></image></view>
+        <view class="modal-content">
+          <image src="../../images/delete-icon.png" style="width:20px;height:20px;background-size:100% 100%"></image>
+          <!-- <view class="modal-input">
+            <input placeholder-class="input-holder" type="number" maxlength="10" bindinput="inputChange" class="input" placeholder="请输入账本名"></input>
+          </view> -->
+        </view>
+
+      </view>
+    <view>导出数据</view>
   </view>

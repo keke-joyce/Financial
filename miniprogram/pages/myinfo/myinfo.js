@@ -1,5 +1,6 @@
 // pages/myinfo/myinfo.js
-const app = getApp()
+// const app = getApp()
+const db = wx.cloud.database();
 Page({
 
   /**
@@ -10,8 +11,12 @@ Page({
     userInfo: {},
     logged: false,
     takeSession: false,
-    requestResult: ''
+    requestResult: '',
+    showAddModal: false,
+    showBookModal:false,
+    bookName:'',
   },
+
   getUserInf(){
     wx.getSetting({
       success: res => {
@@ -43,6 +48,9 @@ Page({
   //  
   // },
 
+  getBookList() {
+    this.setData({showBookModal:true})
+  },
   onGetUserInfo: function(e) {
     if (!this.data.logged && e.detail.userInfo) {
       this.setData({
@@ -52,7 +60,60 @@ Page({
       })
     }
   },
+  inputChange(e) {
+    this.setData({bookName:e.detail.value})
+    console.log(e)
+  },
 
+  addBook() {
+    console.log('添加账本')
+    this.setData({showAddModal:true})
+    // wx.navigateTo({
+    //   url: 'url',
+    // })
+  },
+  /**
+     * 隐藏模态对话框
+     */
+    hideModal: function () {
+      this.setData({
+        showAddModal: false,
+        showBookModal:false
+      });
+    },
+    /**
+     * 对话框取消按钮点击事件
+     */
+    onCancel: function () {
+      this.hideModal();
+    },
+    /**
+     * 对话框确认按钮点击事件
+     */
+  onConfirm: function (e) {
+    var {bookName} = this.data;
+    var user_id = wx.getStorageSync('user_id');
+    var bookinfo = {
+      name: bookName,
+      user_id,
+    }
+    wx.cloud.callFunction({
+      name:'addBook',
+      data:bookinfo
+    }).then(res=>{
+      console.log(res)  
+      if (res.errMsg === "cloud.callFunction:ok") {
+        this.hideModal();
+      }
+    })
+    // db.collection('booklist').add(bookinfo).then(res => {
+    //   console.log(res)
+    // })
+
+    console.log(user_id)
+    console.log(bookName)
+      // this.hideModal();
+    },
 
   /**
    * 生命周期函数--监听页面加载
