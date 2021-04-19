@@ -13,24 +13,34 @@
     </view>
     <view class="user-name">
       <open-data  type="userNickName"></open-data>
+      <block wx:if="{{phoneNumber===''}}">
+        <view class="user-phone" bindtap="bindPhone">绑定手机号</view>
+        <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">按钮</button> -->
+      </block>
+      <block wx:else>
+        <view class="user-phone">{{phoneNumber}}</view>
+      </block>
     </view>
     
     <!-- <view class="userinfo-nickname-wrapper"> -->
       <!-- <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button> -->
     <!-- </view> -->
     <view class="add-book">
-      <image src="../../images/addbook.png" class="book-icon" bindtap="getBookList"></image>
-      账本管理
-      <image src="../../images/addbook-icon.png" class="book-add"  bindtap="addBook"></image>
-      <!-- 添加账本 -->
+      <view class="book-manage" bindtap="getBookList">
+        <image src="../../images/addbook.png" ></image>
+        <text>账本管理</text>
+      </view>
+     <view class="book-add">
+      <image src="../../images/addbook-icon.png" bindtap="addBook"></image>
+     </view>
     </view>
-
+<!-- 添加账本 -->
     <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showAddModal}}"></view>
       <view class="modal-dialog" wx:if="{{showAddModal}}">
         <view class="modal-title">添加账本</view>
         <view class="modal-content">
           <view class="modal-input">
-            <input placeholder-class="input-holder" type="number" maxlength="10" bindinput="inputChange" class="input" placeholder="请输入账本名"></input>
+            <input placeholder-class="input-holder" type="text" maxlength="10" bindinput="inputChange" class="input" placeholder="请输入账本名"></input>
           </view>
         </view>
         <view class="modal-footer">
@@ -38,16 +48,28 @@
           <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
         </view>
       </view>
+      <!-- 账本管理 -->
       <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showBookModal}}"></view>
-      <view class="modal-dialog" wx:if="{{showBookModal}}">
-        <view class="modal-title"><image src="../../images/cancel.png" style="width:20px;height:20px;background-size:100% 100%"></image></view>
-        <view class="modal-content">
-          <image src="../../images/delete-icon.png" style="width:20px;height:20px;background-size:100% 100%"></image>
-          <!-- <view class="modal-input">
-            <input placeholder-class="input-holder" type="number" maxlength="10" bindinput="inputChange" class="input" placeholder="请输入账本名"></input>
-          </view> -->
+        <view class="modal-dialog" wx:if="{{showBookModal}}">
+          <view class="modal-title"><image src="../../images/cancel.png" style="width:20px;height:20px;background-size:100% 100%;margin-left:90%" bindtap="hideModal"></image></view>
+          <view class="modal-content">
+            <view wx:for="{{bookList}}" wx:key="index" class="book-row" data-id="{{item._id}}" bindtap="clickRow" style="overflew:hidden;">
+                <view style="font-size:18px;float:left;margin-left:10px;">{{item.name}}</view>
+              <view bindtap="" style="color:#64b0e7;font-size:16px;float:left;margin-left:10px;">绑定家庭成员</view>
+              <image src="../../images/delete-icon.png" style="width:20px;height:20px;background-size:100% 100%;float:left;margin-left:10px;" bindtap="delBook"></image>
+            </view>
+          </view>
+      </view>
+      <!-- 绑定手机号模态框 -->
+      <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showPhoneModal}}"></view>
+        <view class="modal-dialog" wx:if="{{showPhoneModal}}">
+          <view class="modal-content">
+            <input placeholder-class="input-holder" type="number" placeholder="请输入手机号" maxlength="11" bindinput="inputNumber"></input>
+          </view>
+          <view class="modal-footer">
+          <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+          <view class="btn-confirm" bindtap="onCommitNumber" data-status="confirm">确定</view>
         </view>
-
       </view>
     <view>导出数据</view>
   </view>

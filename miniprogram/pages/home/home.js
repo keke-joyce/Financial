@@ -21,6 +21,7 @@ Page({
     // 切换账本
     // 获取切换的账本的id
     var book_id=array[index]._id;
+    console.log(book_id)
     // 将账本的id存到storage中
     wx.setStorage({
       data: array[index]._id,
@@ -50,10 +51,8 @@ Page({
     // ******问题：在成功回调函数中使用this，this指向的是箭头函数的this指向包裹它的外层函数的this，而不是全局page的this
     // 要想指向全局page的this来更改data，就需要提前声明一个中间变量来指向全局this
     const that=this;
-    wx.getStorage({
-      key: 'user_id',
-      success(res){
-        db.collection('booklist').where({user_id:res.data}).get().then(res=>{
+    var user_id=wx.getStorageSync('user_id')
+    db.collection('booklist').where({user_id}).get().then(res=>{
           console.log(res.data)
           const arr=[]
           res.data.forEach(el=>{
@@ -61,15 +60,14 @@ Page({
           })
           that.setData({array:res.data,array1:arr})
         })
-      }
-    })
-  this.getData()
+    this.getData()
   },
   // 获取当前账本的数据
   getData(){
     
     // this.setData({index:a})
     const {array,index}=this.data;
+    
     console.log(array[index])
     // var book_id=array[index]._id;
     // wx.cloud.callFunction({
