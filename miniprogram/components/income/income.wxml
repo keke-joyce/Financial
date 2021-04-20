@@ -1,7 +1,7 @@
 <!--components/income/income.wxml-->
 <!-- 支出页面的组件 -->
 <!-- <text>components/income/income.wxml</text> -->
-<view class="income" bindtap="onChange">
+<view class="income">
   <view class="income-top" style="background-color:{{colortop===''?dataList[0].color:colortop}}">
     <image src="{{urltop===''?dataList[0].url1:urltop}}"></image>
     
@@ -16,11 +16,21 @@
   <view class="income-input">
     <view class="book-input">
       <image class="content-icon" src="../../images/book-icon.png"></image>
-      <picker class="book-picker" mode="selector">选择账本</picker>
+      <!-- <picker bindchange="bindPickerChange" value="{{index}}" range="{{array1}}" class="select">  
+      {{array[index].name}} 
+    </picker> -->
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array1}}" class="book-picker" mode="selector" >
+        {{array.name}}</picker>
     </view>
     <view class="time-input">
       <image class="content-icon" src="../../images/date-icon.png"></image>
-      <picker mode="date" class="time-picker" bindchange="timePicker">选择日期</picker>
+      <block wx:if="{{time===''}}">
+        <picker mode="date" class="time-picker" bindchange="timePicker">选择日期</picker>
+      </block>
+      <block wx:else>
+        <picker mode="date" class="time-picker" bindchange="timePicker">{{time}}</picker>
+      </block>
+      
       <!-- <picker mode="date" class="time-picker" bindchange="timePicker" >{{today}}</picker> -->
     </view>
     <view class="detail-input">

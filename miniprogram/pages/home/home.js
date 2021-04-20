@@ -13,6 +13,7 @@ Page({
     index: 0,
   },
   bindPickerChange: function(e) {
+    // this.getBookList()
     const {array,index}=this.data;
     console.log('picker发送选择改变，携带值为', e.detail)
     this.setData({
@@ -20,31 +21,12 @@ Page({
     })
     // 切换账本
     // 获取切换的账本的id
-    var book_id=array[index]._id;
-    console.log(book_id)
+    console.log(index)
+    var book_id=array[e.detail.value]._id;
+    console.log(book_id);
     // 将账本的id存到storage中
-    wx.setStorage({
-      data: array[index]._id,
-      key: 'book_id',
-    })
-    // 调用云函数根据账本id去获取收支数据
-    // this.getData(e.detail.value)
-    wx.cloud.callFunction({
-      name:'getBookInfo',
-      data:{
-        book_id
-      }
-    }).then(res=>{
-      console.log(res)
-      // var oldData=this.data.dataList;
-      // var newData=oldData.concat(res.result.data);
-      this.setData({
-        dataList:res.result.data
-      })
-    }
-    )
-
-    // console.log(bookId)
+    wx.setStorageSync('book_id', book_id);
+    this.getData();
   },
   //获取当前用户的账本列表**++
   getBookList(){
@@ -54,6 +36,7 @@ Page({
     var user_id=wx.getStorageSync('user_id')
     db.collection('booklist').where({user_id}).get().then(res=>{
           console.log(res.data)
+          wx.setStorageSync('book', res.data)
           const arr=[]
           res.data.forEach(el=>{
             arr.push(el.name)
@@ -65,40 +48,24 @@ Page({
   // 获取当前账本的数据
   getData(){
     
-    // this.setData({index:a})
     const {array,index}=this.data;
-    
+     // 调用云函数根据账本id去获取收支数据
+    // this.getData(e.detail.value)
+    var book_id=wx.getStorageSync('book_id');
+    console.log(book_id)
+    wx.cloud.callFunction({
+      name:'getBookInfo',
+      data:{
+        book_id
+      }
+    }).then(res=>{
+      console.log(res)
+      this.setData({
+        dataList:res.result.data
+      })
+    })
     console.log(array[index])
-    // var book_id=array[index]._id;
-    // wx.cloud.callFunction({
-    //   name:'getBookInfo',
-    //   data:{
-    //     book_id
-    //   }
-    // }).then(res=>{
-    //   console.log(res)
-    //   var oldData=this.data.dataList;
-    //   var newData=oldData.concat(res.result.data);
-    //   this.setData({
-    //     dataList:newData
-    //   })
-    // }
-    // )
-
-    // wx.cloud.callFunction({
-    //   name:'demoGetlist',
-    //   data:{
-    //     num,
-    //     page
-    //   }
-    // }).then(res=>{
-    //   var oldData=this.data.dataList;
-    //   var newData=oldData.concat(res.result.data);
-    //   this.setData({
-    //     dataList:newData
-    //   })
-    //   // console.log(res.result.data)
-    // })
+   
   },
   //点击增加
   clickRow(res){
@@ -129,6 +96,8 @@ Page({
     })},
 
   toAdd(){
+    var {array,index}=this.data;
+    wx.setStorageSync('current_book', array[index]);
       wx.navigateTo({
         url: '../addmoney/addmoney',
       })

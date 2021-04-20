@@ -18,6 +18,10 @@ Component({
     itemcolor:'',
     classify_id:1,
     money:0,
+    array:{},
+    time:''
+    // array1:[],
+    // index:0
     // today:''
   },
   
@@ -28,6 +32,16 @@ Component({
     // onChange(){
     //   this.setData({colortop:el.color,urltop:el.url1,classify_id:el.cid})
     // },
+    bindPickerChange(e){
+      var {array}=this.data;
+      let arr=[]
+      console.log(array)
+      array.forEach(el=>{
+        console.log(el)
+        arr.push(el.name)   
+      })
+      this.setData({array1:arr,index:e.detail.value})
+    },
     getCalNumber(e){
       this.setData({money:e.detail.val})
 
@@ -35,6 +49,8 @@ Component({
     },
     timePicker:function(e){
       console.log(e.detail.value)
+      this.setData({time:e.detail.value})
+
     },
 
     classifyClick:function(e){
@@ -55,5 +71,22 @@ Component({
     change:function(){
       this.triggerEvent('myevent',{today:time})
     }
-  }
+  },
+  lifetimes: {
+    attached: function() {
+      // 在组件实例进入页面节点树时执行
+      var currentbook=wx.getStorageSync('current_book');
+      this.setData({array:currentbook})
+    },
+    detached: function() {
+      // 在组件实例被从页面节点树移除时执行
+    },
+  },
+  // 以下是旧式的定义方式，可以保持对 <2.2.3 版本基础库的兼容
+  attached: function() {
+    // 在组件实例进入页面节点树时执行
+  },
+  detached: function() {
+    // 在组件实例被从页面节点树移除时执行
+  },
 })

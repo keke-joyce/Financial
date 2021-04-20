@@ -117,6 +117,7 @@ Page({
           // res.data.forEach(el=>{
           //   arr.push(el.name)
           // })
+          wx.setStorageSync('book', res.data)
           that.setData({bookList:res.data})
         })
 
