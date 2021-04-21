@@ -1,17 +1,26 @@
 {
   "pages": [
-    "pages/myinfo/myinfo",
-    "pages/index/index",
+    "pages/statistics/statistics",
     "pages/home/home",
     "pages/addmoney/addmoney",
+    "pages/index/index",
+    "pages/myinfo/myinfo",
     "pages/demo2/demo2",
     "pages/addmoney/spending/spending",
     "pages/demo/demo",
     "pages/addmoney/income/income",
     "pages/demo4/demo4",
-    "pages/demo3/demo3",
+    "pages/demo3/demo3"
     
-    "pages/statistics/statistics"
+  ],
+  "subPackages": [
+    {
+      "root":"miniprogram/chart/",
+      "name":"fenbao",
+      "pages":[
+        "pages/statistics/statistics"
+      ]
+    }
   ],
   "tabBar": {
     "color": "#535568",
@@ -48,6 +57,7 @@
     "navigationBarTitleText": "家庭理财",
     "navigationBarTextStyle": "black"
   },
+  
   "sitemapLocation": "sitemap.json",
   "style": "v2"
 }

@@ -85,10 +85,30 @@ background-size: 100% 100%;
   box-shadow: 1px 1px 1px 1px #ccc;
   margin: 2% auto;
   border-radius: 5px ;
+  overflow: hidden;
 }
-.main .content .content-info .row .title{
+.main .content .content-info .row .info-left,.info-right{
+  float: left;
   font-size: 30rpx;
+  display: flex;
+  align-items: center;
 }
+.main .content .content-info .row .info-left{
+  width: 20%;
+  height: 80%;
+}
+.main .content .content-info .row .info-left image{
+  width: 100%;
+  height: 100%;
+  background-size: 100% 100%;
+}
+.main .content .content-info .row .info-right{
+  width: 80%;
+  height: 80%;
+}
+/* .main .content .content-info .row .info-right {
+
+} */
 .main .content .add-info{
   width: 64px;
   height: 64px;

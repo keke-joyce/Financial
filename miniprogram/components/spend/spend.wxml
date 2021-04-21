@@ -1,2 +1,50 @@
 <!--components/spend/spend.wxml-->
-<text>components/spend/spend.wxml</text>
+<view class="income" bindtap="onChange">
+  <view class="income-top" style="background-color:{{colortop===''?dataList[0].color:colortop}}">
+    <image src="{{urltop===''?dataList[0].url1:urltop}}"></image>
+   <view class="top-name" style="color:white">{{classify_name}}</view>
+    <view class="income-money">{{money}}</view>
+<!-- income组件 -->
+  </view> 
+  <view class="icon-content" >
+    <view class="kind" wx:for="{{dataList}}" wx:key="index"  bindtap="classifyClick"  id="{{item.cid}}" >
+      <view class="kind-img" style="background-color:{{ item.cid === classify_id ? colortop : ''}}">
+        <image src="{{item.cid === classify_id ?item.url1:item.url}}"></image> 
+        <!-- {{item.name}} -->
+      </view>
+      <view class="class-name" style="font-size:12px;color:#a8a8a8">{{item.name}}</view>
+      
+    </view>   
+    
+  </view>
+  <view class="income-input">
+    <view class="book-input">
+      <image class="content-icon" src="../../images/book-icon.png"></image>
+     
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array1}}" class="book-picker" mode="selector" >
+        {{array.name}}</picker>
+    </view>
+    <view class="time-input">
+      <image class="content-icon" src="../../images/date-icon.png"></image>
+      <block wx:if="{{time===''}}">
+        <picker mode="date" class="time-picker" bindchange="timePicker">选择日期</picker>
+      </block>
+      <block wx:else>
+        <picker mode="date" class="time-picker" bindchange="timePicker">{{time}}</picker>
+      </block>
+      
+      <!-- <picker mode="date" class="time-picker" bindchange="timePicker" >{{today}}</picker> -->
+    </view>
+    <view class="detail-input">
+      <image class="content-icon" src="../../images/detail-icon.png"></image>
+      <input type="text" placeholder="添加备注..." class="details-input" bindinput="inputDetail">{{detail}}</input>
+    </view>     
+  </view>
+
+  <Calculator bind:getCalculator="getCalNumber"></Calculator>
+  <block wx:if="{{showSubmit}}">
+    <view class="sub-buttom">
+      <image src="../../images/submit.png" bindtap="addSpend"></image>
+    </view>
+  </block>
+</view>

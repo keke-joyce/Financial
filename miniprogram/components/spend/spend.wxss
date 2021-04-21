@@ -1,1 +1,110 @@
 /* components/spend/spend.wxss */
+/* pages/addmoney/income/income.wxss */
+/* components/income/income.wxss */
+.income{
+  width: 90%;
+  height: 100vh;
+  margin: 0 auto;
+}
+.income .income-top{
+  height: 10%;
+  margin-top: 1%;
+  box-shadow: 2px 2px 2px 2px #ccc;
+  border-radius: 5px 5px;
+  display: flex;
+  align-items: center;
+}
+.income .income-top image{
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+  margin-right: 20px;
+  background-size: 100% 100%;
+}
+.income .income-top .top-name{
+  width: 30%;
+}
+.income .income-top .income-money{
+  width: 30%;
+  font-size: 20px;
+  color: white;
+}
+.income .icon-content{
+  display: grid; 
+  grid-template-columns:18% 18% 18% 18% 18%;
+  grid-row-gap: 10px;
+  grid-column-gap: 7px;
+  margin-top: 2%;
+  height: 25%;
+}
+.income .icon-content .kind{
+ width: 100%;
+ height: 50%;
+ margin: 5px 2px;
+ background-color: #E7E7E7;
+}
+.income .icon-content .kind .kind-img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80%;
+  border-radius: 5px;
+}
+.income .icon-content .kind .kind-img image{
+  width: 60%;
+  height: 60%;
+  background-size: 100% 100%; 
+  position: relative; 
+  top: 0;
+  left: 0;
+}
+.income .icon-content .kind .class-name{
+  width: 100%;
+  height: 20%;
+  display: flex;
+  background-color: white;
+  justify-content: center;
+}
+.income .income-input{
+  height: 5vh;
+  overflow: hidden;
+  margin-top: 15px;
+  border: 1px solid #E7E7E7;
+
+}
+
+.income .income-input .book-input,.time-input,.detail-input{
+  width: 30%;
+  height: 100%;
+  float: left;
+  display: flex;
+  align-items: center;
+}
+.income .income-input .time-input{
+  width: 35%;
+}
+.income .income-input .detail-input .details-input{
+  width: 100%;
+}
+.content-icon{
+  width: 20px;
+  height: 20px;
+  background-size: 100% 100%;
+  float: left;
+  margin: 2px;
+}
+.income .sub-buttom{
+  width: 25%;
+  height: 14vh;
+  background-color: #64b0e7;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+}
+.income .sub-buttom image{
+  width: 100%;
+  height: 100%;
+  background-size: 100% 100%;
+}

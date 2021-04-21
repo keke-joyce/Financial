@@ -11,6 +11,9 @@ Page({
     array1: [],//账本名字列表
     array: [],//账本名字列表
     index: 0,
+    spendMoney:0,//总支出
+    incomeMoney:0,//总收入
+
   },
   bindPickerChange: function(e) {
     // this.getBookList()
@@ -47,12 +50,11 @@ Page({
   },
   // 获取当前账本的数据
   getData(){
-    
     const {array,index}=this.data;
      // 调用云函数根据账本id去获取收支数据
     // this.getData(e.detail.value)
     var book_id=wx.getStorageSync('book_id');
-    console.log(book_id)
+    // console.log(book_id)
     wx.cloud.callFunction({
       name:'getBookInfo',
       data:{
@@ -60,12 +62,40 @@ Page({
       }
     }).then(res=>{
       console.log(res)
-      this.setData({
-        dataList:res.result.data
+      var moneyArr=[];//存放支出金额的数组
+      var moneyArr1=[];//存放收入金额的数组
+      // var datalist=[];
+      res.result.data.forEach(el=>{
+        if(el.tid===1){
+          moneyArr.push(el.money)
+        }else{
+          moneyArr1.push(el.money)
+        }
+        db.collection('classify_list').where({cid:el.classify_id}).get().then(res=>{
+          Object.assign(el,res.data[0])
+          
+        })
+        // console.log('****',el)
       })
+      if(moneyArr.length){
+        var spendMoney=moneyArr.reduce((a,b)=>a+b);
+      }else{
+        var spendMoney=0;
+      }
+      if(moneyArr1.length){
+        var incomeMoney=moneyArr1.reduce((a,b)=>a+b);
+      }else{
+        var incomeMoney=0;
+      }
+      this.setData({
+        dataList:res.result.data,
+        spendMoney,
+        incomeMoney
+      })
+      console.log(res.result.data)
     })
-    console.log(array[index])
-   
+    
+    // console.log(array[index])   
   },
   //点击增加
   clickRow(res){
@@ -92,7 +122,6 @@ Page({
       wx.hideLoading({
         complete:(res)=>{}
       })
-      // console.log(res)   
     })},
 
   toAdd(){
@@ -101,7 +130,6 @@ Page({
       wx.navigateTo({
         url: '../addmoney/addmoney',
       })
-      // console.log(1111)
     },
 
   /**
@@ -152,7 +180,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log(123)
+    // console.log(123)
     // var page=this.data.dataList.length;
     // this.getData(7,page)
   },
