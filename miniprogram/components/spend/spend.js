@@ -39,6 +39,7 @@ Component({
       db.collection("classify_list").where({tid}).get().then(res=>{
         that.setData({dataList:res.data})
         console.log(res)
+        wx.setStorageSync('classifyList1', res.data)
       })
 
     },

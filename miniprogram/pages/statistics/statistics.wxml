@@ -1,7 +1,0 @@
-<!--pages/statistics/statistics.wxml-->
-<!-- <text>统计页</text> -->
-<view class="container">
-  <!-- <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}"></ec-canvas> -->
-  <chart chart-class="chart" option="{{ option }}" bindinstance="onInstance" />
-</view>
-

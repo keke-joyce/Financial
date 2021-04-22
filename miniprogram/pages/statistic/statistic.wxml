@@ -1,0 +1,20 @@
+<!--pages/statistic/statistic.wxml-->
+<!-- <text>pages/statistic/statistic.wxml</text> -->
+<picker bindchange="bindPickerChange" value="{{index}}" range="{{array1}}" class="select">  
+      {{index===0?currentMonth:array1[index]}}月 <image src="../../images/select.png"></image> 
+    </picker>
+<view id='tabs'>
+  <view class='tabs-box'>
+    <block wx:for="{{['支出','收入']}}" wx:key="index">
+      <view class="tabs-item {{currentTabIndex == index ? 'selected' : '' }}" bindtap='onTabsItemTap' data-index='{{index}}'>
+        {{item}}      
+      </view>
+    </block>
+  </view>
+  <view class='ordert-detail'>
+    <view hidden='{{currentTabIndex != 0}}'><out-statistic></out-statistic></view>
+    <view hidden='{{currentTabIndex != 1}}'><in-statistic></in-statistic></view>
+
+  </view>
+</view>
+

@@ -1,7 +1,9 @@
 {
   "pages": [
-    "pages/statistics/statistics",
     "pages/home/home",
+    "pages/statistic/statistic",
+    "pages/statistic/out-statistic/out-statistic",
+    "pages/statistic/in-statistic/in-statistic",
     "pages/addmoney/addmoney",
     "pages/index/index",
     "pages/myinfo/myinfo",
@@ -12,15 +14,6 @@
     "pages/demo4/demo4",
     "pages/demo3/demo3"
     
-  ],
-  "subPackages": [
-    {
-      "root":"miniprogram/chart/",
-      "name":"fenbao",
-      "pages":[
-        "pages/statistics/statistics"
-      ]
-    }
   ],
   "tabBar": {
     "color": "#535568",
@@ -35,7 +28,7 @@
         "selectedIconPath": "./images/book3.png"
       },
       {
-        "pagePath": "pages/statistics/statistics",
+        "pagePath": "pages/statistic/statistic",
         "text": "统计",
         "iconPath": "./images/pic1.png",
         "selectedIconPath": "./images/pic3.png"

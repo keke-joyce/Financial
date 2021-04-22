@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "in-statistic": "../statistic/in-statistic/in-statistic",
+    "out-statistic": "../statistic/out-statistic/out-statistic"
+  }
+}

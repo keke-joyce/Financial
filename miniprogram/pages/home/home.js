@@ -13,6 +13,9 @@ Page({
     index: 0,
     spendMoney:0,//总支出
     incomeMoney:0,//总收入
+    classifyList:wx.getStorageSync('classifyList'),
+    classifyList1:wx.getStorageSync('classifyList1'),
+    classify:[]
 
   },
   bindPickerChange: function(e) {
@@ -50,7 +53,8 @@ Page({
   },
   // 获取当前账本的数据
   getData(){
-    const {array,index}=this.data;
+    const {array,index,classifyList,classifyList1}=this.data;
+    const that=this;
      // 调用云函数根据账本id去获取收支数据
     // this.getData(e.detail.value)
     var book_id=wx.getStorageSync('book_id');
@@ -64,18 +68,18 @@ Page({
       console.log(res)
       var moneyArr=[];//存放支出金额的数组
       var moneyArr1=[];//存放收入金额的数组
-      // var datalist=[];
+      var datalist=[];
       res.result.data.forEach(el=>{
         if(el.tid===1){
           moneyArr.push(el.money)
         }else{
           moneyArr1.push(el.money)
         }
+        
         db.collection('classify_list').where({cid:el.classify_id}).get().then(res=>{
+          delete res.data[0]._id;
           Object.assign(el,res.data[0])
-          
         })
-        // console.log('****',el)
       })
       if(moneyArr.length){
         var spendMoney=moneyArr.reduce((a,b)=>a+b);
@@ -87,15 +91,15 @@ Page({
       }else{
         var incomeMoney=0;
       }
-      this.setData({
+      classifyList.push(classifyList1)
+      that.setData({
         dataList:res.result.data,
         spendMoney,
-        incomeMoney
+        incomeMoney,
+        classifyList
       })
-      console.log(res.result.data)
+      // console.log(res.result.data)
     })
-    
-    // console.log(array[index])   
   },
   //点击增加
   clickRow(res){
@@ -137,7 +141,6 @@ Page({
    */
   onLoad: function (options) {
     this.getBookList()
-    // this.bindPickerChange()
    
   },
 
