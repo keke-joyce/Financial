@@ -1,6 +1,7 @@
 /* pages/home/home.wxss */
 .main{
 height: 100vh;
+background-color: #F2F0F6;
 }
 
 .main .top{
@@ -17,7 +18,8 @@ background-size: 100% 100%;
   width: 90%;
   margin:0 auto;
   border-radius: 10px ;
-  box-shadow: 2px 2px 2px 2px #ccc;
+  background-color: #E9EAEE;
+  /* box-shadow: 2px 2px 2px 2px #ccc; */
   overflow: hidden; 
 }
 .main .search input{
@@ -36,7 +38,8 @@ background-size: 100% 100%;
   height: 15%;
   margin:1% auto;
   border-radius: 5px ;
-  box-shadow: 2px 2px 2px 2px #ccc;
+  background-color: white;
+  /* box-shadow: 2px 2px 2px 2px #ccc; */
 }
 .main .head .head_store{
   font-size: 24px;
@@ -77,37 +80,55 @@ background-size: 100% 100%;
   margin:1% auto;
 }
 .main .content .content-info{
-  margin: 0 auto;
+  /* margin: 0 auto; */
   height: 8%;
 }
 .main .content .content-info .row{
+  width: 100%;
   height: 10vh;
-  box-shadow: 1px 1px 1px 1px #ccc;
-  margin: 2% auto;
-  border-radius: 5px ;
-}
-.main .content .content-info .row .info-left,.info-right{
-  float: left;
-  font-size: 30rpx;
+  /* box-shadow: 1px 1px 1px 1px #ccc; */
+  margin: 3% auto;
+  /* border-radius: 5px ; */
   display: flex;
   align-items: center;
+  background-color: white;
+}
+.main .content .content-info .row .info-left,.info-right{
+  font-size: 30rpx;
+ 
 }
 .main .content .content-info .row .info-left{
-  width: 20%;
-  height: 80%;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  margin-left:5px;
 }
 .main .content .content-info .row .info-left image{
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   background-size: 100% 100%;
 }
 .main .content .content-info .row .info-right{
   width: 80%;
   height: 80%;
+  margin-left: 10px;
+  /* display: flex;
+  justify-content: space-around; */
+  overflow: hidden;
 }
-/* .main .content .content-info .row .info-right {
+.main .content .content-info .row .info-right .info-one,.info-two{
+  color:#5a5959;
+  float: left;
+  font-size: 14px;
+}
+.main .content .content-info .row .info-right .info-two{
+  float: right;
+}
+.main .content .content-info .row .info-right .info:nth-child(1){
+  font-size: 18px;
+  font-weight: bold;
 
-} */
+}
 .main .content .add-info{
   width: 64px;
   height: 64px;

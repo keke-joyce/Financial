@@ -1,0 +1,29 @@
+<!--pages/myinfo/book/book.wxml-->
+<view wx:for="{{bookList}}" wx:key="index" class="book-row" data-id="{{item._id}}" bindtap="clickRow"
+  style="display:flex;justify-content:space-around;width:100%;height:5vh;border-bottom:1px solid #a8a8a8;">
+  <view style="font-size:18px;">{{item.name}}</view>
+  <block wx:if="{{!familyState}}">
+    <view bindtap="toFamilyNumber" style="color:#64b0e7;font-size:16px;">绑定家庭成员</view>
+  </block>
+  <block wx:else>
+    <input placeholder-class="input-holder" type="text" maxlength="11" bindinput="inputChange" class="input"
+      placeholder="请输入家庭成员手机号" style="width:200px;"></input>
+  </block>
+  <image src="../../../images/delete-icon.png" style="width:20px;height:20px;background-size:100% 100%;"
+    bindtap="delBook"></image>
+</view>
+<!-- 绑定家庭成员手机号的模态框 -->
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showAddModal}}"></view>
+<view class="modal-dialog" wx:if="{{showAddModal}}">
+  <view class="modal-title">绑定家庭成员</view>
+  <view class="modal-content">
+    <view class="modal-input">
+      <input placeholder-class="input-holder" type="text" maxlength="11" bindinput="inputChange" class="input"
+        placeholder="请输入成员手机号"></input>
+    </view>
+  </view>
+  <view class="modal-footer">
+    <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+    <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+  </view>
+</view>

@@ -64,14 +64,7 @@ border-radius: 50%;
   /* margin-top: -1px; */
   margin-left: 10px;
 }
-/* .userinfo .add-book .book-icon,.book-add{
-  width: 10%;
-  height: 80%;
-  background-size: 100% 100%;
-} */
-/* .userinfo .add-book .book-icon{
-  margin-left: 10px;
-} */
+
 .userinfo .add-book .book-add{
   width: 20%;
   
@@ -84,6 +77,30 @@ border-radius: 50%;
   margin-left: 10px;
   /* margin-left: 55%; */
 }
+.userinfo .download-book{
+  width: 90%;
+  height: 10vh;
+  margin: 20px auto;
+  border-radius: 5px;
+  border-bottom: 1px solid #ccc;
+  background-color: white;
+  /* box-shadow: 2px 2px #ccc; */
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  /* overflow: hidden; */
+  font-size: 18px;
+}
+.userinfo .download-book image{
+  width: 35px;
+  height: 35px;
+  background-size: 100% 100%;
+  margin-left: 15px;
+}
+.userinfo .download-book text{
+  margin-left: 10px;
+}
+
 
 .modal-mask {
   width: 100%;

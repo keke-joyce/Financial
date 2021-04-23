@@ -15,7 +15,10 @@ Page({
     incomeMoney:0,//总收入
     classifyList:wx.getStorageSync('classifyList'),
     classifyList1:wx.getStorageSync('classifyList1'),
-    classify:[]
+    classify:[],
+    timeArray:['1','2','3','4','5','6','7','8','9','10','11','12'],
+    index:0,
+    currentMonth:0,
 
   },
   bindPickerChange: function(e) {
@@ -69,7 +72,8 @@ Page({
       var moneyArr=[];//存放支出金额的数组
       var moneyArr1=[];//存放收入金额的数组
       var datalist=[];
-      res.result.data.forEach(el=>{
+      let arr=[];
+      res.result.data.forEach((el,index)=>{
         if(el.tid===1){
           moneyArr.push(el.money)
         }else{
@@ -79,6 +83,12 @@ Page({
         db.collection('classify_list').where({cid:el.classify_id}).get().then(res=>{
           delete res.data[0]._id;
           Object.assign(el,res.data[0])
+          let obj=Object.assign(el,res.data[0]);
+          arr[index] = obj;
+          console.log(obj)
+          that.setData({
+            dataList:arr,
+          })
         })
       })
       if(moneyArr.length){
@@ -92,13 +102,12 @@ Page({
         var incomeMoney=0;
       }
       classifyList.push(classifyList1)
-      that.setData({
-        dataList:res.result.data,
-        spendMoney,
-        incomeMoney,
-        classifyList
-      })
-      // console.log(res.result.data)
+        that.setData({
+          spendMoney,
+          incomeMoney,
+          classifyList
+        })
+      
     })
   },
   //点击增加
@@ -140,7 +149,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var date=new Date();
+    var month=date.getMonth()+1;
+    this.setData({currentMonth:month})
     this.getBookList()
+    // console.log(this.data.dataList)
    
   },
 

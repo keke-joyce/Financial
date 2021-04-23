@@ -1,75 +1,94 @@
 <!--pages/myinfo/myinfo.wxml-->
 <!-- <text>pages/myinfo/myinfo.wxml</text> -->
 <view class="userinfo">
-    <!-- <button 
+  <!-- <button 
       open-type="getUserInfo" 
       bindgetuserinfo="onGetUserInfo"
       class="userinfo-avatar"
       style="width:100px;height:100px;background-image: url({{userInfo.avatarUrl}});background-size:100% 100%"
       size="default"
     >{{userInfo.avatarUrl}}</button> -->
-    <view class="user-avatarUrl">
-      <open-data  type="userAvatarUrl" class="user-image"></open-data>
-    </view>
-    <view class="user-name">
-      <open-data  type="userNickName"></open-data>
-      <block wx:if="{{phoneNumber===''}}">
-        <view class="user-phone" bindtap="bindPhone">绑定手机号</view>
-        <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">按钮</button> -->
-      </block>
-      <block wx:else>
-        <view class="user-phone">{{phoneNumber}}</view>
-      </block>
-    </view>
-    
-    <!-- <view class="userinfo-nickname-wrapper"> -->
-      <!-- <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button> -->
-    <!-- </view> -->
-    <view class="add-book">
-      <view class="book-manage" bindtap="getBookList">
-        <image src="../../images/addbook.png" ></image>
-        <text>账本管理</text>
-      </view>
-     <view class="book-add">
-      <image src="../../images/addbook-icon.png" bindtap="addBook"></image>
-     </view>
-    </view>
-<!-- 添加账本 -->
-    <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showAddModal}}"></view>
-      <view class="modal-dialog" wx:if="{{showAddModal}}">
-        <view class="modal-title">添加账本</view>
-        <view class="modal-content">
-          <view class="modal-input">
-            <input placeholder-class="input-holder" type="text" maxlength="10" bindinput="inputChange" class="input" placeholder="请输入账本名"></input>
-          </view>
-        </view>
-        <view class="modal-footer">
-          <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
-          <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
-        </view>
-      </view>
-      <!-- 账本管理 -->
-      <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showBookModal}}"></view>
-        <view class="modal-dialog" wx:if="{{showBookModal}}">
-          <view class="modal-title"><image src="../../images/cancel.png" style="width:20px;height:20px;background-size:100% 100%;margin-left:90%" bindtap="hideModal"></image></view>
-          <view class="modal-content">
-            <view wx:for="{{bookList}}" wx:key="index" class="book-row" data-id="{{item._id}}" bindtap="clickRow" style="overflew:hidden;">
-                <view style="font-size:18px;float:left;margin-left:10px;">{{item.name}}</view>
-              <view bindtap="" style="color:#64b0e7;font-size:16px;float:left;margin-left:10px;">绑定家庭成员</view>
-              <image src="../../images/delete-icon.png" style="width:20px;height:20px;background-size:100% 100%;float:left;margin-left:10px;" bindtap="delBook"></image>
-            </view>
-          </view>
-      </view>
-      <!-- 绑定手机号模态框 -->
-      <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showPhoneModal}}"></view>
-        <view class="modal-dialog" wx:if="{{showPhoneModal}}">
-          <view class="modal-content">
-            <input placeholder-class="input-holder" type="number" placeholder="请输入手机号" maxlength="11" bindinput="inputNumber"></input>
-          </view>
-          <view class="modal-footer">
-          <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
-          <view class="btn-confirm" bindtap="onCommitNumber" data-status="confirm">确定</view>
-        </view>
-      </view>
-    <view>导出数据</view>
+  <view class="user-avatarUrl">
+    <open-data type="userAvatarUrl" class="user-image"></open-data>
   </view>
+  <view class="user-name">
+    <open-data type="userNickName"></open-data>
+    <block wx:if="{{phoneNumber===''}}">
+      <view class="user-phone" bindtap="bindPhone">绑定手机号</view>
+      <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">按钮</button> -->
+    </block>
+    <block wx:else>
+      <view class="user-phone">{{phoneNumber}}</view>
+    </block>
+  </view>
+
+  <!-- <view class="userinfo-nickname-wrapper"> -->
+  <!-- <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button> -->
+  <!-- </view> -->
+  <view class="add-book">
+    <view class="book-manage" bindtap="toBookList">
+      <image src="../../images/addbook.png"></image>
+      <text>账本管理</text>
+    </view>
+    <view class="book-add">
+      <image src="../../images/addbook-icon.png" bindtap="addBook"></image>
+    </view>
+  </view>
+  <!-- 添加账本 -->
+  <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showAddModal}}"></view>
+  <view class="modal-dialog" wx:if="{{showAddModal}}">
+    <view class="modal-title">添加账本</view>
+    <view class="modal-content">
+      <view class="modal-input">
+        <input placeholder-class="input-holder" type="text" maxlength="10" bindinput="inputChange" class="input"
+          placeholder="请输入账本名"></input>
+      </view>
+    </view>
+    <view class="modal-footer">
+      <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+      <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+    </view>
+  </view>
+  <!-- 账本管理 -->
+  <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showBookModal}}"></view>
+  <view class="modal-dialog" wx:if="{{showBookModal}}" style="margin-left:10px;width:90%;">
+    <view class="modal-title" style="display:flex;justify-content:space-between;margin:0 20px;">
+      <view style="color:#a8a8a8;">账本管理</view>
+      <image src="../../images/cancel.png" style="width:20px;height:20px;background-size:100% 100%;"
+        bindtap="hideModal">
+      </image>
+    </view>
+    <view class="modal-content" style="overflew:hidden">
+      <view wx:for="{{bookList}}" wx:key="index" class="book-row" data-id="{{item._id}}" bindtap="clickRow"
+        style="display:flex;justify-content:space-around;width:100%;height:5vh;border-bottom:1px solid #a8a8a8;">
+        <view style="font-size:18px;">{{item.name}}</view>
+        <block wx:if="{{!familyState}}">
+          <view bindtap="toFamilyNumber" style="color:#64b0e7;font-size:16px;">绑定家庭成员</view>
+        </block>
+        <block wx:else>
+          <input placeholder-class="input-holder" type="text" maxlength="11" bindinput="inputChange" class="input"
+            placeholder="请输入家庭成员手机号" style="width:200px;"></input>
+        </block>
+
+        <image src="../../images/delete-icon.png" style="width:20px;height:20px;background-size:100% 100%;"
+          bindtap="delBook"></image>
+      </view>
+    </view>
+  </view>
+  <!-- 绑定手机号模态框 -->
+  <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showPhoneModal}}"></view>
+  <view class="modal-dialog" wx:if="{{showPhoneModal}}">
+    <view class="modal-content">
+      <input placeholder-class="input-holder" type="number" placeholder="请输入手机号" maxlength="11"
+        bindinput="inputNumber"></input>
+    </view>
+    <view class="modal-footer">
+      <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+      <view class="btn-confirm" bindtap="onCommitNumber" data-status="confirm">确定</view>
+    </view>
+  </view>
+  <view class="download-book" bindtap="toDownload">
+    <image src="../../images/down.png"></image>
+    <text>导出数据</text>
+  </view>
+</view>

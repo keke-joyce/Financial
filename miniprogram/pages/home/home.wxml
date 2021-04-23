@@ -1,10 +1,10 @@
 <view class="main" wx:if="{{true}}">
   <!-- 选择账本 -->
   <view class="top">
-    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array1}}" class="select">  
-      {{array[index].name}} <image src="../../images/select.png"></image> 
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array1}}" class="select">
+      {{array[index].name}} <image src="../../images/select.png"></image>
     </picker>
-</view>
+  </view>
   <!-- 搜索框 -->
   <view class="search">
     <input type="text"></input>
@@ -12,6 +12,10 @@
   </view>
   <!-- 收支统计框 -->
   <view class="head">
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{timeArray}}" class="select">
+      {{index===0?currentMonth:timeArray[index]}}月 <image src="../../images/select.png"
+        style="width:20px;height:20px;background-size:100% 100%;"></image>
+    </picker>
     <view class="head_store"><text>结余</text>{{incomeMoney-spendMoney}}</view>
     <view class="head_income"><text>总收入</text>{{incomeMoney}}</view>
     <view class="head_spand"><text>总支出</text>{{spendMoney}}</view>
@@ -20,24 +24,28 @@
   <view class="content">
     <view class="content-info">
       <!-- <view>2020年2月14日</view> -->
-      <view class="row" wx:for="{{dataList}}" wx:key="index" bindtap="clickRow" id="{{item._id}}" data-id="{{item._id}}">    
-       {{item.name}}
-      <view class="info-left" style="background-color:{{item.color}}">
-        <image src="{{item.url1}}"></image>
+      <view class="row" wx:for="{{dataList}}" wx:key="index" bindtap="clickRow" id="{{item._id}}"
+        data-id="{{item._id}}">
+        <view class="info-left" style="background-color:{{item.color}}">
+          <image src="{{item.url1}}"></image>
+        </view>
+        <view class="info-right">
+          <view class="info-one">
+            <view class="info">{{item.name}}</view>
+            <view class="info">{{item.detail}}</view>
+          </view>
+          <view class="info-two">
+            <view class="info">{{item.money}}</view>
+            <!-- {{item.time}} -->
+            <view class="info">{{item.time}}</view>
+          </view>
+        </view>
       </view>
-      <view class="info-right">
-        <view>{{item.name}}</view>
-        <view>{{item.detail}}</view>
-        <view>{{item.time}}</view>
-        <view>{{item.money}}</view>
-      </view>
-    </view>
     </view>
     <view class="add-info">
       <image src="../../images/add.png" bindtap="toAdd"></image>
     </view>
   </view>
-  
-  
-</view>
 
+
+</view>

@@ -1,32 +1,30 @@
 <!--components/calculator/calculator.wxml-->
 <!-- <text>components/calculator/calculator.wxml</text> -->
-<view class="main" >
-<view class="cal" data-result="{{num}}" bindtap="onChange">
-<view bindtap="tapKey" data-key="7">7</view>
-<view bindtap="tapKey" data-key="8">8</view>
-<view bindtap="tapKey" data-key="9">9</view>
-<view bindtap="toDel" data-key="Del">Del</view>
-<view bindtap="tapKey" data-key="4">4</view>
-<view bindtap="tapKey" data-key="5">5</view>
-<view bindtap="tapKey" data-key="6">6</view>
-<view bindtap="tapKey" data-key="+">+</view>
-<view bindtap="tapKey" data-key="1">1</view>
-<view bindtap="tapKey" data-key="2">2</view>
-<view bindtap="tapKey" data-key="3">3</view>
-<view bindtap="tapKey" data-key="-">-</view>
-<view bindtap="tapKey" data-key=".">.</view>
-<view bindtap="tapKey"  data-key="0">0</view>
-<view bindtap="toClear" data-key="C">C</view>
-<view bindtap="toSubmit">
-  <block wx:if="{{temp}}">
-    <text>=</text>
-    
-  </block>
-  <block wx:else >
-    <text>完成</text>
-    </block>
+<view class="main">
+  <view class="cal" data-result="{{num}}" bindtap="onChange">
+    <view bindtap="tapKey" data-key="7">7</view>
+    <view bindtap="tapKey" data-key="8">8</view>
+    <view bindtap="tapKey" data-key="9">9</view>
+    <view bindtap="toDel" data-key="Del">Del</view>
+    <view bindtap="tapKey" data-key="4">4</view>
+    <view bindtap="tapKey" data-key="5">5</view>
+    <view bindtap="tapKey" data-key="6">6</view>
+    <view bindtap="tapKey" data-key="+">+</view>
+    <view bindtap="tapKey" data-key="1">1</view>
+    <view bindtap="tapKey" data-key="2">2</view>
+    <view bindtap="tapKey" data-key="3">3</view>
+    <view bindtap="tapKey" data-key="-">-</view>
+    <view bindtap="tapKey" data-key=".">.</view>
+    <view bindtap="tapKey" data-key="0">0</view>
+    <view bindtap="toClear" data-key="C">C</view>
+    <view bindtap="toSubmit">
+      <block wx:if="{{temp}}">
+        <text>=</text>
+      </block>
+      <block wx:else>
+        <text>完成</text>
+      </block>
+    </view>
   </view>
-</view>
 
 </view>
-
