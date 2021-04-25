@@ -85,7 +85,6 @@ Page({
           Object.assign(el,res.data[0])
           let obj=Object.assign(el,res.data[0]);
           arr[index] = obj;
-          console.log(obj)
           that.setData({
             dataList:arr,
           })

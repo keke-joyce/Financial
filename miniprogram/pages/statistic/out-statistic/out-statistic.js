@@ -4,7 +4,7 @@ import * as echarts from '../../../ec-canvas/echarts';
 // const app = getApp();
 
 console.log(echarts)
-function initChart(canvas, width, height, dpr) {
+function initChart2(canvas, width, height, dpr) {
   const chart = echarts.init(canvas, null, {
     width: width,
     height: height,
@@ -46,7 +46,7 @@ function initChart(canvas, width, height, dpr) {
   chart.setOption(option);
   return chart;
 }
-function initChart1(canvas, width, height, dpr) {
+function initChart3(canvas, width, height, dpr) {
   const chart = echarts.init(canvas, null, {
     width: width,
     height: height,
@@ -113,11 +113,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    ec: {
-      onInit: initChart
+    ec2: {
+      onInit: initChart2
     },
-    ec1: {
-      onInit: initChart1
+    ec3: {
+      onInit: initChart3
     }
 
   },

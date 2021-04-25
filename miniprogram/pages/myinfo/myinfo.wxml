@@ -1,13 +1,6 @@
 <!--pages/myinfo/myinfo.wxml-->
 <!-- <text>pages/myinfo/myinfo.wxml</text> -->
 <view class="userinfo">
-  <!-- <button 
-      open-type="getUserInfo" 
-      bindgetuserinfo="onGetUserInfo"
-      class="userinfo-avatar"
-      style="width:100px;height:100px;background-image: url({{userInfo.avatarUrl}});background-size:100% 100%"
-      size="default"
-    >{{userInfo.avatarUrl}}</button> -->
   <view class="user-avatarUrl">
     <open-data type="userAvatarUrl" class="user-image"></open-data>
   </view>
@@ -15,41 +8,36 @@
     <open-data type="userNickName"></open-data>
     <block wx:if="{{phoneNumber===''}}">
       <view class="user-phone" bindtap="bindPhone">绑定手机号</view>
-      <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">按钮</button> -->
     </block>
     <block wx:else>
       <view class="user-phone">{{phoneNumber}}</view>
     </block>
   </view>
 
-  <!-- <view class="userinfo-nickname-wrapper"> -->
-  <!-- <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button> -->
-  <!-- </view> -->
   <view class="add-book">
     <view class="book-manage" bindtap="toBookList">
       <image src="../../images/addbook.png"></image>
       <text>账本管理</text>
     </view>
-    <view class="book-add">
+    <!-- <view class="book-add">
       <image src="../../images/addbook-icon.png" bindtap="addBook"></image>
-    </view>
+    </view> -->
   </view>
-  <!-- 添加账本 -->
-  <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showAddModal}}"></view>
-  <view class="modal-dialog" wx:if="{{showAddModal}}">
-    <view class="modal-title">添加账本</view>
-    <view class="modal-content">
-      <view class="modal-input">
-        <input placeholder-class="input-holder" type="text" maxlength="10" bindinput="inputChange" class="input"
-          placeholder="请输入账本名"></input>
-      </view>
-    </view>
-    <view class="modal-footer">
-      <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
-      <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
-    </view>
+  <view class="download-book" bindtap="toClassifyList">
+    <image src="../../images/down.png"></image>
+    <text>分类管理</text>
   </view>
-  <!-- 账本管理 -->
+  <view class="download-book" bindtap="toDownload">
+    <image src="../../images/down.png"></image>
+    <text>导出数据</text>
+  </view>
+  <view class="download-book" bindtap="toOurs">
+    <image src="../../images/down.png"></image>
+    <text>关于我们</text>
+  </view>
+
+  
+  <!-- 账本管理
   <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showBookModal}}"></view>
   <view class="modal-dialog" wx:if="{{showBookModal}}" style="margin-left:10px;width:90%;">
     <view class="modal-title" style="display:flex;justify-content:space-between;margin:0 20px;">
@@ -74,7 +62,7 @@
           bindtap="delBook"></image>
       </view>
     </view>
-  </view>
+  </view> -->
   <!-- 绑定手机号模态框 -->
   <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showPhoneModal}}"></view>
   <view class="modal-dialog" wx:if="{{showPhoneModal}}">
@@ -87,8 +75,5 @@
       <view class="btn-confirm" bindtap="onCommitNumber" data-status="confirm">确定</view>
     </view>
   </view>
-  <view class="download-book" bindtap="toDownload">
-    <image src="../../images/down.png"></image>
-    <text>导出数据</text>
-  </view>
+
 </view>

@@ -1,15 +1,16 @@
 /* pages/myinfo/myinfo.wxss */
-.userinfo{
+.userinfo {
   width: 100%;
   height: 100vh;
   background-color: #F6F6F6;
 }
-.userinfo .user-avatarUrl{
-/* width: 100px;
+
+.userinfo .user-avatarUrl {
+  /* width: 100px;
 height: 100px;
 border: 1px solid black;
 border-radius: 100px; */
-border-radius: 50%;
+  border-radius: 50%;
   overflow: hidden;
   width: 100px;
   height: 18vh;
@@ -17,24 +18,28 @@ border-radius: 50%;
   left: 40rpx;
   top: 30rpx;
 }
-.userinfo .user-avatarUrl .user-image{
+
+.userinfo .user-avatarUrl .user-image {
   border-radius: 50%;
   width: 100px;
   height: 100px;
 }
-.userinfo .user-name{
+
+.userinfo .user-name {
   position: absolute;
   left: 40%;
   top: 10vh;
   font-size: 20px;
-  font-weight:bold;
-}  
-.userinfo .user-name .user-phone{
+  font-weight: bold;
+}
+
+.userinfo .user-name .user-phone {
   font-size: 14px;
   color: #64b0e7;
 
 }
-.userinfo .add-book{
+
+.userinfo .add-book {
   width: 90%;
   height: 10vh;
   margin: 20px auto;
@@ -47,37 +52,42 @@ border-radius: 50%;
   /* justify-content: space-between; */
   /* overflow: hidden; */
 }
-.userinfo .add-book .book-manage{
+
+.userinfo .add-book .book-manage {
   width: 80%;
   font-size: 18px;
   display: flex;
   align-items: center;
 }
-.userinfo .add-book .book-manage image{
+
+.userinfo .add-book .book-manage image {
   width: 35px;
   height: 35px;
   background-size: 100% 100%;
   margin-left: 15px;
 }
-.userinfo .add-book .book-manage text{
+
+.userinfo .add-book .book-manage text {
   /* line-height: 10vh; */
   /* margin-top: -1px; */
   margin-left: 10px;
 }
 
-.userinfo .add-book .book-add{
+.userinfo .add-book .book-add {
   width: 20%;
-  
+
   /* margin-left: 55%; */
 }
-.userinfo .add-book .book-add image{
+
+.userinfo .add-book .book-add image {
   width: 40px;
   height: 40px;
   background-size: 100% 100%;
   margin-left: 10px;
   /* margin-left: 55%; */
 }
-.userinfo .download-book{
+
+.userinfo .download-book {
   width: 90%;
   height: 10vh;
   margin: 20px auto;
@@ -91,13 +101,15 @@ border-radius: 50%;
   /* overflow: hidden; */
   font-size: 18px;
 }
-.userinfo .download-book image{
+
+.userinfo .download-book image {
   width: 35px;
   height: 35px;
   background-size: 100% 100%;
   margin-left: 15px;
 }
-.userinfo .download-book text{
+
+.userinfo .download-book text {
   margin-left: 10px;
 }
 
@@ -114,7 +126,7 @@ border-radius: 50%;
   z-index: 9000;
   color: #fff;
 }
- 
+
 .modal-dialog {
   width: 540rpx;
   overflow: hidden;
@@ -126,18 +138,18 @@ border-radius: 50%;
   margin: -180rpx 105rpx;
   border-radius: 36rpx;
 }
- 
+
 .modal-title {
   padding-top: 10rpx;
   font-size: 36rpx;
   color: #030303;
   text-align: center;
 }
- 
+
 .modal-content {
   padding: 20rpx 32rpx;
 }
- 
+
 .modal-input {
   display: flex;
   background: #fff;
@@ -145,8 +157,8 @@ border-radius: 50%;
   border-radius: 4rpx;
   font-size: 28rpx;
 }
- 
- 
+
+
 .input {
   width: 100%;
   height: 82rpx;
@@ -156,12 +168,12 @@ border-radius: 50%;
   box-sizing: border-box;
   color: #333;
 }
- 
+
 input-holder {
   color: #666;
   font-size: 28rpx;
 }
- 
+
 .modal-footer {
   display: flex;
   flex-direction: row;
@@ -170,17 +182,16 @@ input-holder {
   font-size: 34rpx;
   line-height: 86rpx;
 }
- 
+
 .btn-cancel {
   width: 50%;
   color: #666;
   text-align: center;
   border-right: 1px solid #dedede;
 }
- 
+
 .btn-confirm {
   width: 50%;
   color: #ec5300;
   text-align: center;
 }
-

@@ -14,7 +14,6 @@
   <view class='ordert-detail'>
     <view hidden='{{currentTabIndex != 0}}'><out-statistic></out-statistic></view>
     <view hidden='{{currentTabIndex != 1}}'><in-statistic></in-statistic></view>
-
   </view>
 </view>
 

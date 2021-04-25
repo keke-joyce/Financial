@@ -1,20 +1,23 @@
 <!--pages/myinfo/book/book.wxml-->
-<view wx:for="{{bookList}}" wx:key="index" class="book-row" data-id="{{item._id}}" bindtap="clickRow"
-  style="display:flex;justify-content:space-around;width:100%;height:5vh;border-bottom:1px solid #a8a8a8;">
-  <view style="font-size:18px;">{{item.name}}</view>
-  <block wx:if="{{!familyState}}">
-    <view bindtap="toFamilyNumber" style="color:#64b0e7;font-size:16px;">绑定家庭成员</view>
+<view class="book-title">
+  <view>账本管理</view>
+  <view class="book-add">
+    <image src="../../../images/addbook-icon.png" bindtap="addBook"></image>
+  </view>
+</view>
+<view wx:for="{{bookList}}" wx:key="index" class="book-row" data-id="{{item._id}}">
+  <view class="book-name">{{item.name}}</view>
+  <block wx:if="{{item.user_id.length===1}}">
+    <view class="bind-family" data-id="{{item._id}}" bindtap="toFamilyNumber">绑定家庭成员</view>
   </block>
   <block wx:else>
-    <input placeholder-class="input-holder" type="text" maxlength="11" bindinput="inputChange" class="input"
-      placeholder="请输入家庭成员手机号" style="width:200px;"></input>
+    <view class="bind-family" data-id="{{item._id}}" bindtap="toFamilyList">已绑定</view>
   </block>
-  <image src="../../../images/delete-icon.png" style="width:20px;height:20px;background-size:100% 100%;"
-    bindtap="delBook"></image>
+  <image src="../../../images/delete-icon.png" data-id="{{item._id}}" bindtap="delBook"></image>
 </view>
 <!-- 绑定家庭成员手机号的模态框 -->
-<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showAddModal}}"></view>
-<view class="modal-dialog" wx:if="{{showAddModal}}">
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showFamilyModal}}"></view>
+<view class="modal-dialog" wx:if="{{showFamilyModal}}">
   <view class="modal-title">绑定家庭成员</view>
   <view class="modal-content">
     <view class="modal-input">
@@ -24,6 +27,48 @@
   </view>
   <view class="modal-footer">
     <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+    <view class="btn-confirm" bindtap="onSubmit" data-status="confirm">确定</view>
+  </view>
+</view>
+<!-- 添加账本 -->
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showAddModal}}"></view>
+<view class="modal-dialog" wx:if="{{showAddModal}}">
+  <view class="modal-title">添加账本</view>
+  <view class="modal-content">
+    <view class="modal-input">
+      <input placeholder-class="input-holder" type="text" maxlength="10" bindinput="onChange" class="input"
+        placeholder="请输入账本名"></input>
+    </view>
+  </view>
+  <view class="modal-footer">
+    <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
     <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
   </view>
+</view>
+<!-- 绑定的家庭成员 -->
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showFamilyListModel}}"></view>
+<view class="modal-dialog" wx:if="{{showFamilyListModel}}">
+  <!-- <view class="modal-title">添加账本</view> -->
+  <view class="modal-title" style="display:flex;justify-content:space-between;margin:0 20px;">
+      <view style="color:#a8a8a8;">已绑定的成员</view>
+      <image src="../../../images/cancel.png" style="width:20px;height:20px;background-size:100% 100%;"
+        bindtap="hideModal">
+      </image>
+    </view>
+  <view class="modal-content">
+      <view wx:for="{{bookList}}" wx:key="index" class="book-row" data-id="{{item._id}}"
+        style="display:flex;justify-content:space-around;width:100%;height:5vh;border-bottom:1px solid #a8a8a8;">
+        <view wx:for="{{item.user_id}}" wx:key="index" style="font-size:12px;" wx:for-item="el">
+        <view>{{'*'+el}}</view>
+          <view bindtap="delFamily" style="color:#64b0e7;font-size:16px;" data-id="{{el}}">解除绑定</view>
+        <!-- <image src="../../../images/delete-icon.png" style="width:20px;height:20px;background-size:100% 100%;"
+          bindtap="delFamily"></image> -->
+        </view>
+      </view>
+    
+  </view>
+  <!-- <view class="modal-footer">
+    <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+    <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+  </view> -->
 </view>

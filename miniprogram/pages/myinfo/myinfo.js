@@ -7,27 +7,36 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // avatarUrl: '../../images/myinfo1.png',
     userInfo: {},
-    logged: false,
-    takeSession: false,
-    requestResult: '',
     showAddModal: false,
-    showBookModal: false,
-    bookName: '',
     phoneNumber: '',
     user_id: wx.getStorageSync('user_id'),
     showPhoneModal: false,
-
-    delId: '',
-    familyNumber: false
   },
+  //导出数据
+  toDownload() {
 
+  },
+  
+  // 跳转到分类管理
+  toClassifyList() {
+    wx.navigateTo({
+      url: '../myinfo/classify/classify',
+    })
+  },
+  // 跳转到关于我们
+  toOurs() {
+    wx.navigateTo({
+      url: '../myinfo/ours/ours',
+    })
+  },
+  // 跳转到账本管理
   toBookList() {
     wx.navigateTo({
       url: '../myinfo/book/book',
     })
   },
+  // 获取用户信息
   getUserInf() {
     wx.getSetting({
       success: res => {
@@ -47,7 +56,6 @@ Page({
       }
     })
   },
-
   // 获取当前用户手机号
   getPhoneNumber() {
     var {
@@ -113,7 +121,6 @@ Page({
     })
 
   },
-
   //获取用户信息
   onGetUserInfo: function (e) {
     if (!this.data.logged && e.detail.userInfo) {
@@ -124,126 +131,15 @@ Page({
       })
     }
   },
-  inputChange(e) {
-    this.setData({
-      bookName: e.detail.value
-    })
-    console.log(e)
-  },
-  // 添加账本
-  addBook() {
-    console.log('添加账本')
-    this.setData({
-      showAddModal: true
-    })
-  },
-  // 关闭账本管理模态框
-  onClose() {
-
-  },
-  // 删除账本
-  delBook(e) {
-    console.log('删除账本', e)
-    var {
-      delId
-    } = this.data;
-    console.log(delId !== '')
-    console.log(delId)
-    if (delId !== '') {
-      db.collection('booklist').doc(delId).remove({
-        success: res => {
-          wx.showToast({
-            title: '删除成功',
-          })
-          this.getBookList()
-          // this.setData({
-          //   counterId: '',
-          //   count: null,
-          // })
-        },
-        fail: err => {
-          wx.showToast({
-            icon: 'none',
-            title: '删除失败',
-          })
-          console.error('[数据库] [删除记录] 失败：', err)
-        }
-      })
-    } else {
-      wx.showToast({
-        title: '无记录可删，请见创建一个记录',
-      })
-    }
-  },
-  clickRow(e) {
-    console.log(e)
-    this.setData({
-      delId: e.currentTarget.dataset.id
-    })
-  },
-  //导出数据
-  toDownload() {
-
-  },
-  // 绑定家庭成员
-  toFamilyNumber() {
-    this.setData({
-      familyState: true
-    })
-
-  },
-  /**
-   * 隐藏模态对话框
-   */
+  // 隐藏模态对话框
   hideModal: function () {
     this.setData({
-      showAddModal: false,
-      showBookModal: false,
       showPhoneModal: false
     });
   },
-  /**
-   * 对话框取消按钮点击事件
-   */
+  //对话框取消按钮点击事件
   onCancel: function () {
     this.hideModal();
-  },
-  /**
-   * 对话框确认按钮点击事件
-   */
-  onConfirm: function (e) {
-    var {
-      bookName
-    } = this.data;
-    var user_id = wx.getStorageSync('user_id');
-    var bookinfo = {
-      name: bookName,
-      user_id,
-    }
-    if (bookName == "") {
-      wx.showToast({
-        title: '账本名不能为空',
-        icon: 'none',
-        duration: 1000
-      })
-      return false;
-    }
-    wx.cloud.callFunction({
-      name: 'addBook',
-      data: bookinfo
-    }).then(res => {
-      console.log(res)
-      if (res.errMsg === "cloud.callFunction:ok") {
-        this.hideModal();
-      }
-    })
-    // db.collection('booklist').add(bookinfo).then(res => {
-    //   console.log(res)
-    // })
-
-    console.log(user_id)
-    console.log(bookName)
-    // this.hideModal();
   },
 
   /**

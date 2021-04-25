@@ -2,8 +2,8 @@
 import * as echarts from '../../../ec-canvas/echarts';
 
 // const app = getApp();
-
-console.log(echarts)
+const db = wx.cloud.database();
+const $ = db.command.aggregate;
 function initChart(canvas, width, height, dpr) {
   const chart = echarts.init(canvas, null, {
     width: width,
@@ -122,11 +122,26 @@ Page({
 
   },
 
+  
+  // 获取金额的列表
+  getMoneyData(){
+    let bookId=wx.getStorageSync('current_book')._id;
+    db.collection('money_list').aggregate().match({
+      book_id:bookId
+    }).group({
+      _id:'$time',
+      totalMoney:$.sum('$money'),
+    }).end().then(res=>{
+      
+      console.log(res)
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getMoneyData()
   },
 
   /**
