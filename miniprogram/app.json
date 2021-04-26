@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/statistic/out-statistic/out-statistic",
     "pages/statistic/statistic",
     "pages/statistic/in-statistic/in-statistic",
-    "pages/statistic/out-statistic/out-statistic",
     "pages/index/index",
     "pages/myinfo/book/book",
     "pages/myinfo/myinfo",
