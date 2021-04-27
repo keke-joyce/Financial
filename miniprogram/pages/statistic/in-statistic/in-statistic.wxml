@@ -1,5 +1,5 @@
 <view class="container">
-  <ec-canvas class="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec3 }}"></ec-canvas>
-  <ec-canvas class="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec2 }}"></ec-canvas>
+  <ec-canvas class="mychart-dom-line" class="ec-canvas"  canvas-id="mychart-line" ec="{{ ec3 }}"></ec-canvas>
+  <ec-canvas class="mychart-dom-pie" class="ec-canvas" canvas-id="mychart-pie" ec="{{ ec2 }}"></ec-canvas>
   哈哈哈
 </view>

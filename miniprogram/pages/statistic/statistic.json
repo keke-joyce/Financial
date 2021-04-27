@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "in-statistic": "../statistic/in-statistic/in-statistic",
-    "out-statistic": "../statistic/out-statistic/out-statistic"
+    "out-statistic": "../statistic/out-statistic/out-statistic",
+    "ec-canvas": "../../../ec-canvas/ec-canvas"
   }
 }

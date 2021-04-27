@@ -35,7 +35,7 @@ Page({
     console.log(book_id);
     // 将账本的id存到storage中
     wx.setStorageSync('book_id', book_id);
-    this.getData();
+    this.getAllData();
   },
   //获取当前用户的账本列表**++
   getBookList(){
@@ -52,16 +52,14 @@ Page({
           })
           that.setData({array:res.data,array1:arr})
         })
-    this.getData()
+    this.getAllData()
   },
-  // 获取当前账本的数据
-  getData(){
-    const {array,index,classifyList,classifyList1}=this.data;
+  // 获取当前账本的数据++
+  // 已优化缩减代码，数据库查询操作进行了数据拼接输出
+  getAllData(){
     const that=this;
      // 调用云函数根据账本id去获取收支数据
-    // this.getData(e.detail.value)
     var book_id=wx.getStorageSync('book_id');
-    // console.log(book_id)
     wx.cloud.callFunction({
       name:'getBookInfo',
       data:{
@@ -69,44 +67,7 @@ Page({
       }
     }).then(res=>{
       console.log(res)
-      var moneyArr=[];//存放支出金额的数组
-      var moneyArr1=[];//存放收入金额的数组
-      var datalist=[];
-      let arr=[];
-      res.result.data.forEach((el,index)=>{
-        if(el.tid===1){
-          moneyArr.push(el.money)
-        }else{
-          moneyArr1.push(el.money)
-        }
-        
-        db.collection('classify_list').where({cid:el.classify_id}).get().then(res=>{
-          delete res.data[0]._id;
-          Object.assign(el,res.data[0])
-          let obj=Object.assign(el,res.data[0]);
-          arr[index] = obj;
-          that.setData({
-            dataList:arr,
-          })
-        })
-      })
-      if(moneyArr.length){
-        var spendMoney=moneyArr.reduce((a,b)=>a+b);
-      }else{
-        var spendMoney=0;
-      }
-      if(moneyArr1.length){
-        var incomeMoney=moneyArr1.reduce((a,b)=>a+b);
-      }else{
-        var incomeMoney=0;
-      }
-      classifyList.push(classifyList1)
-        that.setData({
-          spendMoney,
-          incomeMoney,
-          classifyList
-        })
-      
+      that.setData({ dataList:res.result.list})
     })
   },
   //点击增加
@@ -167,7 +128,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getData()
+    // this.getData()
   },
 
   /**

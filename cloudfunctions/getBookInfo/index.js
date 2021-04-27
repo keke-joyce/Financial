@@ -9,10 +9,13 @@ exports.main = async (event, context) => {
   // const wxContext = cloud.getWXContext()
   // var id=event.id;
   // return await db.collection('money_list').where(event).get({
-    return await db.collection('money_list').orderBy('time','desc').where({book_id:event.book_id}).get({      
-    success:function(res){
-      console.log(res)
-    }
-  })
+    return await  db.collection('money_list').aggregate()
+    .lookup({
+      from: 'classify_list',
+      localField: 'classify_id',
+      foreignField: 'cid',
+      as: 'classify',
+    }).match({book_id:event.book_id}).sort({time:-1})
+    .end()
  
 }

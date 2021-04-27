@@ -69,80 +69,65 @@ Page({
   getMoneyData1() {
     let bookId = wx.getStorageSync('current_book')._id;
     var that = this;
-    // wx.cloud.callFunction({
-    //   name: 'getOutMoney1',
-    //   data: {
-    //     book_id: bookId,
-    //     tid: 1
-    //   }
-    // }).then(res => {
-    //   console.log(res)
-    //   let arr = [];
-    //   res.list.forEach((el, index) => {
-    //     db.collection('classify_list').where({
-    //       cid: el._id
-    //     }).get().then(response => {
-    //       console.log(response.data)
+    wx.cloud.callFunction({
+      name: 'getClassifyMoney',
+      data: {
+        book_id: bookId,
+        tid: 1
+      }
+    }).then(res => {
+      console.log(res)
+      let target=[];
+      res.result.list.forEach(el=>{
+        let obj={name:el.classify[0]._id,value:el.totalMoney};
+        console.log(obj)
+        target.push(obj)
+        console.log(target)
+      })
+    that.setData({classifyList:target})
+      
+    }).then(res => {
+      that.echarCanve = that.selectComponent(".mychart-dom-pie");
+      this.initbt1();
+    })
 
-    //       let obj = Object.assign(el, {
-    //         name: response.data[0].name
-    //       })
+    // db.collection('money_list').aggregate().match({
+    //   book_id: bookId,
+    //   tid: 1
+    // }).group({
+    //   _id: '$classify_id',
+    //   value: $.sum('$money'),
+    // }).end().then(res => {
+    //   let arr=[];
+    //   res.list.forEach((el,index)=>{
+    //     db.collection('classify_list').where({cid:el._id}).get().then(response=>{
+    //       console.log(response.data)
+    //       // delete el._id;
+    //       // Object.assign(el,{name:response.data[0].name});
+    //       let obj=Object.assign(el,{name:response.data[0].name})
+    //       // let obj={};
+    //       // Object.assign(obj,{value:el.value,name:response.data[0].name})
+    //       // let obj={value:el.value,name:response.data[0].name};
+    //       // arr[index]={value:el.value,name:response.data[0].name};
+    //       // console.log(obj)
     //       delete obj._id;
-    //       res.list[index] = obj;
-    //       arr[index] = response.data[0].color;
+    //       res.list[index]=obj;
+    //       arr[index]=response.data[0].color;
     //       console.log(arr)
     //       that.setData({
-    //         classifyList: res.list,
-    //         colorList: arr
+    //         classifyList:res.list,
+    //         colorList:arr
     //       })
     //       console.log(this.data.colorList)
     //     })
 
-    //   })
+    //   })     
     // }).then(res => {
     //   that.echarCanve = that.selectComponent(".mychart-dom-pie");
-    //   // setTimeout(()=>{
-    //   this.initbt1();
-    //   // },500)
+    //   setTimeout(()=>{
+    //     this.initbt1();
+    //   },500)
     // })
-
-    db.collection('money_list').aggregate().match({
-      book_id: bookId,
-      tid: 1
-    }).group({
-      _id: '$classify_id',
-      value: $.sum('$money'),
-    }).end().then(res => {
-      let arr=[];
-      res.list.forEach((el,index)=>{
-        db.collection('classify_list').where({cid:el._id}).get().then(response=>{
-          console.log(response.data)
-          // delete el._id;
-          // Object.assign(el,{name:response.data[0].name});
-          let obj=Object.assign(el,{name:response.data[0].name})
-          // let obj={};
-          // Object.assign(obj,{value:el.value,name:response.data[0].name})
-          // let obj={value:el.value,name:response.data[0].name};
-          // arr[index]={value:el.value,name:response.data[0].name};
-          // console.log(obj)
-          delete obj._id;
-          res.list[index]=obj;
-          arr[index]=response.data[0].color;
-          console.log(arr)
-          that.setData({
-            classifyList:res.list,
-            colorList:arr
-          })
-          console.log(this.data.colorList)
-        })
-
-      })     
-    }).then(res => {
-      that.echarCanve = that.selectComponent(".mychart-dom-pie");
-      setTimeout(()=>{
-        this.initbt1();
-      },500)
-    })
 
   },
   initbt: function () {
@@ -200,34 +185,18 @@ Page({
     console.log(this.data.classifyList)
     var option = {
       backgroundColor: "#ffffff",
-      // color: ["#37A2DA", "#32C5E9", "#67E0E3", "#91F2DE", "#FFDB5C"],
-      color: this.data.colorList,
+      color: ["#FEA82D", "#6AC7D5", "#FD9491", "#383C51", "#747FFD","#FFC928","#FEA3B4","#F9A870","#95BE3E","#96AEDA"],
+      // color: this.data.colorList,
       series: [{
         label: {
           normal: {
-            fontSize: 14
+            fontSize: 14,
+            // position:'center'
           }
         },
         type: 'pie',
         center: ['50%', '50%'],
         radius: ['40%', '60%'],
-        // data: [{
-        //   value: 55,
-        //   name: '北京'
-        // }, {
-        //   value: 20,
-        //   name: '武汉'
-        // }, {
-        //   value: 10,
-        //   name: '杭州'
-        // }, {
-        //   value: 20,
-        //   name: '广州'
-        // }, {
-        //   value: 38,
-        //   name: '上海'
-        // }],
-        // data:[{value: 5453, name: "工资"}]
         data: this.data.classifyList
       }]
     };

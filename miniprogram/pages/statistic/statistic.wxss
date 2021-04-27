@@ -5,7 +5,7 @@
   height: 20px;
   background-size: 100% 100%;
   }
-#tabs{
+.tabs{
   font-size: 28rpx;
 }
 .tabs-box{
@@ -24,4 +24,15 @@
     width: 33.3%;
     color:#666;
     border-bottom:1rpx solid #e9e9e9;
+}
+.tabs .ordert-detail{
+  width: 90%;
+  height: 90vh;
+  border: 1px solid black;
+  margin: 0 auto;
+
+}
+.tabs .ordert-detail view{
+  width: 100%;
+  /* height: 100%; */
 }

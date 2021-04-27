@@ -26,16 +26,21 @@
       <!-- <view>2020年2月14日</view> -->
       <view class="row" wx:for="{{dataList}}" wx:key="index" bindtap="clickRow" id="{{item._id}}"
         data-id="{{item._id}}">
-        <view class="info-left" style="background-color:{{item.color}}">
-          <image src="{{item.url1}}"></image>
+        <view class="info-left" style="background-color:{{item.classify[0].color}}">
+          <image src="{{item.classify[0].url1}}"></image>
         </view>
         <view class="info-right">
           <view class="info-one">
-            <view class="info">{{item.name}}</view>
+            <view class="info">{{item.classify[0].name}}</view>
             <view class="info">{{item.detail}}</view>
           </view>
           <view class="info-two">
-            <view class="info">{{item.money}}</view>
+            <block wx:if="{{item.tid==1}}">
+              <view class="info">-{{item.money}}</view>
+            </block>
+            <block wx:else>
+              <view class="info">+{{item.money}}</view>
+            </block>
             <!-- {{item.time}} -->
             <view class="info">{{item.time}}</view>
           </view>

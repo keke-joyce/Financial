@@ -1,12 +1,13 @@
 {
   "pages": [
-    "pages/statistic/out-statistic/out-statistic",
+    "pages/home/home",
+    "pages/demo3/demo3",
     "pages/statistic/statistic",
     "pages/statistic/in-statistic/in-statistic",
+    "pages/statistic/out-statistic/out-statistic",
     "pages/index/index",
     "pages/myinfo/book/book",
     "pages/myinfo/myinfo",
-    "pages/home/home",
     "pages/myinfo/classify/classify",
     "pages/myinfo/ours/ours",
     "pages/addmoney/addmoney",
@@ -14,8 +15,7 @@
     "pages/addmoney/spending/spending",
     "pages/demo/demo",
     "pages/addmoney/income/income",
-    "pages/demo4/demo4",
-    "pages/demo3/demo3"
+    "pages/demo4/demo4"
     
   ],
   "tabBar": {
