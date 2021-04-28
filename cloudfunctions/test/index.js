@@ -22,10 +22,12 @@ exports.main = async (event, context) => {
       book_id: event.book_id,
       year: date_time[0],
       month: date_time[1]
-  }).group({
+  })
+  .group({
     _id:'$tid',
     outTotalMoney:$.sum('$money'),
-  }).end()
+  })
+  .end()
 
 
 

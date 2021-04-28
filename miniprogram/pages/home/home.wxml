@@ -12,10 +12,18 @@
   </view>
   <!-- 收支统计框 -->
   <view class="head">
-    <picker bindchange="bindPickerChange" value="{{index}}" range="{{timeArray}}" class="select">
+    <!-- <picker bindchange="bindTimeChange" value="{{index}}" range="{{timeArray}}" class="select">
       {{index===0?currentMonth:timeArray[index]}}月 <image src="../../images/select.png"
         style="width:20px;height:20px;background-size:100% 100%;"></image>
-    </picker>
+    </picker> -->
+    <picker mode="date" fields="month" value="{{date}}"  bindchange="bindTimeChange">
+    <view class="selectDate">
+        {{year}}年{{month}}月
+        <image src="../../images/select.png"
+        style="width:20px;height:20px;background-size:100% 100%;"></image>
+    </view>
+</picker>
+
     <view class="head_store"><text>结余</text>{{incomeMoney-spendMoney}}</view>
     <view class="head_income"><text>总收入</text>{{incomeMoney}}</view>
     <view class="head_spand"><text>总支出</text>{{spendMoney}}</view>

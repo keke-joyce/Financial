@@ -160,10 +160,11 @@ Page({
             type: 'dashed'
           }
         },
-        show: false
+        // show: false
       },
       series: [{
-        name: 'A',
+        // name: 'A',
+        // name:this.data.timeList,
         type: 'line',
         smooth: true,
         data: this.data.moneyList
