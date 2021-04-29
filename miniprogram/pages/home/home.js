@@ -1,6 +1,8 @@
 // pages/home/home.js
 // 方法**代表有问题总结，++表示已完成
 const db = wx.cloud.database()
+const _ = db.command;
+const $ = db.command.aggregate;
 Page({
 
   /**
@@ -13,6 +15,7 @@ Page({
     index: 0,
     spendMoney: 0, //总支出
     incomeMoney: 0, //总收入
+    storeMoney: 0,
     classifyList: wx.getStorageSync('classifyList'),
     classifyList1: wx.getStorageSync('classifyList1'),
     classify: [],
@@ -21,14 +24,111 @@ Page({
     currentTime: '', //当前年月
     year: '',
     month: '',
-    book_id:wx.getStorageSync('book_id')
+    book_id: wx.getStorageSync('book_id'),
+    searchTitle: '',
+
+  },
+  searchInput(e) {
+    console.log(e.detail.value)
+    this.setData({
+      searchTitle: e.detail.value
+    });
+  },
+  //搜索
+  toSearch() {
+    const {
+      searchTitle,
+      book_id
+    } = this.data;
+    const that = this;
+    console.log(searchTitle)
+    if (searchTitle) {
+      wx.cloud.callFunction({
+        name: 'searchMoney',
+        data: {
+          book_id,
+          searchTitle
+        }
+      }).then(res => {
+        that.setData({
+          dataList: res.date
+        })
+      })
+      // db.collection('money_list').aggregate()
+      //   .match({
+      //     book_id
+      //   })
+      //   .lookup({
+      //     from: 'classify_list',
+      //     localField: 'classify_id',
+      //     foreignField: 'cid',
+      //     as: 'classify',
+      //   }).match(_.or([{
+      //       detail: db.RegExp({
+      //         regexp: searchTitle,
+      //         option: 'i'
+      //       })
+      //     },
+      //     {
+      //       money: db.RegExp({
+      //         regexp: searchTitle,
+      //         option: 'i'
+      //       })
+      //     },
+      //   ])).sort({
+      //     time: -1
+      //   })
+      // .end()
+
+      //     db.collection('money_list').aggregate()
+      //   .lookup({
+      //     from: 'classify_list',
+      //     localField: 'classify_id',
+      //     foreignField: 'cid',
+      //     as: 'classify',
+      //   }).match(_.or([{
+      //     detail: db.RegExp({
+      //       regexp: searchTitle,
+      //       option: 'i'
+      //     })
+      //   },
+      //   {
+      //     money: db.RegExp({
+      //       regexp: searchTitle,
+      //       option: 'i'
+      //     })
+      //   },
+      // ])).sort({time:-1})
+      //   .end()
+      // db.collection('money_list').where(_.or([{
+      //     detail: db.RegExp({
+      //       regexp: searchTitle,
+      //       option: 'i'
+      //     })
+      //   },
+      //   {
+      //     money: db.RegExp({
+      //       regexp: searchTitle,
+      //       option: 'i'
+      //     })
+      //   },
+      // ])).get()
+      // .then(res => {
+      //   this.setData({
+      //     dataList: res.data
+      //   })
+      //   console.log(res)
+      // })
+    } else {
+      this.getAllData();
+    }
 
   },
   // 年月选择时触发的方法
   bindTimeChange(e) {
     // console.log(e.detail.value)
     let timeArr = e.detail.value.split('-');
-  
+
     // console.log(timeArr)
     this.setData({
       currentTime: e.detail.value,
@@ -38,6 +138,7 @@ Page({
     // 获取当月的收支信息
     this.getMonthData();
     this.getTotalMoney();
+    // this.getTotal();
 
 
   },
@@ -46,7 +147,7 @@ Page({
     const {
       currentTime
     } = this.data;
-    var {book_id} =this.data;
+    var book_id = wx.getStorageSync('book_id');
     wx.cloud.callFunction({
       name: 'getMonthData',
       data: {
@@ -54,36 +155,122 @@ Page({
         book_id
       }
     }).then(res => {
-      this.setData({dataList:res.result.list})
+      this.setData({
+        dataList: res.result.list
+      })
     })
   },
-  // 获取账本的信息
-  getTotalMoney(){
-    var {book_id,currentTime} =this.data;
-    console.log(book_id,currentTime)
-    wx.cloud.callFunction({
-      name:'addTotalMoney',
-      data:{
-        book_id,
-        time:currentTime,
-      }
-    }).then(res=>{
-      console.log(res.result.list)
-      let obj={
-        book_id,
-        income_total:res.result.list[0].outTotalMoney,
-        spend_total:res.result.list[1].outTotalMoney,
-        store_total:res.result.list[0].outTotalMoney-res.result.list[1].outTotalMoney,
-      }
-      db.collection('total_money_list').add({
-        data:obj
-      }).then(res=>{
-console.log(res)
-      })
-      // console.log(obj)
-      
-    })
+  // 获取账本当月的总收支结余信息
+  getTotalMoney() {
+    var {
+      // book_id,
+      currentTime
+    } = this.data;
+    var book_id = wx.getStorageSync('book_id');
 
+
+    const that = this;
+    console.log(book_id, currentTime)
+    wx.cloud.callFunction({
+      name: 'addTotalMoney',
+      data: {
+        book_id,
+        time: currentTime,
+      }
+    }).then(res => {
+      console.log(res.result.list)
+      let moneyList = res.result.list;
+      console.log(moneyList)
+      let income_total = 0;
+      let spend_total = 0;
+      let store_total = 0;
+      if (moneyList.length) {
+        moneyList.forEach(el => {
+          if (el._id === 2) {
+            income_total = el.outTotalMoney;
+          } else {
+            spend_total = el.outTotalMoney;
+          }
+        })
+        store_total = income_total - spend_total;
+        that.setData({
+          incomeMoney: income_total,
+          spendMoney: spend_total,
+          storeMoney: store_total
+        })
+      } else {
+        that.setData({
+          incomeMoney: income_total,
+          spendMoney: spend_total,
+          storeMoney: store_total
+        })
+
+      }
+    })
+  },
+  // 获取账本总的收支并存入数据库
+  getTotal() {
+    // const {
+    //   book_id
+    // } = this.data;
+    var book_id = wx.getStorageSync('book_id');
+
+    db.collection('money_list')
+      .aggregate()
+      .match({
+        book_id,
+      })
+      .group({
+        // 按 category 字段分组
+        _id: '$tid',
+        // 每组有一个 avgSales 字段，其值是组内所有记录的 sales 字段的平均值
+        totalMoney: $.sum('$money')
+      })
+      .end().then(res => {
+        let totalMoneyList = res.list;
+        let income_total = 0;
+        let spend_total = 0;
+        let store_total = 0;
+        if (totalMoneyList.length) {
+          totalMoneyList.forEach(el => {
+            if (el._id === 2) {
+              income_total = el.totalMoney;
+            } else {
+              spend_total = el.totalMoney;
+            }
+          })
+          store_total = income_total - spend_total;
+        }
+        db.collection('total_money_list').where({
+          book_id
+        }).get().then(res => {
+          console.log(res.data.length !== 1)
+          if (res.data.length !== 1) {
+            db.collection('total_money_list').add({
+              data: {
+                book_id,
+                income_total,
+                spend_total,
+                store_total
+              }
+            }).then(res => {
+              console.log(res)
+            })
+          } else {
+            db.collection('total_money_list').doc(res.data[0]._id).update({
+              data: {
+                book_id,
+                income_total: _.set(income_total),
+                spend_total: _.set(spend_total),
+                store_total: _.set(store_total)
+              }
+            }).then(res => {
+              console.log(res)
+            })
+          }
+        })
+
+      })
 
   },
   bindPickerChange: function (e) {
@@ -104,6 +291,7 @@ console.log(res)
     // 将账本的id存到storage中
     wx.setStorageSync('book_id', book_id);
     this.getAllData();
+    this.getTotalMoney();
   },
   //获取当前用户的账本列表**++
   getBookList() {
@@ -204,14 +392,10 @@ console.log(res)
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // var date=new Date();
-    // var month=date.getMonth()+1;
-    // this.setData({currentMonth:month})
     this.getCurrentTime();
     this.getBookList();
     this.getTotalMoney();
-    // console.log(this.data.dataList)
-
+    this.getTotal();
   },
 
   /**

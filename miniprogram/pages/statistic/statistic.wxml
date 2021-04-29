@@ -13,17 +13,19 @@
     </block>
   </view>
   <view class='ordert-detail'>
-    <view hidden='{{currentTabIndex != 0}}'>
+    <view >
       <!-- <out-statistic></out-statistic> -->
       <view class="container">
-        <ec-canvas id="mychart-dom-line" class="ec-canvas" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
-        <ec-canvas id="mychart-dom-pie" class="ec-canvas" canvas-id="mychart-pie" ec="{{ ec1 }}"></ec-canvas>
+        <text>支出统计</text>
+        <ec-canvas id="expendLineChart" class="ec-canvas" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+        <ec-canvas id="expendPieChart" class="ec-canvas" canvas-id="mychart-pie" ec="{{ ec1 }}"></ec-canvas>
       </view>
     </view>
-    <view hidden='{{currentTabIndex != 1}}'>
+    <view  hidden="{{currentTabIndex !== 1}}">
       <view class="container">
-        <ec-canvas id="mychart-dom-line" class="ec-canvas" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
-        <ec-canvas id="mychart-dom-pie" class="ec-canvas" canvas-id="mychart-pie" ec="{{ ec1 }}"></ec-canvas>
+        <text>收入统计</text>
+        <ec-canvas id="incomeLineChart" class="ec-canvas" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+        <ec-canvas id="incomePieChart" class="ec-canvas" canvas-id="mychart-pie" ec="{{ ec1 }}"></ec-canvas>
       </view>
       <!-- <in-statistic></in-statistic> -->
     </view>
