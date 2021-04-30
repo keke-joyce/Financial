@@ -36,13 +36,31 @@ Page({
   },
   //搜索
   toSearch() {
-    const {
+    let {
       searchTitle,
-      book_id
+      book_id,
+      dataList
     } = this.data;
     const that = this;
-    console.log(searchTitle)
-    if (searchTitle) {
+    // console.log(searchTitle)
+    // let newdata = [];
+    // if (searchTitle) {
+    //   if (dataList.length) {
+    //     dataList.forEach(el => {
+    //       if (el.detail.indexOf(searchTitle) !== -1) {
+    //         newdata.push(el)
+    //       }
+    //     })
+    //   }else{
+    //     this.getAllData();
+    //   }
+    //   console.log(newdata)
+    //   this.setData({dataList:newdata})
+    // } else {
+    //   this.getAllData();
+
+    // }
+    // if (searchTitle) {
       wx.cloud.callFunction({
         name: 'searchMoney',
         data: {
@@ -50,78 +68,71 @@ Page({
           searchTitle
         }
       }).then(res => {
-        that.setData({
-          dataList: res.date
-        })
+        console.log(res)
+        // that.setData({
+        //   dataList: res.date
+        // })
       })
-      // db.collection('money_list').aggregate()
-      //   .match({
-      //     book_id
-      //   })
-      //   .lookup({
-      //     from: 'classify_list',
-      //     localField: 'classify_id',
-      //     foreignField: 'cid',
-      //     as: 'classify',
-      //   }).match(_.or([{
-      //       detail: db.RegExp({
-      //         regexp: searchTitle,
-      //         option: 'i'
-      //       })
-      //     },
-      //     {
-      //       money: db.RegExp({
-      //         regexp: searchTitle,
-      //         option: 'i'
-      //       })
-      //     },
-      //   ])).sort({
-      //     time: -1
-      //   })
-      // .end()
 
-      //     db.collection('money_list').aggregate()
-      //   .lookup({
-      //     from: 'classify_list',
-      //     localField: 'classify_id',
-      //     foreignField: 'cid',
-      //     as: 'classify',
-      //   }).match(_.or([{
-      //     detail: db.RegExp({
-      //       regexp: searchTitle,
-      //       option: 'i'
-      //     })
-      //   },
-      //   {
-      //     money: db.RegExp({
-      //       regexp: searchTitle,
-      //       option: 'i'
-      //     })
-      //   },
-      // ])).sort({time:-1})
-      //   .end()
-      // db.collection('money_list').where(_.or([{
-      //     detail: db.RegExp({
-      //       regexp: searchTitle,
-      //       option: 'i'
-      //     })
-      //   },
-      //   {
-      //     money: db.RegExp({
-      //       regexp: searchTitle,
-      //       option: 'i'
-      //     })
-      //   },
-      // ])).get()
-      // .then(res => {
-      //   this.setData({
-      //     dataList: res.data
-      //   })
-      //   console.log(res)
-      // })
-    } else {
-      this.getAllData();
-    }
+    //     db.collection('money_list').aggregate()
+    //   .lookup({
+    //     from: 'classify_list',
+    //     localField: 'classify_id',
+    //     foreignField: 'cid',
+    //     as: 'classify',
+    //   }).match(_.or([{
+    //     detail: db.RegExp({
+    //       regexp: searchTitle,
+    //       option: 'i'
+    //     })
+    //   },
+    //   {
+    //     money: db.RegExp({
+    //       regexp: searchTitle,
+    //       option: 'i'
+    //     })
+    //   },
+    // ])).sort({time:-1})
+    //   .end()
+    // db.collection('money_list').aggregate()
+    // .match({
+    //   book_id:'79550af2607d53420f7e403735c6bb40'
+    // })
+    // .lookup({
+    //   from: 'classify_list',
+    //   localField: 'classify_id',
+    //   foreignField: 'cid',
+    //   as: 'classify',
+    // })
+    // .match(_.or([{
+    //     detail: db.RegExp({
+    //       regexp: '家居',
+    //       option: 'i'
+    //     })
+    //   },
+    //   {
+    //     money: db.RegExp({
+    //       regexp: '家居',
+    //       option: 'i'
+    //     })
+    //   },
+    // ]))
+    // .lookup({
+    //   from: 'classify_list',
+    //   localField: 'classify_id',
+    //   foreignField: 'cid',
+    //   as: 'classify',
+    // }).sort({
+    //   time: -1
+    // })
+    // .end()
+    //   .then(res=>{
+    //     console.log(res)
+    //   })
+
+    // } else {
+    //   this.getAllData();
+    // }
 
   },
   // 年月选择时触发的方法
