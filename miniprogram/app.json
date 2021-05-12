@@ -1,11 +1,14 @@
 {
   "pages": [
+    "pages/statistic/statistic",
     "pages/home/home",
     "pages/demo3/demo3",
-    "pages/statistic/statistic",
+    "pages/index/index",
     "pages/statistic/in-statistic/in-statistic",
     "pages/statistic/out-statistic/out-statistic",
-    "pages/index/index",
+    "pages/statistic/month-statistic/month-statistic",
+    "pages/statistic/year-statistic/year-statistic",
+    "pages/statistic/other-statistic/other-statistic",
     "pages/myinfo/book/book",
     "pages/myinfo/myinfo",
     "pages/myinfo/classify/classify",

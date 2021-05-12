@@ -1,0 +1,63 @@
+/* pages/statistic/other-statistic/other-statistic.wxss */
+.time-select{
+  width: 85%;
+  height:8vh;
+  /* border: 1px solid black; */
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.time-select image{
+  width: 10%;
+  height: 70%;
+  /* border: 1px solid red; */
+  margin: 6px 20px;
+}
+.time-select .select{
+  width: 80%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26rpx;
+}
+.time-select .select image{
+  width: 20px;
+  height: 20px;
+  background-size: 100% 100%;
+}
+.tabs1{
+  font-size: 28rpx;
+  width: 85%;
+  margin: 0 auto;
+  border: 1px solid #e9e9e9;
+  border-radius: 10px;
+}
+.tabs-box1{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center
+}
+.tabs-item1.selected {
+    color:#64b0e7;
+    border-bottom:2rpx solid #64b0e7;
+}
+.tabs-item1 {
+    width: 33.3%;
+    color:#666;
+    border-bottom:1rpx solid #e9e9e9;
+}
+.tabs1 .ordert-detail{
+  width: 100%;
+  height: 90vh;
+  /* border: 1px solid black; */
+  margin: 0 auto;
+
+}
+.tabs1 .ordert-detail view{
+  width: 100%;
+  /* height: 100%; */
+}

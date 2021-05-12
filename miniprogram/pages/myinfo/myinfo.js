@@ -66,7 +66,7 @@ Page({
     db.collection("user_list").where({
       openId: user_id
     }).get().then(res => {
-      console.log(res.data[0].phone_number)
+      console.log(res)
       that.setData({
         phoneNumber: res.data[0].phone_number
       })

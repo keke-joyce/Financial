@@ -1,7 +1,8 @@
 {
   "usingComponents": {
-    "in-statistic": "../statistic/in-statistic/in-statistic",
-    "out-statistic": "../statistic/out-statistic/out-statistic",
+    "month-statistic": "../statistic/month-statistic/month-statistic",
+    "year-statistic": "../statistic/year-statistic/year-statistic",
+    "other-statistic": "../statistic/other-statistic/other-statistic",
     "ec-canvas": "../../../ec-canvas/ec-canvas"
   }
 }

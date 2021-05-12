@@ -87,11 +87,22 @@ Component({
         name:'addSpendInfo',
         data:spendInfo
       }).then(res=>{
-        if(res.errMsg==="cloud.callFunction:ok"){
-          this.setData({time:'',money:0,detail:'',showSubmit:false})
+        if (res.errMsg === "cloud.callFunction:ok") {
+          wx.showToast({
+            title: '添加成功',
+          })
+          this.setData({
+            time: '',
+            money: 0,
+            detail: '',
+            showSubmit: false
+          })
           // this.inputDetail(e)
+        } else {
+          wx.showToast({
+            title: '添加失败',
+          })
         }
-        console.log('添加成功',res)
       })
       
     },

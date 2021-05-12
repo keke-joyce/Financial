@@ -9,10 +9,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    currentTabIndex: 0,
+    // timeIndex: 0,//年月tab的index
+    currentTabTimeIndex:0,//年月当前的tab
+    index: 0,//收支的tab
+    currentTabIndex: 0,//当前的收支tab
     array1: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-    index: 0,
-    currentMonth: 0,
+    
     ec: {
       lazyLoad: true,
     },
@@ -23,12 +25,59 @@ Page({
     moneyList: [],
     classifyList: [],
     colorList: [],
-
+    year: '',
+    month: '',
+    currentMonth: 0,
+    currentTabIndex:0,
 
   },
+  // 获取当前时间
+  getCurrentTime() {
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    if (month < 10) {
+      month = 0 + '' + month;
+    }
+    console.log(year + '-' + month)
+    this.setData({
+      currentTime: year + '-' + month,
+      year,
+      month
+    });
+  },
+  //月份选择 
+  bindMonthChange(e) {
+    console.log(e)
+    let timeArr = e.detail.value.split('-');
+    this.setData({
+      currentTime: e.detail.value,
+      year: timeArr[0],
+      month: timeArr[1]
+    })
+    // 执行月份筛选的方法
 
-  onTabsItemTap: function (event) {
-    let index = event.currentTarget.dataset.index;
+   
+  },
+  // 年份选择
+  bindYearChange(e) {
+    console.log(e)
+    this.setData({
+      year:e.detail.value
+    })
+    // 执行年份筛选的方法
+   },
+  
+  onTimeTabsTap(e) {
+    console.log(e)
+    let timeIndex = e.currentTarget.dataset.index;
+    this.setData({
+      currentTabIndex: timeIndex
+    })
+  },
+  onTabsItemTap(e) {
+    console.log('收支选择',e)
+    let index = e.currentTarget.dataset.index;
     this.setData({
       currentTabIndex: index
     })
@@ -56,7 +105,7 @@ Page({
   },
   // 获取金额的列表
   getMoneyData(tid) {
-    let bookId = wx.getStorageSync('current_book')._id;
+    let bookId = wx.getStorageSync('book_id');
     var that = this;
     db.collection('money_list').aggregate().match({
       book_id: bookId,
@@ -82,7 +131,7 @@ Page({
 
   },
   getMoneyData1(tid) {
-    let bookId = wx.getStorageSync('current_book')._id;
+    let bookId = wx.getStorageSync('book_id');
     var that = this;
     wx.cloud.callFunction({
       name: 'getClassifyMoney',
@@ -164,7 +213,6 @@ Page({
       return chart;
     })
   },
-
   initExpendPieChart: function () {
 
     this.expendPieChart.init((canvas, width, height) => {
@@ -207,6 +255,7 @@ Page({
     this.setData({ currentMonth: month })
     this.getMoneyData();
     this.getMoneyData1();
+    this.getCurrentTime();
 
   },
 

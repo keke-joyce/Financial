@@ -1,33 +1,66 @@
 <!--pages/statistic/statistic.wxml-->
 <!-- <text>pages/statistic/statistic.wxml</text> -->
-<picker bindchange="bindPickerChange" value="{{index}}" range="{{array1}}" class="select">
-  {{index===0?currentMonth:array1[index]}}月 <image src="../../images/select.png"></image>
-</picker>
-<view class='tabs'>
-  <view class='tabs-box'>
-    <block wx:for="{{['支出','收入']}}" wx:key="index">
-      <view class="tabs-item {{currentTabIndex == index ? 'selected' : '' }}" bindtap='onTabsItemTap'
+<view class="tabs">
+  <view class="tabs-box">
+    <block wx:for="{{['月','年','自定义']}}" wx:key="index">
+      <view class="tabs-item {{currentTabIndex == index ? 'selected' : '' }}" bindtap='onTimeTabsTap'
         data-index='{{index}}'>
         {{item}}
       </view>
     </block>
   </view>
+<!-- <view class="time-select">
+  <image src="../../images/left.png" bindtap="toSubTime"></image>
+  <block wx:if="{{currentTabTimeIndex===0}}">
+    <picker class="select" mode="date" fields="month" value="{{date}}" bindchange="bindMonthChange" >
+        {{year}}年{{month}}月
+    </picker>
+  </block>
+  <block wx:if="{{currentTabTimeIndex===1}}">
+    <picker class="select" mode="date" fields="year" value="{{date}}" bindchange="bindYearChange" >
+        {{year}}年
+    </picker>
+  </block>
+  <block wx:if="{{currentTabTimeIndex===2}}">
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array1}}" class="select">
+  {{index===0?currentMonth:array1[index]}}
+  </picker>
+  </block>
+  <image src="../../images/right.png" bindtap="toAddTime"></image>
+</view> -->
+<!-- <view class='tabs1'>
+  <view class='tabs-box1'>
+    <block wx:for="{{['支出','收入','结余']}}" wx:key="index">
+      <view class="tabs-item1 {{currentTabIndex == index ? 'selected' : '' }}" bindtap='onTabsItemTap'
+        data-index='{{index}}'>
+        {{item}}
+      </view>
+    </block>
+  </view> -->
   <view class='ordert-detail'>
-    <view >
-      <!-- <out-statistic></out-statistic> -->
+    <block wx:if="{{currentTabIndex===0}}">
+      <month-statistic></month-statistic>
+    </block>
+    <block wx:if="{{currentTabIndex===1}}">
+      <year-statistic></year-statistic>
+    </block>
+    <block wx:if="{{currentTabIndex===2}}">
+      <other-statistic></other-statistic>
+    </block>
+    <!-- <view hidden="{{}}">
+      
       <view class="container">
-        <text>支出统计</text>
         <ec-canvas id="expendLineChart" class="ec-canvas" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
         <ec-canvas id="expendPieChart" class="ec-canvas" canvas-id="mychart-pie" ec="{{ ec1 }}"></ec-canvas>
       </view>
     </view>
     <view  hidden="{{currentTabIndex !== 1}}">
       <view class="container">
-        <text>收入统计</text>
         <ec-canvas id="incomeLineChart" class="ec-canvas" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
         <ec-canvas id="incomePieChart" class="ec-canvas" canvas-id="mychart-pie" ec="{{ ec1 }}"></ec-canvas>
       </view>
-      <!-- <in-statistic></in-statistic> -->
-    </view>
+      <year-statistic></year-statistic>
+    </view> -->
   </view>
 </view>
+<!-- </view> -->

@@ -2,7 +2,7 @@
   <!-- 选择账本 -->
   <view class="top">
     <picker bindchange="bindPickerChange" value="{{index}}" range="{{array1}}" class="select">
-      {{array[index].name}} <image src="../../images/select.png"></image>
+      {{bookName===''?array[index].name:bookName}} <image src="../../images/select.png"></image>
     </picker>
   </view>
   <!-- 搜索框 -->
@@ -32,7 +32,7 @@
   <view class="content">
     <view class="content-info">
       <!-- <view>2020年2月14日</view> -->
-      <view class="row" wx:for="{{dataList}}" wx:key="index" bindtap="clickRow" id="{{item._id}}"
+      <view class="row" wx:for="{{dataList}}" wx:key="index"  id="{{item._id}}"
         data-id="{{item._id}}">
         <view class="info-left" style="background-color:{{item.classify[0].color}}">
           <image src="{{item.classify[0].url1}}"></image>

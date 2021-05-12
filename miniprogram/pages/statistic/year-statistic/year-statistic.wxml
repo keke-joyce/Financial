@@ -1,0 +1,25 @@
+<!--pages/statistic/year-statistic/year-statistic.wxml-->
+<!-- <text>pages/statistic/year-statistic/year-statistic.wxml</text> -->
+<view class="time-select">
+  <image src="../../../images/left.png" bindtap="toSubTime"></image>
+    <picker class="select" mode="date" fields="year" value="{{date}}" bindchange="bindYearChange" >
+        {{year}}年
+    </picker>
+  <image src="../../../images/right.png" bindtap="toAddTime"></image>
+</view>
+<view class='tabs1'>
+  <view class='tabs-box1'>
+    <block wx:for="{{['支出','收入','结余']}}" wx:key="index">
+      <view class="tabs-item1 {{currentTabIndex == index ? 'selected' : '' }}" bindtap='onTabsItemTap'
+        data-index='{{index}}'>
+        {{item}}
+      </view>
+    </block>
+  </view>
+  <view class='ordert-detail'>
+    <view >
+    </view>
+    <view  hidden="{{currentTabIndex !== 1}}">
+    </view>
+  </view>
+</view>

@@ -1,42 +1,18 @@
-// pages/demo3/demo3.js
+// pages/statistic/other-statistic/other-statistic.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    currentMonth:''
 
   },
 
-  getTest() {
-const {currentMonth}=this.data;
-    var user_id = wx.getStorageSync('user_id');
-    var bookId = wx.getStorageSync('book_id');
-    wx.cloud.callFunction({
-      name: 'test',
-      data: {
-        user_id:user_id,
-        book_id: bookId,
-        time:currentMonth
-      }
-    }).then(res => {
-      console.log(res)
-    })
-  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var date=new Date();
-    var year=date.getFullYear();
-    var month=date.getMonth()+1;
-    if(month<10){
-      month=0+''+month;
-    }
-    console.log(year+'-'+month)
-    this.setData({currentMonth:year+'-'+month})
-    this.getTest()
+
   },
 
   /**

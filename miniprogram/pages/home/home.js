@@ -26,7 +26,15 @@ Page({
     month: '',
     book_id: wx.getStorageSync('book_id'),
     searchTitle: '',
+    bookName:''
 
+  },
+  getCurrentBook() {
+    let book_id = wx.getStorageSync('book_id');
+    db.collection('booklist').doc(book_id).get().then(res => {
+      console.log('***--', res)
+      this.setData({bookName:res.data.name})
+    })
   },
   searchInput(e) {
     console.log(e.detail.value)
@@ -69,9 +77,9 @@ Page({
         }
       }).then(res => {
         console.log(res)
-        // that.setData({
-        //   dataList: res.date
-        // })
+        that.setData({
+          dataList: res.date
+        })
       })
 
     //     db.collection('money_list').aggregate()
@@ -178,8 +186,6 @@ Page({
       currentTime
     } = this.data;
     var book_id = wx.getStorageSync('book_id');
-
-
     const that = this;
     console.log(book_id, currentTime)
     wx.cloud.callFunction({
@@ -291,8 +297,10 @@ Page({
       index
     } = this.data;
     console.log('picker发送选择改变，携带值为', e.detail)
+    console.log(array)
     this.setData({
-      index: e.detail.value
+      index: e.detail.value,
+      bookName:array[e.detail.value].name
     })
     // 切换账本
     // 获取切换的账本的id
@@ -345,35 +353,35 @@ Page({
     })
   },
   //点击增加
-  clickRow(res) {
-    //1.获取点击的id和索引值
-    //2.云函数进行更新操作
-    //3.前端连后端，将数据传输给后端，后端再返回数据
-    //4.重新渲染列表数据
-    wx.showLoading({
-      title: '数据加载中',
-      mask: true
-    })
-    var {
-      id,
-      idx
-    } = res.currentTarget.dataset;
-    wx.cloud.callFunction({
-      name: 'demoUpList',
-      data: {
-        id: id
-      }
-    }).then(res => {
-      var newData = this.data.dataList;
-      newData[idx].money += 1;
-      this.setData({
-        dataList: newData
-      })
-      wx.hideLoading({
-        complete: (res) => {}
-      })
-    })
-  },
+  // clickRow(res) {
+  //   //1.获取点击的id和索引值
+  //   //2.云函数进行更新操作
+  //   //3.前端连后端，将数据传输给后端，后端再返回数据
+  //   //4.重新渲染列表数据
+  //   wx.showLoading({
+  //     title: '数据加载中',
+  //     mask: true
+  //   })
+  //   var {
+  //     id,
+  //     idx
+  //   } = res.currentTarget.dataset;
+  //   wx.cloud.callFunction({
+  //     name: 'demoUpList',
+  //     data: {
+  //       id: id
+  //     }
+  //   }).then(res => {
+  //     var newData = this.data.dataList;
+  //     newData[idx].money += 1;
+  //     this.setData({
+  //       dataList: newData
+  //     })
+  //     wx.hideLoading({
+  //       complete: (res) => {}
+  //     })
+  //   })
+  // },
 
   toAdd() {
     var {
@@ -407,6 +415,7 @@ Page({
     this.getBookList();
     this.getTotalMoney();
     this.getTotal();
+    this.getCurrentBook();
   },
 
   /**
