@@ -1,11 +1,11 @@
-<!--pages/statistic/other-statistic/other-statistic.wxml-->
-<!-- <text>pages/statistic/other-statistic/other-statistic.wxml</text> -->
-<view class="time-select">
-  <image src="../../../images/left.png" bindtap="toSubTime"></image>
+<!--components/other-statistic/other-statistic.wxml-->
+<view class="other-main">
+  <view class="time-select">
+  <image src="../../images/left.png" bindtap="toSubTime"></image>
     <picker bindchange="bindPickerChange" value="{{index}}" range="{{array1}}" class="select">
   {{index===0?currentMonth:array1[index]}}
   </picker>
-  <image src="../../../images/right.png" bindtap="toAddTime"></image>
+  <image src="../../images/right.png" bindtap="toAddTime"></image>
 </view>
 <view class='tabs1'>
   <view class='tabs-box1'>
@@ -32,4 +32,5 @@
       <!-- <year-statistic></year-statistic> -->
     </view>
   </view>
+</view>
 </view>

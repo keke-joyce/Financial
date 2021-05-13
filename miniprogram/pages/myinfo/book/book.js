@@ -14,10 +14,129 @@ Page({
     familyNumber: '',
     showFamilyModal: false,
     showFamilyListModel: false,
-    familyList: []
+    familyList: [],
+    showCopyModal: false,
 
+    vtabs: [],
+    activeTab: 0,
+    fileUrl: ''
 
   },
+  async toDownload() {
+    const that = this;
+    // this.setData({
+    //   showCopyModal: true
+    // })
+    // this.getMoneyList()
+    let { activeTab } = this.data;
+    let current_book = wx.getStorageSync('book')[activeTab]._id;
+    let resultList = await Promise.all([
+      db.collection('booklist').where({ _id: current_book }).get(),
+      wx.cloud.callFunction({
+        name: 'getMoneyClassify',
+        data: {
+          current_book
+        }
+      })
+    ]);
+    let twoArray = resultList[1].result.list;
+    let { name, user_id } = resultList[0].data[0];
+    let targetArr = []
+    twoArray.forEach((el, index) => {
+      el[index] = { name, user_id, ...el }
+      targetArr.push(el[index])
+    })
+    that.saveExcel(targetArr)
+  },
+  // async getMoneyList() {
+  //   const that = this;
+  //   let { activeTab } = this.data;
+  //   let current_book = wx.getStorageSync('book')[activeTab]._id;
+  //   let resultList = await Promise.all([
+  //     db.collection('booklist').where({ _id: current_book }).get(),
+  //     wx.cloud.callFunction({
+  //       name: 'getMoneyClassify',
+  //       data: {
+  //         current_book
+  //       }
+  //     })
+  //   ]);
+  //   let twoArray = resultList[1].result.list;
+  //   let { name, user_id } = resultList[0].data[0];
+  //   let targetArr = []
+  //   twoArray.forEach((el, index) => {
+  //     el[index] = { name, user_id, ...el }
+  //     targetArr.push(el[index])
+  //   })
+  //   that.saveExcel(targetArr)
+  // },
+  //把数据保存到excel里，并把excel保存到云存储
+  saveExcel(moneyList) {
+    let that = this;
+    wx.cloud.callFunction({
+      name: "getExcel",
+      data: {
+        moneyList: moneyList
+      },
+      success(res) {
+        console.log("保存成功", res)
+        that.getFileUrl(res.result.fileID)
+
+      },
+      fail(res) {
+        console.log("保存失败", res)
+      }
+    })
+  },
+
+  //获取云存储文件下载地址，这个地址有效期一天
+  getFileUrl(fileID) {
+    let that = this;
+    wx.cloud.getTempFileURL({
+      fileList: [fileID],
+      success: res => {
+        // get temp file URL
+        console.log("文件下载链接", res.fileList[0].tempFileURL)
+        that.setData({
+          fileUrl: res.fileList[0].tempFileURL,
+          showCopyModal: true
+        })
+      },
+      fail: err => {
+        // handle error
+      }
+    })
+  },
+  //复制excel文件下载链接
+  copyFileUrl() {
+    let that = this
+    wx.setClipboardData({
+      data: that.data.fileUrl,
+      success(res) {
+        wx.getClipboardData({
+          success(res) {
+            console.log("复制成功", res.data) // data
+            that.setData({ showCopyModal: false })
+          }
+        })
+      }
+    })
+  },
+
+  onTabCLick(e) {
+    const index = e.detail.index
+    // console.log('tabClick', index)
+    // console.log(this.data.activeTab)
+    // let current_book = this.data.bookList[index].id;
+    this.setData({ activeTab: index })
+    // this.getMoneyList()
+
+  },
+
+  // onChange(e) {
+  //   const index = e.detail.index
+  //   console.log('change', index)
+  // },
   toFamilyList(e) {
     this.setData({
       showFamilyListModel: true,
@@ -26,12 +145,12 @@ Page({
   },
   // 解除家庭成员绑定
   delFamily(e) {
-    let rowId=this.data;
+    let rowId = this.data;
     console.log(e.target.dataset.id)
     wx.cloud.callFunction({
       name: 'delFamily',
       data: {
-        _id:rowId,
+        _id: rowId,
         userId: e.target.dataset.id
       }
     }).then(res => {
@@ -189,7 +308,8 @@ Page({
     this.setData({
       showAddModal: false,
       showFamilyModal: false,
-      showFamilyListModel: false
+      showFamilyListModel: false,
+      showCopyModal: false
       // showBookModal:false,
       // showPhoneModal:false
     });
@@ -233,7 +353,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getBookList()
+    // const titles = ['热搜推荐', '手机数码', '家用电器',
+    //   '生鲜果蔬', '酒水饮料', '生活美食',
+    //   '美妆护肤', '个护清洁', '女装内衣',
+    //   '男装内衣', '鞋靴箱包', '运动户外',
+    //   '生活充值', '母婴童装', '玩具乐器',
+    //   '家居建材', '计生情趣', '医药保健',
+    //   '时尚钟表', '珠宝饰品', '礼品鲜花',
+    //   '图书音像', '房产', '电脑办公']
+    // const vtabs = titles.map(item => ({ title: item }))
+    // this.setData({ vtabs })
+    this.getBookList();
+    // this.getMoneyList();
 
   },
 

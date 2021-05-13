@@ -1,12 +1,12 @@
-<!--pages/statistic/month-statistic/month-statistic.wxml-->
+<!--components/month-statistic/month-statistic.wxml-->
 <view class="month-main">
 <!-- 月份选择 -->
 <view class="time-select">
-  <image src="../../../images/left.png" bindtap="toSubTime"></image>
+  <image src="../../images/left.png" bindtap="toSubTime"></image>
     <picker class="select" mode="date" fields="month" value="{{date}}" bindchange="bindMonthChange" >
         {{year}}年{{month}}月
     </picker>
-  <image src="../../../images/right.png" bindtap="toAddTime"></image>
+  <image src="../../images/right.png" bindtap="toAddTime"></image>
 </view>
 <!-- 收支结余tab -->
 <view class='tabs1'>

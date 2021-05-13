@@ -1,11 +1,11 @@
-<!--pages/statistic/year-statistic/year-statistic.wxml-->
-<!-- <text>pages/statistic/year-statistic/year-statistic.wxml</text> -->
-<view class="time-select">
-  <image src="../../../images/left.png" bindtap="toSubTime"></image>
+<!--components/year-statistic/year-statistic.wxml-->
+<view class="year-main">
+  <view class="time-select">
+  <image src="../../images/left.png" bindtap="toSubYear"></image>
     <picker class="select" mode="date" fields="year" value="{{date}}" bindchange="bindYearChange" >
         {{year}}年
     </picker>
-  <image src="../../../images/right.png" bindtap="toAddTime"></image>
+  <image src="../../images/right.png" bindtap="toAddYear"></image>
 </view>
 <view class='tabs1'>
   <view class='tabs-box1'>
@@ -22,4 +22,6 @@
     <view  hidden="{{currentTabIndex !== 1}}">
     </view>
   </view>
+</view>
+
 </view>

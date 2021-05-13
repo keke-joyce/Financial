@@ -10,11 +10,11 @@ Page({
    */
   data: {
     // timeIndex: 0,//年月tab的index
-    currentTabTimeIndex:0,//年月当前的tab
+    currentTabTimeIndex: 0,//年月当前的tab
     index: 0,//收支的tab
     currentTabIndex: 0,//当前的收支tab
     array1: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-    
+
     ec: {
       lazyLoad: true,
     },
@@ -28,24 +28,23 @@ Page({
     year: '',
     month: '',
     currentMonth: 0,
-    currentTabIndex:0,
+    currentTabIndex: 0,
 
   },
   // 获取当前时间
-  getCurrentTime() {
-    var date = new Date();
-    var year = date.getFullYear();
-    var month = date.getMonth() + 1;
-    if (month < 10) {
-      month = 0 + '' + month;
-    }
-    console.log(year + '-' + month)
-    this.setData({
-      currentTime: year + '-' + month,
-      year,
-      month
-    });
-  },
+  // getCurrentTime() {
+  //   var date = new Date();
+  //   var year = date.getFullYear();
+  //   var month = date.getMonth() + 1;
+  //   if (month < 10) {
+  //     month = 0 + '' + month;
+  //   }
+  //   this.setData({
+  //     currentTime: year + '-' + month,
+  //     year,
+  //     month
+  //   });
+  // },
   //月份选择 
   bindMonthChange(e) {
     console.log(e)
@@ -57,37 +56,43 @@ Page({
     })
     // 执行月份筛选的方法
 
-   
+
   },
   // 年份选择
   bindYearChange(e) {
     console.log(e)
     this.setData({
-      year:e.detail.value
+      year: e.detail.value
     })
     // 执行年份筛选的方法
-   },
-  
+  },
+
   onTimeTabsTap(e) {
     console.log(e)
     let timeIndex = e.currentTarget.dataset.index;
     this.setData({
       currentTabIndex: timeIndex
     })
+    // if (timeIndex === 0) {
+    //   wx.navigateTo({
+    //     url: './month-statistic/month-statistic',
+    //   })
+    // }
+
   },
   onTabsItemTap(e) {
-    console.log('收支选择',e)
+    console.log('收支选择', e)
     let index = e.currentTarget.dataset.index;
     this.setData({
       currentTabIndex: index
     })
-    if(index === 0){
+    if (index === 0) {
       this.getMoneyData(2)
       this.getMoneyData1(2)
       this.initIncomeLineChart();
       this.initIncomePieChart();
     }
-    if(index===1){
+    if (index === 1) {
       this.getMoneyData(1)
       this.getMoneyData1(1)
       this.initExpendLineChart();
@@ -255,7 +260,7 @@ Page({
     this.setData({ currentMonth: month })
     this.getMoneyData();
     this.getMoneyData1();
-    this.getCurrentTime();
+    // this.getCurrentTime();
 
   },
 

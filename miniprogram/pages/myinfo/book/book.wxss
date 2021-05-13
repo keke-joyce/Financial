@@ -4,11 +4,15 @@
   height: 10vh;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #ccc;
+  border-radius: 5px;
+  margin: 10px 0;
+  /* box-shadow: 5px 5px #ccc; */
 }
 
 .book-title view {
   margin: 0 20px;
-
 }
 
 .book-title image {
@@ -17,28 +21,31 @@
   background-size: 100% 100%;
 }
 
-.book-row {
+/* .book-row {
   display: flex;
   justify-content: space-around;
   width: 100%;
   height: 5vh;
   border-bottom: 1px solid #a8a8a8;
-}
+} */
 
-.book-row .book-name {
+/* .book-row .book-name {
   font-size: 18px;
-}
+} */
 
-.book-row .bind-family {
+.bind-family {
+  width: 95%;
+  height: 10vh;
+  border: 1px dotted black;
   color: #64b0e7;
   font-size: 16px;
 }
 
-.book-row image {
+/* .book-row image {
   width: 20px;
   height: 20px;
   background-size: 100% 100%;
-}
+} */
 
 /* 模态框的样式 */
 .modal-mask {
@@ -120,4 +127,34 @@ input-holder {
   width: 50%;
   color: #ec5300;
   text-align: center;
+}
+
+.vtabs-content-item {
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+}
+
+
+.top {
+  width: 95%;
+  height: 10vh;
+  /* border: 1px solid red; */
+  margin: 0 5px 2px;
+  /* background-color: cornflowerblue; */
+  border-radius: 10px;
+  border: 2px dotted cornflowerblue;
+  color: cornflowerblue;
+  font-weight: bold;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.delete-book {
+  width: 20px;
+  height: 20px;
+  background-size: 100% 100%;
 }

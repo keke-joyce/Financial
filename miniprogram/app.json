@@ -1,16 +1,13 @@
 {
   "pages": [
+    "pages/myinfo/book/book",
+    "pages/myinfo/myinfo",
     "pages/statistic/statistic",
     "pages/home/home",
     "pages/demo3/demo3",
     "pages/index/index",
     "pages/statistic/in-statistic/in-statistic",
     "pages/statistic/out-statistic/out-statistic",
-    "pages/statistic/month-statistic/month-statistic",
-    "pages/statistic/year-statistic/year-statistic",
-    "pages/statistic/other-statistic/other-statistic",
-    "pages/myinfo/book/book",
-    "pages/myinfo/myinfo",
     "pages/myinfo/classify/classify",
     "pages/myinfo/ours/ours",
     "pages/addmoney/addmoney",

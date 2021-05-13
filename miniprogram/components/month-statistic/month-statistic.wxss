@@ -1,6 +1,14 @@
-/* pages/statistic/year-statistic/year-statistic.wxss */
-.time-select {
+/* components/month-statistic/month-statistic.wxss */
+/* pages/statistic/month-statistic/month-statistic.wxss */
+.month-main {
   width: 85%;
+  /* height: 100vh; */
+  /* border: 1px solid red; */
+  margin: 0 auto;
+}
+
+.month-main .time-select {
+  width: 100%;
   height: 8vh;
   /* border: 1px solid black; */
   margin: 0 auto;
@@ -8,14 +16,14 @@
   justify-content: space-between;
 }
 
-.time-select image {
+.month-main .time-select image {
   width: 10%;
   height: 70%;
   /* border: 1px solid red; */
   margin: 6px 20px;
 }
 
-.time-select .select {
+.month-main .time-select .select {
   width: 80%;
   height: 100%;
   display: flex;
@@ -24,21 +32,21 @@
   font-size: 26rpx;
 }
 
-.time-select .select image {
+.month-main .time-select .select image {
   width: 20px;
   height: 20px;
   background-size: 100% 100%;
 }
 
-.tabs1 {
+.month-main .tabs1 {
   font-size: 28rpx;
-  width: 85%;
+  width: 100%;
   margin: 0 auto;
   border: 1px solid #e9e9e9;
   border-radius: 10px;
 }
 
-.tabs-box1 {
+.month-main .tabs-box1 {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,24 +55,21 @@
   text-align: center
 }
 
-.tabs-item1.selected {
+.month-main .tabs-item1.selected {
   color: #64b0e7;
-  border-bottom: 2rpx solid #64b0e7;
+  /* border-bottom: 2rpx solid #64b0e7; */
+  background-color: #ebebeb;
+  border-radius: 10px 10px 0 0px;
 }
 
-.tabs-item1 {
+.month-main .tabs-item1 {
   width: 33.3%;
   color: #666;
   border-bottom: 1rpx solid #e9e9e9;
 }
 
-.tabs1 .ordert-detail {
+.month-main .tabs1 .ordert-detail {
   width: 100%;
   height: 90vh;
   margin: 0 auto;
-
-}
-
-.tabs1 .ordert-detail view {
-  width: 100%;
 }

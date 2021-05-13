@@ -1,8 +1,8 @@
 {
   "usingComponents": {
-    "month-statistic": "../statistic/month-statistic/month-statistic",
-    "year-statistic": "../statistic/year-statistic/year-statistic",
-    "other-statistic": "../statistic/other-statistic/other-statistic",
+    "month-statistic": "../../components/month-statistic/month-statistic",
+    "year-statistic": "../../components/year-statistic/year-statistic",
+    "other-statistic": "../../components/other-statistic/other-statistic",
     "ec-canvas": "../../../ec-canvas/ec-canvas"
   }
 }

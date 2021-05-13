@@ -5,7 +5,48 @@
     <image src="../../../images/addbook-icon.png" bindtap="addBook"></image>
   </view>
 </view>
-<view wx:for="{{bookList}}" wx:key="index" class="book-row" data-id="{{item._id}}">
+<mp-vtabs 
+  vtabs="{{bookList}}" 
+  activeTab="{{activeTab}}" 
+  bindtabclick="onTabCLick"
+  class="test"
+>
+  <block wx:for="{{bookList}}" wx:key="index">
+    <block wx:if="{{index===activeTab}}">
+    <mp-vtabs-content tabIndex="{{index}}">
+      <view class="vtabs-content-item">
+        <view class="top">
+          总收入
+        </view>
+        <view class="top">
+          总支出
+        </view>
+        <view class="top">
+          结余
+        </view>
+        <block wx:if="{{item.user_id.length===1}}">
+          <view class="bind-family" data-id="{{item._id}}" bindtap="toFamilyNumber">绑定家庭成员</view>
+        </block>
+        <block wx:else>
+          <view class="bind-family" data-id="{{item._id}}" bindtap="toFamilyList">已绑定</view>
+        </block>
+        <view class="top" bindtap="toDownload">
+          <image class="delete-book" src="../../../images/down.png" data-id="{{item._id}}"></image>
+          导出数据
+        </view>
+        <view class="top">
+          <image class="delete-book" src="../../../images/delete-icon.png" data-id="{{item._id}}" bindtap="delBook">
+          </image>
+          删除
+        </view>
+        
+      </view>
+    </mp-vtabs-content>
+    </block>
+    
+  </block>
+</mp-vtabs>
+<!-- <view wx:for="{{bookList}}" wx:key="index" class="book-row" data-id="{{item._id}}">
   <view class="book-name">{{item.name}}</view>
   <block wx:if="{{item.user_id.length===1}}">
     <view class="bind-family" data-id="{{item._id}}" bindtap="toFamilyNumber">绑定家庭成员</view>
@@ -14,7 +55,7 @@
     <view class="bind-family" data-id="{{item._id}}" bindtap="toFamilyList">已绑定</view>
   </block>
   <image src="../../../images/delete-icon.png" data-id="{{item._id}}" bindtap="delBook"></image>
-</view>
+</view> -->
 <!-- 绑定家庭成员手机号的模态框 -->
 <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showFamilyModal}}"></view>
 <view class="modal-dialog" wx:if="{{showFamilyModal}}">
@@ -67,8 +108,21 @@
       </view>
     
   </view>
+  
   <!-- <view class="modal-footer">
     <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
     <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
   </view> -->
+</view>
+<!-- 复制地址 -->
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showCopyModal}}"></view>
+    <view class="modal-dialog" wx:if="{{showCopyModal}}">
+      <view class="modal-title">复制excel链接下载</view>
+      <view class="modal-content">
+        {{fileUrl}}
+      </view>
+      <view class="modal-footer">
+        <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+        <view class="btn-confirm" bindtap="copyFileUrl" data-status="confirm">复制</view>
+      </view>
 </view>
