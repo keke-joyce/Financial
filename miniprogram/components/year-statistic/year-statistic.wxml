@@ -9,7 +9,7 @@
 </view>
 <view class='tabs1'>
   <view class='tabs-box1'>
-    <block wx:for="{{['支出','收入','结余']}}" wx:key="index">
+    <block wx:for="{{['支出','收入']}}" wx:key="index">
       <view class="tabs-item1 {{currentTabIndex == index ? 'selected' : '' }}" bindtap='onTabsItemTap'
         data-index='{{index}}'>
         {{item}}
@@ -17,9 +17,17 @@
     </block>
   </view>
   <view class='ordert-detail'>
-    <view >
+    <view hidden="{{currentTabIndex !== 0}}">
+      <view class="container">
+        <ec-canvas id="spendLineChart" canvas-id="mychart-line" ec="{{ ec}}"></ec-canvas>
+        <ec-canvas id="spendPieChart" class=" ec-canvas" canvas-id="mychart-pie" ec="{{ ec1 }}"></ec-canvas>
+      </view>
     </view>
     <view  hidden="{{currentTabIndex !== 1}}">
+      <view class="container">
+        <ec-canvas id="incomeLineChart" class="ec-canvas" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+        <ec-canvas id="incomePieChart" class="ec-canvas" canvas-id="mychart-pie" ec="{{ ec1 }}"></ec-canvas>
+      </view>
     </view>
   </view>
 </view>

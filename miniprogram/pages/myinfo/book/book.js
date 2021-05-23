@@ -19,9 +19,34 @@ Page({
 
     vtabs: [],
     activeTab: 0,
-    fileUrl: ''
+    fileUrl: '',//文件地址
+    currentBookId: '',//当前账本id
+    // totalList: {}
 
   },
+
+  getBookTotalMoney() {
+    let { currentBookId, bookList } = this.data;
+    console.log('**', bookList)
+    const that = this;
+    db.collection("total_money_list").where({ book_id: currentBookId }).get().then(res => {
+      console.log(res.data)
+      if (res.data.length > 0) {
+        that.setData({
+          totalList: res.data[0]
+        })
+      } else {
+        that.setData({
+          totalList: {
+            income_total: 0,
+            spend_total: 0,
+            store_total: 0
+          }
+        })
+      }
+    })
+  },
+
   async toDownload() {
     const that = this;
     // this.setData({
@@ -48,28 +73,7 @@ Page({
     })
     that.saveExcel(targetArr)
   },
-  // async getMoneyList() {
-  //   const that = this;
-  //   let { activeTab } = this.data;
-  //   let current_book = wx.getStorageSync('book')[activeTab]._id;
-  //   let resultList = await Promise.all([
-  //     db.collection('booklist').where({ _id: current_book }).get(),
-  //     wx.cloud.callFunction({
-  //       name: 'getMoneyClassify',
-  //       data: {
-  //         current_book
-  //       }
-  //     })
-  //   ]);
-  //   let twoArray = resultList[1].result.list;
-  //   let { name, user_id } = resultList[0].data[0];
-  //   let targetArr = []
-  //   twoArray.forEach((el, index) => {
-  //     el[index] = { name, user_id, ...el }
-  //     targetArr.push(el[index])
-  //   })
-  //   that.saveExcel(targetArr)
-  // },
+
   //把数据保存到excel里，并把excel保存到云存储
   saveExcel(moneyList) {
     let that = this;
@@ -123,20 +127,30 @@ Page({
     })
   },
 
-  onTabCLick(e) {
-    const index = e.detail.index
-    // console.log('tabClick', index)
-    // console.log(this.data.activeTab)
-    // let current_book = this.data.bookList[index].id;
-    this.setData({ activeTab: index })
-    // this.getMoneyList()
-
+  onTabClick(e) {
+    const index = e.detail.index;
+    const that = this;
+    let { bookList } = this.data;
+    console.log(bookList[index])
+    this.setData({ activeTab: index, currentBookId: bookList[index]._id })
+    db.collection("total_money_list").where({ book_id: bookList[index]._id }).get().then(res => {
+      console.log(res.data)
+      if (res.data.length > 0) {
+        that.setData({
+          totalList: res.data[0]
+        })
+      } else {
+        that.setData({
+          totalList: {
+            income_total: 0,
+            spend_total: 0,
+            store_total: 0
+          }
+        })
+      }
+    })
   },
 
-  // onChange(e) {
-  //   const index = e.detail.index
-  //   console.log('change', index)
-  // },
   toFamilyList(e) {
     this.setData({
       showFamilyListModel: true,
@@ -231,10 +245,14 @@ Page({
       wx.setStorageSync('book', res.data)
       that.setData({
         bookList: res.data,
-        familyList: res.data.user_id
+        familyList: res.data.user_id,
+        currentBookId: res.data[0]._id
       })
+      that.getBookTotalMoney()
     })
+
   },
+
   toFamilyNumber(e) {
     console.log(e.target.dataset.id)
     this.setData({
@@ -364,6 +382,7 @@ Page({
     // const vtabs = titles.map(item => ({ title: item }))
     // this.setData({ vtabs })
     this.getBookList();
+    // this.getBookTotalMoney();
     // this.getMoneyList();
 
   },

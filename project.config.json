@@ -39,7 +39,7 @@
   },
   "appid": "wx8f1dda8deb11215a",
   "projectname": "Financial",
-  "libVersion": "2.14.1",
+  "libVersion": "2.17.0",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate",

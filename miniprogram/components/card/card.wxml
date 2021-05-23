@@ -1,5 +1,6 @@
 <!--components/card/card.wxml-->
-<view class="card-main">
-<view class="card-top"></view>
+<view class="container">
+<!-- <view class="card-top"></view> -->
+<ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
 </view>
 

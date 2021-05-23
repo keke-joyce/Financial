@@ -1,1 +1,2 @@
-<button type="primary" bindtap="getData">条件查询</button>
+<!-- <button type="primary" bindtap="getData">条件查询</button> -->
+<Card>hahahh</Card>

@@ -5,24 +5,24 @@
     <image src="../../../images/addbook-icon.png" bindtap="addBook"></image>
   </view>
 </view>
-<mp-vtabs 
+  <mp-vtabs 
   vtabs="{{bookList}}" 
   activeTab="{{activeTab}}" 
-  bindtabclick="onTabCLick"
+  bindtabclick="onTabClick"
   class="test"
 >
-  <block wx:for="{{bookList}}" wx:key="index">
+  <block wx:for="{{bookList}}" wx:key="index" >
     <block wx:if="{{index===activeTab}}">
     <mp-vtabs-content tabIndex="{{index}}">
       <view class="vtabs-content-item">
         <view class="top">
-          总收入
+          总收入{{totalList.income_total}}
         </view>
         <view class="top">
-          总支出
+          总支出{{totalList.spend_total}}
         </view>
         <view class="top">
-          结余
+          结余{{totalList.store_total}}
         </view>
         <block wx:if="{{item.user_id.length===1}}">
           <view class="bind-family" data-id="{{item._id}}" bindtap="toFamilyNumber">绑定家庭成员</view>
@@ -43,9 +43,9 @@
       </view>
     </mp-vtabs-content>
     </block>
-    
   </block>
 </mp-vtabs>
+
 <!-- <view wx:for="{{bookList}}" wx:key="index" class="book-row" data-id="{{item._id}}">
   <view class="book-name">{{item.name}}</view>
   <block wx:if="{{item.user_id.length===1}}">

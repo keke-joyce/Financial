@@ -72,3 +72,15 @@
   height: 90vh;
   margin: 0 auto;
 }
+
+.other-main .tabs1 .ordert-detail .container {
+  width: 100%;
+  height: 45vh;
+  /* border: 1px solid red; */
+}
+
+.other-main .tabs1 ec-canvas {
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid blue; */
+}

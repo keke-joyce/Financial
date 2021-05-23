@@ -24,13 +24,13 @@
     </view> -->
   </view>
   <view class="download-book" bindtap="toClassifyList">
-    <image src="../../images/down.png"></image>
+    <image src="../../images/money.png"></image>
     <text>资产管理</text>
   </view>
-  <view class="download-book" bindtap="toDownload">
+  <!-- <view class="download-book" bindtap="toDownload">
     <image src="../../images/down.png"></image>
     <text>导出数据</text>
-  </view>
+  </view> -->
   <view class="download-book" bindtap="toOurs">
     <image src="../../images/down.png"></image>
     <text>关于我们</text>

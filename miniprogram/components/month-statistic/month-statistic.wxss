@@ -63,7 +63,7 @@
 }
 
 .month-main .tabs-item1 {
-  width: 33.3%;
+  width: 50%;
   color: #666;
   border-bottom: 1rpx solid #e9e9e9;
 }
@@ -72,4 +72,22 @@
   width: 100%;
   height: 90vh;
   margin: 0 auto;
+  /* border: 1px solid yellow; */
+}
+
+/* .ordert-detail {
+  width: 100%;
+  height: 100%;
+} */
+
+.month-main .tabs1 .ordert-detail .container {
+  width: 100%;
+  height: 45vh;
+  /* border: 1px solid red; */
+}
+
+.month-main .tabs1 ec-canvas {
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid blue; */
 }

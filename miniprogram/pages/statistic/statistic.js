@@ -258,8 +258,8 @@ Page({
     var date = new Date();
     var month = date.getMonth() + 1;
     this.setData({ currentMonth: month })
-    this.getMoneyData();
-    this.getMoneyData1();
+    // this.getMoneyData();
+    // this.getMoneyData1();
     // this.getCurrentTime();
 
   },
