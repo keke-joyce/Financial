@@ -1,4 +1,0 @@
-<view class="container">
-  <ec-canvas id="mychart-dom-line" class="ec-canvas" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
-  <ec-canvas id="mychart-dom-pie" class="ec-canvas" canvas-id="mychart-pie" ec="{{ ec1 }}"></ec-canvas>
-</view>

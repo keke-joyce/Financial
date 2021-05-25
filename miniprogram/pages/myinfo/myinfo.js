@@ -1,6 +1,7 @@
 // pages/myinfo/myinfo.js
 // const app = getApp()
 const db = wx.cloud.database();
+const $ = db.command.aggregate;
 Page({
 
   /**
@@ -12,24 +13,113 @@ Page({
     phoneNumber: '',
     user_id: wx.getStorageSync('user_id'),
     showPhoneModal: false,
-  },
-  //导出数据
-  toDownload() {
+    totalMoney: 0,
+    year: '',
+    income_total: 0,
+    spend_total: 0,
+    store_total: 0
 
   },
-  
+  // 获取年份
+  getYearMoney() {
+    const that = this;
+    const { user_id, year } = this.data;
+    let income = [];
+    let spend = [];
+    db.collection('booklist').where({ user_id }).get().then(res => {
+      console.log(res)
+      res.data.forEach((el, index) => {
+        db.collection('money_list').aggregate()
+          .project({
+            book_id: true,
+            money: true,
+            time: true,
+            tid: true,
+            classify_id: true,
+            year: $.substr(['$time', 0, 4]),
+            month: $.substr(['$time', 5, 2]),
+          })
+          .match({
+            book_id: el._id,
+            year,
+          })
+          .group({
+            _id: '$tid',
+            yearTotalMoney: $.sum('$money'),
+          })
+          .end().then(res => {
+            res.list.forEach(el => {
+              if (el._id === 2) {
+                income[index] = el.yearTotalMoney;
+              } else if (el._id === 1) {
+                spend[index] = el.yearTotalMoney;
+              }
+              // console.log(income, spend)
+
+            })
+            let sum = 0;
+            let sum1 = 0;
+
+            income.forEach(el => {
+              sum += el;
+            })
+            spend.forEach(el => {
+              sum1 += el;
+            })
+            console.log(sum, sum1)
+            let sum3 = sum - sum1;
+            that.setData({
+              spend_total: sum1,
+              income_total: sum,
+              store_total: sum3
+            })
+
+          })
+        // console.log(income, spend)
+      })
+    })
+    // wx.cloud.callFunction({
+    //   name: 'getYearMoney',
+    //   data: {
+    //     user_id,
+    //     year
+    //   }
+    // }).then(res => {
+    //   console.log(res)
+    // })
+
+  },
+  // 切换年份
+  bindYearChange(e) {
+    // console.log(e)
+    this.setData({ year: e.detail.value })
+    this.getYearMoney();
+  },
+  // 获取当前年份
+  getCurrentTime() {
+    var date = new Date();
+    var year = date.getFullYear();
+    // console.log(typeof year, year)
+    this.setData({ year: String(year) })
+  },
   // 跳转到分类管理
   toClassifyList() {
-    wx.navigateTo({
-      url: '../myinfo/classify/classify',
+    const that = this;
+    const user_id = wx.getStorageSync('user_id')
+    db.collection('total_money_list').where({ _openid: user_id }).get().then(res => {
+      console.log(res.data)
+      let sum = 0;
+      res.data.forEach(el => {
+        console.log(el.store_total)
+        sum += el.store_total;
+      })
+      that.setData({
+        totalMoney: sum
+      })
+      console.log(sum)
     })
   },
-  // 跳转到关于我们
-  toOurs() {
-    wx.navigateTo({
-      url: '../myinfo/ours/ours',
-    })
-  },
+
   // 跳转到账本管理
   toBookList() {
     wx.navigateTo({
@@ -148,6 +238,9 @@ Page({
   onLoad: function (options) {
     this.getUserInf();
     this.getPhoneNumber();
+    this.getCurrentTime();
+    this.toClassifyList();
+    this.getYearMoney();
   },
 
   /**

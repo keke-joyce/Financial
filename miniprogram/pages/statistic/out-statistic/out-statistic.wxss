@@ -1,9 +1,0 @@
-/* pages/statistic/out-statistic/out-statistic.wxss */
-.container{
-  width: 100%;
-  height: 45vh;
-}
-.container .ec-canvas{
-  width: 100%;
-  height: 100%;
-}

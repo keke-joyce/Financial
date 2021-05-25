@@ -58,7 +58,7 @@ Page({
     let resultList = await Promise.all([
       db.collection('booklist').where({ _id: current_book }).get(),
       wx.cloud.callFunction({
-        name: 'getMoneyClassify',
+        name: 'getMoneyClassify1',
         data: {
           current_book
         }

@@ -15,30 +15,51 @@
     <block wx:if="{{index===activeTab}}">
     <mp-vtabs-content tabIndex="{{index}}">
       <view class="vtabs-content-item">
-        <view class="top">
-          总收入{{totalList.income_total}}
+        <view class="top income">
+          <view style="margin-left:20px;">
+            总收入
+          </view>
+          <view style="margin-left:20px;color:white;font-weight:bold;font-size:20px">
+            {{totalList.income_total}}
         </view>
-        <view class="top">
-          总支出{{totalList.spend_total}}
         </view>
-        <view class="top">
-          结余{{totalList.store_total}}
+        <view class="top spend">
+          <view style="margin-left:20px;">
+
+            总支出
+          </view>
+          <view style="margin-left:20px;color:white;font-weight:bold;font-size:20px">
+
+            {{totalList.spend_total}}
+          </view>
+        </view>
+        <view class="top store">
+          <view style="margin-left:30px;">
+
+            结余
+          </view>
+          <view style="margin-left:20px;color:white;font-weight:bold;font-size:20px">
+        {{totalList.store_total}}
+        </view>
         </view>
         <block wx:if="{{item.user_id.length===1}}">
-          <view class="bind-family" data-id="{{item._id}}" bindtap="toFamilyNumber">绑定家庭成员</view>
+          <view class="top bind-family" data-id="{{item._id}}" bindtap="toFamilyNumber">绑定家庭成员</view>
         </block>
         <block wx:else>
-          <view class="bind-family" data-id="{{item._id}}" bindtap="toFamilyList">已绑定</view>
+          <view class="top bind-family" data-id="{{item._id}}" bindtap="toFamilyList" >已绑定</view>
         </block>
-        <view class="top" bindtap="toDownload">
+        <view class="bottom">
+          <view class="top download" bindtap="toDownload">
           <image class="delete-book" src="../../../images/down.png" data-id="{{item._id}}"></image>
           导出数据
         </view>
-        <view class="top">
-          <image class="delete-book" src="../../../images/delete-icon.png" data-id="{{item._id}}" bindtap="delBook">
+        <view class="top delete" bindtap="delBook">
+          <image class="delete-book" src="../../../images/delete-icon.png" data-id="{{item._id}}" >
           </image>
           删除
         </view>
+        </view>
+       
         
       </view>
     </mp-vtabs-content>

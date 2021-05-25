@@ -9,8 +9,17 @@
     </block>
   </view>
   <view class='ordert-detail'>
-    <view hidden='{{currentTabIndex !== 0}}'> <month-statistic></month-statistic></view>
+  <block wx:if="{{currentTabIndex === 0}}">
+    <month-statistic></month-statistic>
+  </block>
+  <block wx:if="{{currentTabIndex === 1}}">
+    <year-statistic></year-statistic>
+  </block>
+  <block wx:if="{{currentTabIndex===2}}">
+    <other-statistic></other-statistic>
+  </block>
+    <!-- <view hidden='{{currentTabIndex !== 0}}'> <month-statistic></month-statistic></view>
     <view hidden='{{currentTabIndex !== 1}}'><year-statistic></year-statistic></view>
-    <view hidden="{{currentTabIndex!==2}}"><other-statistic></other-statistic></view>
+    <view hidden="{{currentTabIndex!==2}}"><other-statistic></other-statistic></view> -->
   </view>
 </view>

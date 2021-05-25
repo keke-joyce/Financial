@@ -23,17 +23,48 @@
       <image src="../../images/addbook-icon.png" bindtap="addBook"></image>
     </view> -->
   </view>
-  <view class="download-book" bindtap="toClassifyList">
+  <view class="total-money">
     <image src="../../images/money.png"></image>
-    <text>资产管理</text>
+    <text>总资产</text>
+    <text style="color:#FD7375;font-weight:bolder;margin:20%;">{{totalMoney}}</text>
+    
   </view>
   <!-- <view class="download-book" bindtap="toDownload">
     <image src="../../images/down.png"></image>
     <text>导出数据</text>
   </view> -->
-  <view class="download-book" bindtap="toOurs">
-    <image src="../../images/down.png"></image>
-    <text>关于我们</text>
+  <view class="year-money">
+    <view class="top">
+      <image src="../../images/income-icon.png"></image>
+    <text>年度收支</text>
+    <picker class="select" mode="date" fields="year" value="{{date}}" bindchange="bindYearChange" >
+        {{year}}年
+        <!-- <image src="../../images/select.png"></image> -->
+    </picker>
+    
+    </view>
+    
+    <view class="main">
+    <view class="item">
+      总支出
+      <view class="text">
+
+        {{spend_total}}
+      </view>
+    </view>
+    <view class="item">总收入
+      <view class="text">
+        {{income_total}}
+      </view>
+    </view>
+    <view class="item">总结余
+      <view class="text">
+        {{store_total}}
+      </view>
+      </view>
+    </view>
+   
+
   </view>
 
   

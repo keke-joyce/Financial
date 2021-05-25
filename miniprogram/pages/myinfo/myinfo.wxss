@@ -87,7 +87,7 @@ border-radius: 100px; */
   /* margin-left: 55%; */
 }
 
-.userinfo .download-book {
+.userinfo .total-money {
   width: 90%;
   height: 10vh;
   margin: 20px auto;
@@ -102,17 +102,75 @@ border-radius: 100px; */
   font-size: 18px;
 }
 
-.userinfo .download-book image {
+.userinfo .year-money {
+  width: 90%;
+  height: 20vh;
+  margin: 20px auto;
+  border-radius: 5px;
+  border-bottom: 1px solid #ccc;
+  background-color: white;
+  /* box-shadow: 2px 2px #ccc; */
+  /* display: flex;
+  align-items: flex-start; */
+  /* justify-content: space-between; */
+  /* overflow: hidden; */
+  font-size: 18px;
+}
+
+.userinfo .total-money image {
   width: 35px;
   height: 35px;
   background-size: 100% 100%;
   margin-left: 15px;
 }
 
-.userinfo .download-book text {
+.userinfo .total-money text {
   margin-left: 10px;
 }
 
+.userinfo .year-money .top image {
+  width: 35px;
+  height: 35px;
+  background-size: 100% 100%;
+  margin-left: 15px;
+}
+
+.userinfo .year-money .top text {
+  margin-left: 10px;
+}
+
+.userinfo .year-money .top {
+  height: 40%;
+  display: flex;
+  align-items: center;
+}
+
+.userinfo .year-money .top .select {
+  margin-left: 20px;
+  color: #515151;
+  font-weight: bold;
+}
+
+.userinfo .year-money .main {
+  display: flex;
+  justify-content: space-around;
+}
+
+.userinfo .year-money .main .item {
+  /* float: left; */
+  /* border: 1px solid red; */
+  /* border: 1px dotted #CCC; */
+  width: 25%;
+  height: 10vh;
+  border-radius: 5px;
+  background-color: #dee9f1;
+  font-weight: bold;
+}
+
+.userinfo .year-money .main .item .text {
+  color: #64b0e7;
+  font-weight: bold;
+}
 
 .modal-mask {
   width: 100%;

@@ -26,20 +26,23 @@ Page({
     month: '',
     book_id: wx.getStorageSync('book_id'),
     searchTitle: '',
-    bookName:''
+    bookName: '',
+    newDataList: [],
+    showDelete: false,
+    contentInfo: {}
 
   },
   getCurrentBook() {
     let book_id = wx.getStorageSync('book_id');
     db.collection('booklist').doc(book_id).get().then(res => {
       console.log('***--', res)
-      this.setData({bookName:res.data.name})
+      this.setData({ bookName: res.data.name })
     })
   },
   searchInput(e) {
     console.log(e.detail.value)
     this.setData({
-      searchTitle: e.detail.value
+      searchTitle: e.detail.value ? e.detail.value : ''
     });
   },
   //搜索
@@ -47,30 +50,11 @@ Page({
     let {
       searchTitle,
       book_id,
-      dataList
     } = this.data;
     const that = this;
-    // console.log(searchTitle)
-    // let newdata = [];
-    // if (searchTitle) {
-    //   if (dataList.length) {
-    //     dataList.forEach(el => {
-    //       if (el.detail.indexOf(searchTitle) !== -1) {
-    //         newdata.push(el)
-    //       }
-    //     })
-    //   }else{
-    //     this.getAllData();
-    //   }
-    //   console.log(newdata)
-    //   this.setData({dataList:newdata})
-    // } else {
-    //   this.getAllData();
-
-    // }
-    // if (searchTitle) {
+    if (searchTitle !== '') {
       wx.cloud.callFunction({
-        name: 'searchMoney',
+        name: 'toSearchMoney',
         data: {
           book_id,
           searchTitle
@@ -78,69 +62,12 @@ Page({
       }).then(res => {
         console.log(res)
         that.setData({
-          dataList: res.date
+          newDataList: res.result.list
         })
       })
-
-    //     db.collection('money_list').aggregate()
-    //   .lookup({
-    //     from: 'classify_list',
-    //     localField: 'classify_id',
-    //     foreignField: 'cid',
-    //     as: 'classify',
-    //   }).match(_.or([{
-    //     detail: db.RegExp({
-    //       regexp: searchTitle,
-    //       option: 'i'
-    //     })
-    //   },
-    //   {
-    //     money: db.RegExp({
-    //       regexp: searchTitle,
-    //       option: 'i'
-    //     })
-    //   },
-    // ])).sort({time:-1})
-    //   .end()
-    // db.collection('money_list').aggregate()
-    // .match({
-    //   book_id:'79550af2607d53420f7e403735c6bb40'
-    // })
-    // .lookup({
-    //   from: 'classify_list',
-    //   localField: 'classify_id',
-    //   foreignField: 'cid',
-    //   as: 'classify',
-    // })
-    // .match(_.or([{
-    //     detail: db.RegExp({
-    //       regexp: '家居',
-    //       option: 'i'
-    //     })
-    //   },
-    //   {
-    //     money: db.RegExp({
-    //       regexp: '家居',
-    //       option: 'i'
-    //     })
-    //   },
-    // ]))
-    // .lookup({
-    //   from: 'classify_list',
-    //   localField: 'classify_id',
-    //   foreignField: 'cid',
-    //   as: 'classify',
-    // }).sort({
-    //   time: -1
-    // })
-    // .end()
-    //   .then(res=>{
-    //     console.log(res)
-    //   })
-
-    // } else {
-    //   this.getAllData();
-    // }
+    } else {
+      return
+    }
 
   },
   // 年月选择时触发的方法
@@ -300,7 +227,7 @@ Page({
     console.log(array)
     this.setData({
       index: e.detail.value,
-      bookName:array[e.detail.value].name
+      bookName: array[e.detail.value].name
     })
     // 切换账本
     // 获取切换的账本的id
@@ -352,37 +279,46 @@ Page({
       })
     })
   },
-  //点击增加
-  // clickRow(res) {
-  //   //1.获取点击的id和索引值
-  //   //2.云函数进行更新操作
-  //   //3.前端连后端，将数据传输给后端，后端再返回数据
-  //   //4.重新渲染列表数据
-  //   wx.showLoading({
-  //     title: '数据加载中',
-  //     mask: true
-  //   })
-  //   var {
-  //     id,
-  //     idx
-  //   } = res.currentTarget.dataset;
-  //   wx.cloud.callFunction({
-  //     name: 'demoUpList',
-  //     data: {
-  //       id: id
-  //     }
-  //   }).then(res => {
-  //     var newData = this.data.dataList;
-  //     newData[idx].money += 1;
-  //     this.setData({
-  //       dataList: newData
-  //     })
-  //     wx.hideLoading({
-  //       complete: (res) => {}
-  //     })
-  //   })
-  // },
-
+  //点击删除
+  clickRow(e) {
+    const that = this;
+    var delId = e.currentTarget.dataset.id;
+    wx.showModal({
+      title: '提示',
+      content: '确认删除该条目？',
+      success(res) {
+        if (res.confirm) {
+          db.collection('money_list').doc(delId).remove({
+            success: res => {
+              that.getBookList();
+              that.getTotalMoney();
+              that.getTotal();
+              wx.showToast({
+                title: '删除成功',
+              })
+            },
+            fail: err => {
+              wx.showToast({
+                icon: 'none',
+                title: '删除失败',
+              })
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  onCancel() {
+    this.hideModal();
+  },
+  //隐藏模态对话框
+  hideModal() {
+    this.setData({
+      showDelete: false,
+    });
+  },
   toAdd() {
     var {
       array,

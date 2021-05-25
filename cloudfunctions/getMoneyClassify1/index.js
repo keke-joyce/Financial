@@ -7,30 +7,14 @@ const _ = db.command;
 const $ = db.command.aggregate;
 // 云函数入口函数
 exports.main = async (event, context) => {
-  let {
-    book_id,
-    searchTitle
-  } = event;
+  const current_book = event.current_book;
   return await db.collection('money_list').aggregate()
-    // .match({
-    //   book_id
-    // })
-    .match({
-      detail: db.RegExp({
-        regexp: searchTitle,
-        option: 'i'
-      }),
-      book_id
-    }
-    )
+    .match({ book_id: current_book })
     .lookup({
       from: 'classify_list',
       localField: 'classify_id',
       foreignField: 'cid',
-      as: 'classify',
-    })
-    .sort({
-      time: -1
+      as: 'classify_list',
     })
     .end()
 }

@@ -21,8 +21,7 @@ exports.main = async (event, context) => {
         option: 'i'
       }),
       book_id
-    }
-    )
+    })
     .lookup({
       from: 'classify_list',
       localField: 'classify_id',

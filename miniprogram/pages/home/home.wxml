@@ -15,8 +15,6 @@
     <picker mode="date" fields="month" value="{{date}}" bindchange="bindTimeChange" style="width:100%;overflow:hidden;">
       <view class="selectDate" style="float:left;margin-left:10px;">
         {{year}}年{{month}}月
-        <!-- <image src="../../images/select.png"
-        style="width:20px;height:20px;background-size:100% 100%;"></image> -->
       </view>
       <view style="font-size:20px;float:left;margin-left:10px;">
         <text style="font-size:16px;">结余</text>
@@ -24,16 +22,14 @@
       </view>
     </picker>
 
-    <!-- <view class="head_store" style="margin:-20px 30px;"><text>结余</text>{{storeMoney}}</view> -->
     <view class="head_income"><text>总收入</text>{{incomeMoney}}</view>
     <view class="head_spand"><text>总支出</text>{{spendMoney}}</view>
   </view>
   <!-- 收支条目 -->
   <view class="content">
     <view class="content-info">
-      <!-- <view>2020年2月14日</view> -->
-      <view class="row" wx:for="{{dataList}}" wx:key="index"  id="{{item._id}}"
-        data-id="{{item._id}}">
+      <view class="row" wx:for="{{searchTitle==''?dataList:newDataList}}" wx:key="index"  id="{{item._id}}"
+        data-id="{{item._id}}" bindtap="clickRow">
         <view class="info-left" style="background-color:{{item.classify[0].color}}">
           <image src="{{item.classify[0].url1}}"></image>
         </view>
@@ -59,6 +55,5 @@
       <image src="../../images/add.png" bindtap="toAdd"></image>
     </view>
   </view>
-
 
 </view>
